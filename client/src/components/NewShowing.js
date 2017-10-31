@@ -3,8 +3,7 @@ import '../styles/newShowing.css';
 
 const NewShowing = () => {
     return (
-        <div className="container">
-            New Showings
+        <div className="new-showing-container">
         </div>
     );
 }

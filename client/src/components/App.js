@@ -12,7 +12,7 @@ class App extends Component {
         <BrowserRouter>
         <div className="App" style={{backgroundColor: '#a8a8a8'}}> 
             <Header />
-            <Route exact path="/new-showing" component={NewShowing} />
+            <Route exact path="/new-showing" component={ NewShowing } />
         </div>
     </BrowserRouter>
     );
