@@ -1,11 +1,35 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
+
 import '../styles/newShowing.css';
 
-const NewShowing = () => {
-    return (
-        <div className="new-showing-container">
-        </div>
-    );
+class NewShowing extends Component {
+    componentDidMount() {
+        this.props.searchMovies();
+    }
+
+    renderMovies() {
+        return this.props.movieSearchResults.map(movie => {
+            return (
+                <div key={movie.title}>
+                    {movie.title}
+                </div>
+            );
+        });
+    }
+
+    render() {
+        return (
+            <div className="new-showing-container">
+                {this.renderMovies()}
+            </div>
+        );
+    }
 }
 
-export default NewShowing;
+function mapStateToProps({ movieSearchResults }) {
+    return { movieSearchResults };
+}
+
+export default connect(mapStateToProps, actions)(NewShowing);
