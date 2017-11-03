@@ -4,3 +4,8 @@
     background-color: #e4e4e4;
     height: 88.5%;
 }
+
+.movieContainer {
+    display: flex;
+    flex-wrap: wrap;
+}

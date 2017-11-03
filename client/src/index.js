@@ -20,6 +20,3 @@ ReactDOM.render(
     // ^^ this takes the App component, and renders it to the div with an id of "root" inside
     // the public/index.html file
 );
-
-console.log("key is: ", process.env.REACT_APP_MOVIE_DB_KEY);
-console.log('Environment is: ', process.env.NODE_ENV);
