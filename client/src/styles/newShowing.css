@@ -1,11 +1,50 @@
-.new-showing-container {
-    width: 68%;
-    margin: auto;
-    background-color: #e4e4e4;
-    height: 88.5%;
+:host {
+    height: 100%;
 }
 
-.movieContainer {
+.new-showing-container {
+    width: 82%;
+    margin: auto;
+    background-color: #e4e4e4;
+    flex-direction: column;
+    min-height: 88.5%;
+}
+
+.emptyGrow {
+    flex-direction: column;
+    flex: 1;
+}
+
+.form_container{
+    padding: 20px;
+}
+
+.moviesContainer {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.single_movie_container {
+    width: 20%;
+    margin: 10px;
+    padding-top: 15px;
+    text-align: center;
+}
+
+.single_movie_container:hover {
+    transform: scale(1.1);
+    transition: all 200ms ease-in;
+    background-color: #44ACA1;
+    color: white;
+    cursor: pointer;
+}
+
+.linkStyle {
+    color: black;
+}
+
+.linkStyle:hover {
+    color: white;
 }

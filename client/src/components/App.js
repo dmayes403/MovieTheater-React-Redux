@@ -4,15 +4,17 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 import Header from './Header';
-import NewShowing from './NewShowing';
+import NewShowingSearch from './NewShowingSearch';
+import NewShowingCreate from './NewShowingCreate';
 
 class App extends Component {
   render() {
     return (
         <BrowserRouter>
-        <div className="App" style={{backgroundColor: '#a8a8a8'}}> 
+        <div className="App" style={{backgroundColor: 'white'}}> 
             <Header />
-            <Route exact path="/new-showing" component={ NewShowing } />
+            <Route exact path="/new-showing-search" component={ NewShowingSearch } />
+            <Route exact path="/new-showing-create/:id" component={ NewShowingCreate } />
         </div>
     </BrowserRouter>
     );
