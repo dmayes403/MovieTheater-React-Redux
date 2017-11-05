@@ -11,11 +11,16 @@ export const searchMovies = (movieTitle) => async dispatch => {
 };
 
 export const getMovieDetails = (movieId) => async dispatch => {
-    // const getDetailsURL = `https://api.themoviedb.org/3/movie/${movieId}videos?api_key=${movieDBKEY}&language=en-US`
+    const getDetailsURL = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${movieDBKEY}&language=en-US`
     const getVideosURL = `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${movieDBKEY}&language=en-US`
-    // const getRatingURL
-    const res = await axios.get(getVideosURL);
-    console.log(res.data.results);
-    dispatch({ type: MOVIE_DETAILS, payload: res.data.results });
+    const getRatingsURL = `https://api.themoviedb.org/3/movie/${movieId}/release_dates?api_key=${movieDBKEY}&language=en-US`
+
+    const details = await axios.get(getDetailsURL);
+    const videos = await axios.get(getVideosURL);
+    const ratings = await axios.get(getRatingsURL);
+    console.log(details);
+    console.log(videos);
+    console.log(ratings);
+    // dispatch({ type: MOVIE_DETAILS, payload: res.data.results });
 
 }
