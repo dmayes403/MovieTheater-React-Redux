@@ -16,3 +16,8 @@
     min-height: 88.5%;
     padding: 25px;
 }
+
+.description-container {
+    width: 65%;
+    margin-left: 25px;
+}
