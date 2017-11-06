@@ -14,7 +14,8 @@ class NewShowingSearch extends Component {
                     <Link to={`/new-showing-create/${movie.id}`} className="linkStyle">
                         <div>
                             <div>
-                                <img src={ `http://image.tmdb.org/t/p/w154//${movie.poster_path}` }/>
+                                <img src={ `http://image.tmdb.org/t/p/w154//${movie.poster_path}` }
+                                    alt="poster"/>
                             </div>
                             <div>
                                 {movie.title}
