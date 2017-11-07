@@ -10,7 +10,7 @@ const Header = () => {
                 Towne Cinemas
             </div>
             <div style={{color: 'white'}}>
-                <Link to={'/new-showing-search'} className="headerLinkStyle" >New Showing</Link>
+                <Link to={'/new-showing-search'} className="headerLinkStyle">Search Movies</Link>
             </div>
         </div>
     );

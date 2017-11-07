@@ -3,14 +3,13 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // import { BrowserRouter as Router, Route } from 'react-router-dom'
 import * as actions from '../actions';
-import '../styles/newShowingCreate.css';
+import '../styles/movieDetails.css';
 
 
-class NewShowingCreate extends Component {
+class MovieDetails extends Component {
     componentDidMount() {
         console.log(this.props.match.params.id);
         this.props.getMovieDetails(this.props.match.params.id);
-        // console.log(this.props);
     }
 
     render() {
@@ -22,14 +21,14 @@ class NewShowingCreate extends Component {
 
         if (this.props.movieDetails.length > 0) {
             return (
-                <div className="create-showing-container">
+                <div className="video-details-container">
                     <div style={detailContainerStyles}>
                         <img src={ `http://image.tmdb.org/t/p/w342//${movieDetails[2].poster_path}` }
                             style={{width: '35%', minWidth: '300px', height: '50%'}}
                             alt="poster"/>
                         <div className="description-container">
                             <h2 style={{margin: 'auto', textAlign: 'center', backgroundColor: '#3454b4', color: 'white', borderRadius: '5px', padding: '5px'}} className="z-depth-3">{movieDetails[2].title}</h2>
-                            <p><span style={{textDecoration: 'underline'}}>Rating:</span> {movieDetails[1]}</p>
+                            <p><span style={{textDecoration: 'underline'}}>Rating:</span> {movieDetails[1] ? movieDetails[1] : 'Unknown'}</p>
                             <p><span style={{textDecoration: 'underline'}}>Run Time:</span> {movieDetails[2].runtime} minutes</p>
                             <span style={{textDecoration: 'underline'}}>Production Companies:</span>
                             <ul style={{marginTop: '5px'}}>
@@ -40,9 +39,8 @@ class NewShowingCreate extends Component {
                                 {this.renderGenres()}
                             </ul>
                             <span style={{textDecoration: 'underline'}}>Overview:</span>
-                            <p>
-                                {movieDetails[2].overview}
-                            </p>
+                            <p>{movieDetails[2].overview}</p>
+                            <h6 className="z-depth-3 create-showing">Create Showing</h6>
                         </div>
                     </div>
                     <div className="videos-container">
@@ -104,4 +102,4 @@ function mapStateToProps({ movieDetails }) {
     return { movieDetails };
 }
 
-export default connect(mapStateToProps, actions)(NewShowingCreate);
+export default connect(mapStateToProps, actions)(MovieDetails);

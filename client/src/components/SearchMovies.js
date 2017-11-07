@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as actions from '../actions';
 
-import '../styles/newShowing.css';
+import '../styles/searchMovies.css';
 
-class NewShowingSearch extends Component {
+class SearchMovies extends Component {
     renderMovies() {
         return this.props.movieSearchResults.map(movie => {
             return (
@@ -58,11 +58,7 @@ function mapStateToProps({ movieSearchResults }) {
     return { movieSearchResults };
 }
 
-//values.movieTitle
-
-NewShowingSearch = connect(mapStateToProps, actions)(NewShowingSearch);
+SearchMovies = connect(mapStateToProps, actions)(SearchMovies);
 export default reduxForm({
     form: 'newShowingForm'
-})(NewShowingSearch);
-
-// export default connect(mapStateToProps, actions)(NewShowing);
+})(SearchMovies);

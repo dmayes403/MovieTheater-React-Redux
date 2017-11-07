@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 import Header from './Header';
-import NewShowingSearch from './NewShowingSearch';
-import NewShowingCreate from './NewShowingCreate';
+import SearchMovies from './SearchMovies';
+import MovieDetails from './MovieDetails';
 
 class App extends Component {
   render() {
@@ -13,8 +13,8 @@ class App extends Component {
         <BrowserRouter>
         <div className="App" style={{backgroundColor: 'white'}}> 
             <Header />
-            <Route exact path="/new-showing-search" component={ NewShowingSearch } />
-            <Route exact path="/new-showing-create/:id" component={ NewShowingCreate } />
+            <Route exact path="/new-showing-search" component={ SearchMovies } />
+            <Route exact path="/new-showing-create/:id" component={ MovieDetails } />
         </div>
     </BrowserRouter>
     );

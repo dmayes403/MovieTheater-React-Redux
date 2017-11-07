@@ -5,6 +5,7 @@
     flex-direction: row;
     justify-content: space-between;
     width: 85%;
+    min-width: 750px;
     height: 100px;
     background-color: #44ACA1;
     color: white;

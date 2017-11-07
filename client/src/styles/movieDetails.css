@@ -1,0 +1,42 @@
+.videos-container {
+    display: flex;
+    flex-direction: row;
+    overflow: auto;
+}
+
+.single-video-container {
+    margin: 25px 15px 10px 0px;
+}
+
+.video-details-container {
+    width: 82%;
+    max-width: 1200px;
+    min-width: 700px;
+    margin: auto;
+    background-color: #e4e4e4;
+    flex-direction: column;
+    min-height: 88.5%;
+    padding: 25px;
+}
+
+.description-container {
+    width: 65%;
+    margin-left: 25px;
+    position: relative;
+}
+
+.create-showing {
+    margin: auto;
+    text-align: center; 
+    background-color: #44ACA1;
+    color: white; 
+    border-radius: 5px;
+    padding: 10px; 
+    width: 200px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.create-showing:active {
+    background-color: #3454b4;
+}
