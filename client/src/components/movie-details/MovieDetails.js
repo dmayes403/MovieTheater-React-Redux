@@ -6,6 +6,8 @@ import './movieDetails.css';
 
 
 class MovieDetails extends Component {
+    state = {createShowing: false}
+
     componentDidMount() {
         console.log(this.props.match.params.id);
         this.props.getMovieDetails(this.props.match.params.id);
@@ -20,7 +22,7 @@ class MovieDetails extends Component {
             paddingBottom: '15px'
         }
 
-        if (this.props.movieDetails.length > 0) {
+        if (this.props.movieDetails.length > 0 && !this.state.createShowing) {
             return (
                 <div className="video-details-container">
                     <div style={detailContainerStyles}>
@@ -41,7 +43,7 @@ class MovieDetails extends Component {
                             </ul>
                             <span style={{textDecoration: 'underline'}}>Overview:</span>
                             <p>{movieDetails[2].overview}</p>
-                            <Link to={'/create-showing'}><h6 className="z-depth-3 create-showing">Create Showing</h6></Link>
+                            <Link to={`/create-showing/${this.props.match.params.id}`}><h6 className="z-depth-3 create-showing">Create Showing</h6></Link>
                         </div>
                     </div>
                     <div className="videos-container">
