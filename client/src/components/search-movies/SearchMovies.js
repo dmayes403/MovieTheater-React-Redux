@@ -2,16 +2,16 @@ import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import * as actions from '../actions';
+import * as actions from '../../actions';
 
-import '../styles/searchMovies.css';
+import './searchMovies.css';
 
 class SearchMovies extends Component {
     renderMovies() {
         return this.props.movieSearchResults.map(movie => {
             return (
                 <div className="single_movie_container card small" key={movie.id}>
-                    <Link to={`/new-showing-create/${movie.id}`} className="linkStyle">
+                    <Link to={`/movie-details/${movie.id}`} className="linkStyle">
                         <div>
                             <div>
                                 <img src={ `http://image.tmdb.org/t/p/w154//${movie.poster_path}` }

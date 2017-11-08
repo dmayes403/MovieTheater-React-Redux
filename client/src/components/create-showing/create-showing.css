@@ -1,0 +1,10 @@
+.create-showing-container {
+    width: 82%;
+    max-width: 1200px;
+    min-width: 700px;
+    margin: auto;
+    background-color: #e4e4e4;
+    flex-direction: column;
+    min-height: 88.5%;
+    padding: 25px;
+}

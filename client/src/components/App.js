@@ -3,9 +3,10 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-import Header from './Header';
-import SearchMovies from './SearchMovies';
-import MovieDetails from './MovieDetails';
+import Header from './header/Header';
+import SearchMovies from './search-movies/SearchMovies';
+import MovieDetails from './movie-details/MovieDetails';
+import CreateShowing from './create-showing/CreateShowing';
 
 class App extends Component {
   render() {
@@ -13,8 +14,9 @@ class App extends Component {
         <BrowserRouter>
         <div className="App" style={{backgroundColor: 'white'}}> 
             <Header />
-            <Route exact path="/new-showing-search" component={ SearchMovies } />
-            <Route exact path="/new-showing-create/:id" component={ MovieDetails } />
+            <Route exact path="/search-movies" component={ SearchMovies } />
+            <Route exact path="/movie-details/:id" component={ MovieDetails } />
+            <Route exact path="/create-showing" component={ CreateShowing } />
         </div>
     </BrowserRouter>
     );

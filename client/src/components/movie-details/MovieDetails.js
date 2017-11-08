@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-// import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
-// import { BrowserRouter as Router, Route } from 'react-router-dom'
-import * as actions from '../actions';
-import '../styles/movieDetails.css';
+import { Link } from 'react-router-dom';
+import * as actions from '../../actions';
+import './movieDetails.css';
 
 
 class MovieDetails extends Component {
@@ -16,7 +15,9 @@ class MovieDetails extends Component {
         const { movieDetails } = this.props;
         var detailContainerStyles = {
             display: 'flex',
-            flexDirection: 'row'
+            flexDirection: 'row',
+            borderBottom: '5px solid #3454b4',
+            paddingBottom: '15px'
         }
 
         if (this.props.movieDetails.length > 0) {
@@ -40,7 +41,7 @@ class MovieDetails extends Component {
                             </ul>
                             <span style={{textDecoration: 'underline'}}>Overview:</span>
                             <p>{movieDetails[2].overview}</p>
-                            <h6 className="z-depth-3 create-showing">Create Showing</h6>
+                            <Link to={'/create-showing'}><h6 className="z-depth-3 create-showing">Create Showing</h6></Link>
                         </div>
                     </div>
                     <div className="videos-container">

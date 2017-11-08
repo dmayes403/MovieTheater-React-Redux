@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/header.css';
+import './header.css';
 import { Link } from 'react-router-dom';
 
 
@@ -10,7 +10,7 @@ const Header = () => {
                 Towne Cinemas
             </div>
             <div style={{color: 'white'}}>
-                <Link to={'/new-showing-search'} className="headerLinkStyle">Search Movies</Link>
+                <Link to={'/search-movies'} className="headerLinkStyle">Search Movies</Link>
             </div>
         </div>
     );
