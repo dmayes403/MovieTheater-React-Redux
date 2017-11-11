@@ -10,3 +10,8 @@
 .time-table th {
     padding-bottom: 5px;
 }
+
+.time-table td {
+    margin: 5px;
+    padding: 5px;
+}

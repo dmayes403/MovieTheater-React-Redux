@@ -6,13 +6,17 @@ import * as actions from '../../actions';
 import './createShowing.css';
 import theaterList from '../../variables/theaters';
 import { DatePicker } from 'redux-form-material-ui';
+import _ from 'lodash';
 
 import MenuItem from 'material-ui/MenuItem'
 
 import SelectFieldContainer from '../../material-ui/SelectFieldContainer';
 
 class CreateShowing extends Component {
-    state = { showingTimes: [] }
+    state = { 
+        showingTimes: [],
+        displayEndDate: false
+    }
 
     componentDidMount() {
         this.props.getMovieDetails(this.props.match.params.id);
@@ -71,8 +75,8 @@ class CreateShowing extends Component {
                                 <tbody>
                                     {this.state.showingTimes.map((showTime, index) => 
                                         <tr key={index}>
-                                            <td>{showTime.startDate.toString()}</td>
-                                            {/* <td>{showTime.endDate.toString()}</td> */}
+                                            <td>{showTime.startDate.toString().split(' ').slice(0, 4).join(' ')}</td>
+                                            <td>{showTime.endDate ? showTime.endDate.toString().split(' ').slice(0, 4).join(' ') : showTime.startDate.toString().split(' ').slice(0, 4).join(' ')}</td>
                                         </tr>
                                     )}
                                 </tbody>
@@ -135,7 +139,6 @@ class CreateShowing extends Component {
                         format={null}
                         autoOk={true}
                         DateTimeFormat={Intl.DateTimeFormat}
-                        style={{marginTop: 'none'}}
                     />
                 </div>
                 <div className="field-line">
@@ -153,14 +156,20 @@ class CreateShowing extends Component {
     }
 
     addToShowTimes(values) {
-        tempShowTime = _.cloneDeep(value);
-        console.log(values.startDate.toString().split(' ').slice(0, 4).join(' '));
-        values.startDate = values.startDate.toString().split(' ').slice(0, 4).join(' ')
-        // values.endDate = values.startEnd.split('').slice(0, 4).join(' ')
+        // let formValues = _.cloneDeep(values);
+        // formValues.startDate = values.startDate.toString().split(' ').slice(0, 4).join(' ')
+
+        // if (values.endDate) {
+        //     formValues.endDate = values.endDate.toString().split(' ').slice(0, 4).join(' ')
+        // }
+
+        // let tempShowTimes = this.state.showingTimes;
+        // tempShowTimes.push(formValues);
+        // this.setState({ showingTimes: tempShowTimes})
+
         let tempShowTimes = this.state.showingTimes;
         tempShowTimes.push(values);
         this.setState({ showingTimes: tempShowTimes})
-        console.log(this.state);
     }
 }
     
