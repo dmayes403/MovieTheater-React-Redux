@@ -1,12 +1,12 @@
 export default [
     {
         id: 1,
-        name: 'theater 1',
+        name: 'Theater 1',
         currentShowing: null
     },
     {
         id: 2,
-        name: 'theater 2',
+        name: 'Theater 2',
         currentShowing: null
     }
 ]
