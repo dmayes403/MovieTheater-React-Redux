@@ -41,7 +41,6 @@ export const getMovieDetails = (movieId) => async dispatch => {
     ]).then(axios.spread((videos, ratings, details) => {
         const rating = _.find(ratings.data.results, {iso_3166_1: "US"})
         const data = [videos.data.results, rating.release_dates[rating.release_dates.length-1].certification, details.data];
-        console.log(data);
         dispatch({ type: MOVIE_DETAILS, payload: data });
     }))
 
