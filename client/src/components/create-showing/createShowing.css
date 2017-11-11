@@ -2,6 +2,11 @@
     border-bottom: 1px solid #3454b4 !important;
 }
 
-.state-date-input input {
-    margin-top: none;
+.time-table {
+    width: 60%;
+    margin-left: 35px;
+}
+
+.time-table th {
+    padding-bottom: 5px;
 }

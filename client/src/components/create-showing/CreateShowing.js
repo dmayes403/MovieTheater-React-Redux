@@ -12,6 +12,8 @@ import MenuItem from 'material-ui/MenuItem'
 import SelectFieldContainer from '../../material-ui/SelectFieldContainer';
 
 class CreateShowing extends Component {
+    state = { showingTimes: [] }
+
     componentDidMount() {
         this.props.getMovieDetails(this.props.match.params.id);
     }
@@ -47,13 +49,34 @@ class CreateShowing extends Component {
                     <div className="description-container">
                         <h2 style={{margin: 'auto', textAlign: 'center', backgroundColor: '#3454b4', color: 'white', borderRadius: '5px', padding: '5px'}} className="z-depth-3">{movieDetails[2].title}</h2>
                         
-                        <div>
-                            <form onSubmit={handleSubmit(values => console.log(values))}>
-                                {this.renderField()}
-                                <div style={{fontSize: '1.2em'}} className="heading">Choose a date range</div>
-                                {this.renderDatePicker()}
-                                <button type="submit" style={{marginTop: '50px'}}>Submit</button>
-                            </form>
+                        <div style={{display: 'flex', flexDirection: 'row'}}>
+                            <div>
+                                <form>
+                                    {this.renderField()}
+                                    <div style={{fontSize: '1.2em', marginTop: '15px'}} className="heading">Choose a date range</div>
+                                </form>
+                                <form onSubmit={handleSubmit(values => this.addToShowTimes(values))}>
+                                    {this.renderDatePicker()}
+                                    <button type="submit" style={{marginTop: '50px'}}>Submit</button>
+                                </form>
+                            </div>
+                            <table className="time-table">
+                                <thead>
+                                    <tr className="heading">
+                                        <th>Start Date</th>
+                                        <th>End Date</th>
+                                        <th style={{textAlign: 'center'}}>Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {this.state.showingTimes.map((showTime, index) => 
+                                        <tr key={index}>
+                                            <td>{showTime.startDate.toString()}</td>
+                                            {/* <td>{showTime.endDate.toString()}</td> */}
+                                        </tr>
+                                    )}
+                                </tbody>
+                            </table>
                         </div>
 
                         <Link to={`/movie-details/${this.props.match.params.id}`}><h6 className="z-depth-3 cancel-button" onClick={() => this.setState({createShowing: false})}>Cancel</h6></Link>
@@ -84,7 +107,7 @@ class CreateShowing extends Component {
     
     renderField() {
         return (
-            <div className="field-line state-date-input" id="state-date-input" style={{marginTop: '15px'}}>
+            <div className="field-line" style={{marginTop: '15px'}}>
                 <Field
                     type="text"
                     floatingLabelText="Theater"
@@ -127,6 +150,17 @@ class CreateShowing extends Component {
                 </div>
             </div>
         )
+    }
+
+    addToShowTimes(values) {
+        tempShowTime = _.cloneDeep(value);
+        console.log(values.startDate.toString().split(' ').slice(0, 4).join(' '));
+        values.startDate = values.startDate.toString().split(' ').slice(0, 4).join(' ')
+        // values.endDate = values.startEnd.split('').slice(0, 4).join(' ')
+        let tempShowTimes = this.state.showingTimes;
+        tempShowTimes.push(values);
+        this.setState({ showingTimes: tempShowTimes})
+        console.log(this.state);
     }
 }
     
