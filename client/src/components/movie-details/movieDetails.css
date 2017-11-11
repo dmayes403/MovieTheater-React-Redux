@@ -40,3 +40,19 @@
 .create-showing:active {
     background-color: #3454b4;
 }
+
+.cancel-button {
+    margin: auto;
+    text-align: center; 
+    background-color: #ff3232;
+    color: white; 
+    border-radius: 5px;
+    padding: 10px; 
+    width: 200px;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.cancel-button:active {
+    background-color: #3454b4;
+}

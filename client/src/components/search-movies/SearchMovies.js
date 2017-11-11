@@ -60,5 +60,5 @@ function mapStateToProps({ movieSearchResults }) {
 
 SearchMovies = connect(mapStateToProps, actions)(SearchMovies);
 export default reduxForm({
-    form: 'newShowingForm'
+    form: 'searchMovies'
 })(SearchMovies);
