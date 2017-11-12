@@ -156,17 +156,7 @@ class CreateShowing extends Component {
     }
 
     addToShowTimes(values) {
-        // let formValues = _.cloneDeep(values);
-        // formValues.startDate = values.startDate.toString().split(' ').slice(0, 4).join(' ')
-
-        // if (values.endDate) {
-        //     formValues.endDate = values.endDate.toString().split(' ').slice(0, 4).join(' ')
-        // }
-
-        // let tempShowTimes = this.state.showingTimes;
-        // tempShowTimes.push(formValues);
-        // this.setState({ showingTimes: tempShowTimes})
-
+        console.log(this.props.formValues);
         let tempShowTimes = this.state.showingTimes;
         tempShowTimes.push(values);
         this.setState({ showingTimes: tempShowTimes})
@@ -174,8 +164,17 @@ class CreateShowing extends Component {
 }
     
 
-function mapStateToProps({ movieDetails }) {
-    return { movieDetails };
+function mapStateToProps(state) {
+    if (_.has(state.form, 'createShowing') && _.has(state.form.createShowing, 'values')) {
+        return { 
+            movieDetails: state.movieDetails,
+            formValues: state.form.createShowing.values
+        };
+    } else {
+        return { 
+            movieDetails: state.movieDetails,
+        };
+    }
 }
 
 CreateShowing = connect(mapStateToProps, actions)(CreateShowing);
