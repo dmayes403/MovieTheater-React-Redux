@@ -43,7 +43,6 @@
 }
 
 .add-button {
-    /* margin: auto; */
     text-align: center; 
     background-color: #3454b4;
     color: white; 
@@ -51,7 +50,7 @@
     padding: 10px; 
     width: 125px;
     cursor: pointer;
-    margin-top: 15px;
+    margin-top: 30px;
     border: none;
     height: 36px;
     line-height: 0px;

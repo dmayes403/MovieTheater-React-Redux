@@ -7,6 +7,7 @@ import './createShowing.css';
 import theaterList from '../../variables/theaters';
 import { DatePicker, TimePicker } from 'redux-form-material-ui';
 import _ from 'lodash';
+import * as moment from 'moment';
 
 import MenuItem from 'material-ui/MenuItem'
 
@@ -58,14 +59,12 @@ class CreateShowing extends Component {
                         
                         <div style={{display: 'flex', flexDirection: 'row'}}>
                             <div>
-                                {/* <form onSubmit={handleSubmit(values => this.addToShowTimes(values))}> */}
-                                <form>
+                                <form onSubmit={handleSubmit(values => this.addToShowTimes(values))}>
                                     {this.renderField()}
                                     {this.renderDatePicker()}
                                     {this.renderTimePicker()}
-                                    {/* <button type="submit" style={{marginTop: '50px'}}>Submit</button> */}
+                                    <button className="z-depth-3 add-button" type="submit">Add Showing</button>
                                 </form>
-                                <button className="z-depth-3 add-button">Add Showing</button>
                             </div>
                             <div className="time-table">
                                 <table>
@@ -85,13 +84,15 @@ class CreateShowing extends Component {
                                                 <td>{showTime.theaterChoice.name}</td>
                                                 <td>{showTime.startDate.toString().split(' ').slice(0, 4).join(' ')}</td>
                                                 <td>{showTime.endDate ? showTime.endDate.toString().split(' ').slice(0, 4).join(' ') : showTime.startDate.toString().split(' ').slice(0, 4).join(' ')}</td>
+                                                {/* <td style={{textAlign: 'center'}}>{showTime.time.toString().split(' ').slice(4, 5).join(' ')}</td> */}
+                                                <td style={{textAlign: 'center'}}>{this.convert(showTime.time.toString().split(' ').slice(4, 5).join(' '))}</td>
                                             </tr>
                                         )}
                                     </tbody>
                                 </table>
                                 <div className="bottom-links">
                                     <Link to={`/movie-details/${this.props.match.params.id}`}><h6 className="z-depth-3 cancel-button" onClick={() => this.setState({createShowing: false})}>Cancel</h6></Link>
-                                    <button className="z-depth-3 save-button">Save</button>
+                                    <button className="z-depth-3 save-button" type="submit">Save</button>
                                 </div>
                             </div>
                         </div>
@@ -103,6 +104,11 @@ class CreateShowing extends Component {
                 </div>
             </div>
         )
+    }
+
+    convert(time) {
+        const theMoment = moment(time, ["HH:mm"])
+        return theMoment.format("h:mm A")
     }
 
     delete(index) {
@@ -190,7 +196,6 @@ class CreateShowing extends Component {
                         floatingLabelText="Start Time"
                         component={TimePicker} 
                         format={null}
-                        hintText="At what Time?"
                         disabled={this.state.startDateNotSelected}
                     />
                 </div>
@@ -200,9 +205,8 @@ class CreateShowing extends Component {
 
     addToShowTimes(values) {
         let tempShowTimes = this.state.showingTimes;
-        tempShowTimes.push(this.props.formValues);
+        tempShowTimes.push(values);
         this.setState({ showingTimes: tempShowTimes, theaterNotSelected: true, startDateNotSelected: true});
-        console.log(this.props.formValues);
     }
 }
  
