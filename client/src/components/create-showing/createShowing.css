@@ -9,6 +9,9 @@
 .time-table {
     width: 75%;
     margin-left: 35px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 
 .time-table th {
@@ -24,4 +27,66 @@
     width: 68%;
     margin-left: 25px;
     position: relative;
+}
+
+.cancel-button {
+    /* margin: auto; */
+    text-align: center; 
+    background-color: #ff3232;
+    color: white; 
+    border-radius: 5px;
+    padding: 10px; 
+    width: 75px;
+    cursor: pointer;
+    margin-top: 15px;
+    margin-bottom: 0px;
+}
+
+.add-button {
+    /* margin: auto; */
+    text-align: center; 
+    background-color: #3454b4;
+    color: white; 
+    border-radius: 5px;
+    padding: 10px; 
+    width: 125px;
+    cursor: pointer;
+    margin-top: 15px;
+    border: none;
+    height: 36px;
+    line-height: 0px;
+}
+
+.add-button:active {
+    background-color: #44ACA1;
+}
+
+.save-button {
+    /* margin: auto; */
+    text-align: center; 
+    background-color: #44ACA1;
+    color: white; 
+    border-radius: 5px;
+    padding: 10px; 
+    width: 75px;
+    cursor: pointer;
+    margin-top: 15px;
+    margin-bottom: 0px;
+    border: none;
+    height: 36px;
+    line-height: 0px;
+    margin-left: 15px;
+}
+
+.save-button:active {
+    background-color: #3454b4;
+}
+
+.bottom-links {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
 }

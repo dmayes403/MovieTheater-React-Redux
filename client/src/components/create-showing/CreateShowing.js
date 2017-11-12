@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import * as actions from '../../actions';
 import './createShowing.css';
 import theaterList from '../../variables/theaters';
-import { DatePicker } from 'redux-form-material-ui';
+import { DatePicker, TimePicker } from 'redux-form-material-ui';
 import _ from 'lodash';
 
 import MenuItem from 'material-ui/MenuItem'
@@ -58,38 +58,44 @@ class CreateShowing extends Component {
                         
                         <div style={{display: 'flex', flexDirection: 'row'}}>
                             <div>
+                                {/* <form onSubmit={handleSubmit(values => this.addToShowTimes(values))}> */}
                                 <form>
                                     {this.renderField()}
-                                </form>
-                                <form onSubmit={handleSubmit(values => this.addToShowTimes(values))}>
                                     {this.renderDatePicker()}
-                                    <button type="submit" style={{marginTop: '50px'}}>Submit</button>
+                                    {this.renderTimePicker()}
+                                    {/* <button type="submit" style={{marginTop: '50px'}}>Submit</button> */}
                                 </form>
+                                <button className="z-depth-3 add-button">Add Showing</button>
                             </div>
-                            <table className="time-table">
-                                <thead>
-                                    <tr className="heading">
-                                        <th style={{width: '50px'}}></th>
-                                        <th>Theater</th>
-                                        <th>Start Date</th>
-                                        <th>End Date</th>
-                                        <th style={{textAlign: 'center'}}>Time</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {this.state.showingTimes.map((showTime, index) => 
-                                        <tr key={index} style={{color: '#3454b4'}}>
-                                            <td onClick={() => this.delete(index)}><i className="material-icons" style={{cursor: 'pointer', maxWidth: '50px'}}>delete</i></td>
-                                            <td>{showTime.theater.name}</td>
-                                            <td>{showTime.startDate.toString().split(' ').slice(0, 4).join(' ')}</td>
-                                            <td>{showTime.endDate ? showTime.endDate.toString().split(' ').slice(0, 4).join(' ') : showTime.startDate.toString().split(' ').slice(0, 4).join(' ')}</td>
+                            <div className="time-table">
+                                <table>
+                                    <thead>
+                                        <tr className="heading">
+                                            <th style={{width: '50px'}}></th>
+                                            <th>Theater</th>
+                                            <th>Start Date</th>
+                                            <th>End Date</th>
+                                            <th style={{textAlign: 'center'}}>Time</th>
                                         </tr>
-                                    )}
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        {this.state.showingTimes.map((showTime, index) => 
+                                            <tr key={index} style={{color: '#3454b4'}}>
+                                                <td onClick={() => this.delete(index)}><i className="material-icons" style={{cursor: 'pointer', maxWidth: '50px'}}>delete</i></td>
+                                                <td>{showTime.theaterChoice.name}</td>
+                                                <td>{showTime.startDate.toString().split(' ').slice(0, 4).join(' ')}</td>
+                                                <td>{showTime.endDate ? showTime.endDate.toString().split(' ').slice(0, 4).join(' ') : showTime.startDate.toString().split(' ').slice(0, 4).join(' ')}</td>
+                                            </tr>
+                                        )}
+                                    </tbody>
+                                </table>
+                                <div className="bottom-links">
+                                    <Link to={`/movie-details/${this.props.match.params.id}`}><h6 className="z-depth-3 cancel-button" onClick={() => this.setState({createShowing: false})}>Cancel</h6></Link>
+                                    <button className="z-depth-3 save-button">Save</button>
+                                </div>
+                            </div>
                         </div>
 
-                        <Link to={`/movie-details/${this.props.match.params.id}`}><h6 className="z-depth-3 cancel-button" onClick={() => this.setState({createShowing: false})}>Cancel</h6></Link>
                     </div>
                 </div>
                 <div className="videos-container">
@@ -144,8 +150,6 @@ class CreateShowing extends Component {
     }
 
     renderDatePicker() {
-        const { handleSubmit } = this.props;
-
         return (
             <div>
                 <div style={{fontSize: '1.2em', marginTop: '15px'}} className="heading">Date Range</div>
@@ -164,7 +168,7 @@ class CreateShowing extends Component {
                 <div className="field-line">
                     <Field 
                         name="endDate" 
-                        floatingLabelText="End Date"
+                        floatingLabelText="End Date (optional)"
                         component={DatePicker} 
                         format={null}
                         autoOk={true}
@@ -176,12 +180,29 @@ class CreateShowing extends Component {
         )
     }
 
+    renderTimePicker() {
+        return (
+            <div>
+                <div style={{fontSize: '1.2em', marginTop: '15px'}} className="heading">Start Time</div>
+                <div className="field-line">
+                    <Field 
+                        name="time" 
+                        floatingLabelText="Start Time"
+                        component={TimePicker} 
+                        format={null}
+                        hintText="At what Time?"
+                        disabled={this.state.startDateNotSelected}
+                    />
+                </div>
+            </div>
+        )
+    }
+
     addToShowTimes(values) {
-        const { formValues } = this.props;
         let tempShowTimes = this.state.showingTimes;
-        values.theater = formValues.theaterChoice;
-        tempShowTimes.push(values);
+        tempShowTimes.push(this.props.formValues);
         this.setState({ showingTimes: tempShowTimes, theaterNotSelected: true, startDateNotSelected: true});
+        console.log(this.props.formValues);
     }
 }
  
