@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { reduxForm, Field } from 'redux-form';
+import { reduxForm, Field, reset } from 'redux-form';
 import { Link } from 'react-router-dom';
 import * as actions from '../../actions';
 import './createShowing.css';
@@ -12,10 +12,13 @@ import MenuItem from 'material-ui/MenuItem'
 
 import SelectFieldContainer from '../../material-ui/SelectFieldContainer';
 
+
+
 class CreateShowing extends Component {
     state = { 
         showingTimes: [],
-        displayEndDate: false
+        theaterNotSelected: true,
+        startDateNotSelected: true
     }
 
     componentDidMount() {
@@ -48,16 +51,15 @@ class CreateShowing extends Component {
             <div className="video-details-container">
                 <div style={detailContainerStyles}>
                     <img src={ `http://image.tmdb.org/t/p/w342//${movieDetails[2].poster_path}` }
-                        style={{width: '35%', minWidth: '300px', height: '50%'}}
+                        style={{width: '30%', minWidth: '300px', height: '50%'}}
                         alt="poster"/>
-                    <div className="description-container">
+                    <div className="create-description-container">
                         <h2 style={{margin: 'auto', textAlign: 'center', backgroundColor: '#3454b4', color: 'white', borderRadius: '5px', padding: '5px'}} className="z-depth-3">{movieDetails[2].title}</h2>
                         
                         <div style={{display: 'flex', flexDirection: 'row'}}>
                             <div>
                                 <form>
                                     {this.renderField()}
-                                    <div style={{fontSize: '1.2em', marginTop: '15px'}} className="heading">Choose a date range</div>
                                 </form>
                                 <form onSubmit={handleSubmit(values => this.addToShowTimes(values))}>
                                     {this.renderDatePicker()}
@@ -67,6 +69,8 @@ class CreateShowing extends Component {
                             <table className="time-table">
                                 <thead>
                                     <tr className="heading">
+                                        <th style={{width: '50px'}}></th>
+                                        <th>Theater</th>
                                         <th>Start Date</th>
                                         <th>End Date</th>
                                         <th style={{textAlign: 'center'}}>Time</th>
@@ -74,7 +78,9 @@ class CreateShowing extends Component {
                                 </thead>
                                 <tbody>
                                     {this.state.showingTimes.map((showTime, index) => 
-                                        <tr key={index}>
+                                        <tr key={index} style={{color: '#3454b4'}}>
+                                            <td onClick={() => this.delete(index)}><i className="material-icons" style={{cursor: 'pointer', maxWidth: '50px'}}>delete</i></td>
+                                            <td>{showTime.theater.name}</td>
                                             <td>{showTime.startDate.toString().split(' ').slice(0, 4).join(' ')}</td>
                                             <td>{showTime.endDate ? showTime.endDate.toString().split(' ').slice(0, 4).join(' ') : showTime.startDate.toString().split(' ').slice(0, 4).join(' ')}</td>
                                         </tr>
@@ -91,6 +97,13 @@ class CreateShowing extends Component {
                 </div>
             </div>
         )
+    }
+
+    delete(index) {
+        console.log('deleting...');
+        let tempState = this.state.showingTimes;
+        tempState.splice(index, 1);
+        this.setState({ showingTimes: tempState});
     }
 
     renderVideos() {
@@ -111,17 +124,21 @@ class CreateShowing extends Component {
     
     renderField() {
         return (
-            <div className="field-line" style={{marginTop: '15px'}}>
-                <Field
-                    type="text"
-                    floatingLabelText="Theater"
-                    component={SelectFieldContainer}
-                    name="theaterChoice"
-                    label="Select a theater">
-                    {theaterList.map((theater) =>
-                        <MenuItem key={theater.id} value={theater} primaryText={theater.name} style={{fontFamily: '"Prompt", sans-serif'}}/>
-                    )}
-                </Field>
+            <div>
+                <div style={{fontSize: '1.2em', marginTop: '15px'}} className="heading">Theater</div>
+                <div className="field-line">
+                    <Field
+                        type="text"
+                        floatingLabelText="Theater"
+                        component={SelectFieldContainer}
+                        name="theaterChoice"
+                        label="Theater"
+                        onChange={() => this.setState({ theaterNotSelected: false })}>
+                        {theaterList.map((theater) =>
+                            <MenuItem key={theater.id} value={theater} primaryText={theater.name} style={{fontFamily: '"Prompt", sans-serif'}}/>
+                        )}
+                    </Field>
+                </div>
             </div>
         )
     }
@@ -131,6 +148,7 @@ class CreateShowing extends Component {
 
         return (
             <div>
+                <div style={{fontSize: '1.2em', marginTop: '15px'}} className="heading">Date Range</div>
                 <div className="field-line">
                     <Field 
                         name="startDate" 
@@ -138,7 +156,9 @@ class CreateShowing extends Component {
                         component={DatePicker} 
                         format={null}
                         autoOk={true}
+                        onChange={() => this.setState({ startDateNotSelected: false })}
                         DateTimeFormat={Intl.DateTimeFormat}
+                        disabled={this.state.theaterNotSelected}
                     />
                 </div>
                 <div className="field-line">
@@ -149,6 +169,7 @@ class CreateShowing extends Component {
                         format={null}
                         autoOk={true}
                         DateTimeFormat={Intl.DateTimeFormat}
+                        disabled={this.state.startDateNotSelected}
                     />
                 </div>
             </div>
@@ -156,13 +177,17 @@ class CreateShowing extends Component {
     }
 
     addToShowTimes(values) {
-        console.log(this.props.formValues);
+        const { formValues } = this.props;
         let tempShowTimes = this.state.showingTimes;
+        values.theater = formValues.theaterChoice;
         tempShowTimes.push(values);
-        this.setState({ showingTimes: tempShowTimes})
+        this.setState({ showingTimes: tempShowTimes, theaterNotSelected: true, startDateNotSelected: true});
     }
 }
-    
+ 
+const afterSubmit = (result, dispatch) => {
+    dispatch(reset('createShowing'));
+}
 
 function mapStateToProps(state) {
     if (_.has(state.form, 'createShowing') && _.has(state.form.createShowing, 'values')) {
@@ -179,5 +204,6 @@ function mapStateToProps(state) {
 
 CreateShowing = connect(mapStateToProps, actions)(CreateShowing);
 export default reduxForm({
-    form: 'createShowing'
+    form: 'createShowing',
+    onSubmitSuccess: afterSubmit
 })(CreateShowing);

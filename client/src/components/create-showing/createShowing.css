@@ -2,8 +2,12 @@
     border-bottom: 1px solid #3454b4 !important;
 }
 
+.field-line div {
+    width: 125px !important;
+}
+
 .time-table {
-    width: 60%;
+    width: 75%;
     margin-left: 35px;
 }
 
@@ -14,4 +18,10 @@
 .time-table td {
     margin: 5px;
     padding: 5px;
+}
+
+.create-description-container {
+    width: 68%;
+    margin-left: 25px;
+    position: relative;
 }

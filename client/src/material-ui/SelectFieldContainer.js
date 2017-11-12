@@ -5,7 +5,6 @@ export default ({ input, label, floatingLabelText, children, ...custom, meta: {e
 
     return (
         <div>
-            <div style={{fontSize: '1.2em'}} className="heading">{label}</div>
             <SelectField 
                 floatingLabelText={floatingLabelText}
                 {...input} 
