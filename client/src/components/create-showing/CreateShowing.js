@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { reduxForm, Field, reset } from 'redux-form';
+import { reduxForm, Field, reset, change } from 'redux-form';
 import { Link } from 'react-router-dom';
 import * as actions from '../../actions';
 import './createShowing.css';
@@ -19,7 +19,8 @@ class CreateShowing extends Component {
     state = { 
         showingTimes: [],
         theaterNotSelected: true,
-        startDateNotSelected: true
+        startDateNotSelected: true,
+        updateIndex: null
     }
 
     componentDidMount() {
@@ -63,7 +64,10 @@ class CreateShowing extends Component {
                                     {this.renderField()}
                                     {this.renderDatePicker()}
                                     {this.renderTimePicker()}
-                                    <button className="z-depth-3 add-button" type="submit">Add Showing</button>
+                                    <div style={{display: 'flex', flexDirection: 'row'}}>
+                                        <button className="z-depth-3 add-button" type="submit" onClick={() => this.clearForm()}>Clear</button>
+                                        <button className="z-depth-3 add-button" style={{marginLeft: '5px', backgroundColor: '#44ACA1'}} type="submit">Add</button>
+                                    </div>
                                 </form>
                             </div>
                             <div className="time-table">
@@ -79,12 +83,11 @@ class CreateShowing extends Component {
                                     </thead>
                                     <tbody>
                                         {this.state.showingTimes.map((showTime, index) => 
-                                            <tr key={index} style={{color: '#3454b4'}}>
+                                            <tr key={index} style={{color: '#3454b4'}} onClick={() => this.loadShowing(showTime, index)}>
                                                 <td onClick={() => this.delete(index)}><i className="material-icons" style={{cursor: 'pointer', maxWidth: '50px'}}>delete</i></td>
                                                 <td>{showTime.theaterChoice.name}</td>
                                                 <td>{showTime.startDate.toString().split(' ').slice(0, 4).join(' ')}</td>
                                                 <td>{showTime.endDate ? showTime.endDate.toString().split(' ').slice(0, 4).join(' ') : showTime.startDate.toString().split(' ').slice(0, 4).join(' ')}</td>
-                                                {/* <td style={{textAlign: 'center'}}>{showTime.time.toString().split(' ').slice(4, 5).join(' ')}</td> */}
                                                 <td style={{textAlign: 'center'}}>{this.convert(showTime.time.toString().split(' ').slice(4, 5).join(' '))}</td>
                                             </tr>
                                         )}
@@ -112,10 +115,13 @@ class CreateShowing extends Component {
     }
 
     delete(index) {
-        console.log('deleting...');
         let tempState = this.state.showingTimes;
         tempState.splice(index, 1);
         this.setState({ showingTimes: tempState});
+    }
+
+    clearForm() {
+        this.props.reset();
     }
 
     renderVideos() {
@@ -204,9 +210,29 @@ class CreateShowing extends Component {
     }
 
     addToShowTimes(values) {
-        let tempShowTimes = this.state.showingTimes;
-        tempShowTimes.push(values);
-        this.setState({ showingTimes: tempShowTimes, theaterNotSelected: true, startDateNotSelected: true});
+        if (values.theaterChoice) {
+            if (this.state.updateIndex !== null) {
+                let tempShowTimes = this.state.showingTimes;
+                tempShowTimes[this.state.updateIndex] = values;
+                this.setState({ showingTimes: tempShowTimes, theaterNotSelected: true, startDateNotSelected: true, updateIndex: null });
+            } else {
+                let tempShowTimes = this.state.showingTimes;
+                tempShowTimes.push(values);
+                this.setState({ showingTimes: tempShowTimes, theaterNotSelected: true, startDateNotSelected: true});
+            }
+        }
+    }
+
+    loadShowing(showing, index) {
+        console.log(showing);
+        console.log(this.props.formValues);
+        this.props.dispatch(change('createShowing', 'theaterChoice', showing.theaterChoice));
+        this.props.dispatch(change('createShowing', 'startDate', showing.startDate));
+        this.props.dispatch(change('createShowing', 'time', showing.time));
+        if (showing.endDate) {
+            this.props.dispatch(change('createShowing', 'endDate', showing.endDate));
+        }
+        this.setState({ theaterNotSelected: false, startDateNotSelected: false, updateIndex: index });
     }
 }
  

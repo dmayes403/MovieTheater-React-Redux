@@ -30,13 +30,12 @@
 }
 
 .cancel-button {
-    /* margin: auto; */
     text-align: center; 
     background-color: #ff3232;
     color: white; 
     border-radius: 5px;
     padding: 10px; 
-    width: 75px;
+    width: 100px;
     cursor: pointer;
     margin-top: 15px;
     margin-bottom: 0px;
@@ -48,7 +47,7 @@
     color: white; 
     border-radius: 5px;
     padding: 10px; 
-    width: 125px;
+    width: 60px;
     cursor: pointer;
     margin-top: 30px;
     border: none;
@@ -61,20 +60,19 @@
 }
 
 .save-button {
-    /* margin: auto; */
     text-align: center; 
     background-color: #44ACA1;
     color: white; 
     border-radius: 5px;
     padding: 10px; 
-    width: 75px;
+    width: 100px;
     cursor: pointer;
     margin-top: 15px;
     margin-bottom: 0px;
     border: none;
     height: 36px;
     line-height: 0px;
-    margin-left: 15px;
+    margin-left: 5px;
 }
 
 .save-button:active {
