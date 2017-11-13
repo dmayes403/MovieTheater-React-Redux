@@ -87,3 +87,12 @@
     bottom: 0px;
     right: 0px;
 }
+
+.selectable:hover {
+    background-color: #44ACA1;
+    cursor: pointer;
+}
+
+.selectable:hover td {
+    color: white;
+}

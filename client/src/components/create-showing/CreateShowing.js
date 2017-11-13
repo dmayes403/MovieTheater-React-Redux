@@ -83,8 +83,8 @@ class CreateShowing extends Component {
                                     </thead>
                                     <tbody>
                                         {this.state.showingTimes.map((showTime, index) => 
-                                            <tr key={index} style={{color: '#3454b4'}} onClick={() => this.loadShowing(showTime, index)}>
-                                                <td onClick={() => this.delete(index)}><i className="material-icons" style={{cursor: 'pointer', maxWidth: '50px'}}>delete</i></td>
+                                            <tr key={index} style={{color: '#3454b4'}} class="selectable" onClick={() => this.loadShowing(showTime, index)}>
+                                                <td onClick={(event) => this.delete(event, index)}><i className="material-icons" style={{cursor: 'pointer', maxWidth: '50px'}}>delete</i></td>
                                                 <td>{showTime.theaterChoice.name}</td>
                                                 <td>{showTime.startDate.toString().split(' ').slice(0, 4).join(' ')}</td>
                                                 <td>{showTime.endDate ? showTime.endDate.toString().split(' ').slice(0, 4).join(' ') : showTime.startDate.toString().split(' ').slice(0, 4).join(' ')}</td>
@@ -114,10 +114,13 @@ class CreateShowing extends Component {
         return theMoment.format("h:mm A")
     }
 
-    delete(index) {
+    delete(event, index) {
+        console.log(event);
+        event.stopPropagation();
         let tempState = this.state.showingTimes;
         tempState.splice(index, 1);
         this.setState({ showingTimes: tempState});
+        this.props.reset();
     }
 
     clearForm() {
