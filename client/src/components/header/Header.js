@@ -6,9 +6,7 @@ import { Link } from 'react-router-dom';
 const Header = () => {
     return (
         <div className="container">
-            <div style={{fontSize: '48px'}}>
-                Towne Cinemas
-            </div>
+            <Link to={'/'} className="headerLinkStyle"><div style={{fontSize: '48px'}}>Towne Cinemas</div></Link>
             <div style={{color: 'white'}}>
                 <Link to={'/search-movies'} className="headerLinkStyle">Search Movies</Link>
             </div>
