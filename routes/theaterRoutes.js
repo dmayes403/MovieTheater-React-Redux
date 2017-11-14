@@ -3,11 +3,17 @@ const Path = require('path-parser');
 const { URL } = require('url');
 const mongoose = require('mongoose');
 
+const Theater = mongoose.model('theaters');
+
 module.exports = app => {
-    console.log('route')
-    app.get('/api/theaters', (req, res) => {
-        console.log('Getting theaters!');
-        console.log('Whereeerererere??');
-        res.send({data: "theater 1"});
+
+    app.post('/api/theaters', async (req, res) => {
+        const theater = new Theater({
+            room: 'Jamanji'
+        });
+
+        theater.save();
+
+        res.send(theater);
     });
 };

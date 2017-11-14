@@ -115,7 +115,6 @@ class CreateShowing extends Component {
     }
 
     delete(event, index) {
-        console.log(event);
         event.stopPropagation();
         let tempState = this.state.showingTimes;
         tempState.splice(index, 1);
