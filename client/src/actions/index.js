@@ -45,3 +45,10 @@ export const getMovieDetails = (movieId) => async dispatch => {
     }))
 
 }
+
+export const testBackEnd = () => async dispatch => {
+    console.log('here')
+    axios.get('/api/theaters').then(res => {
+        console.log(res);
+    });
+}

@@ -8,6 +8,7 @@ import './movieDetails.css';
 class MovieDetails extends Component {
     componentDidMount() {
         this.props.getMovieDetails(this.props.match.params.id);
+        this.props.testBackEnd();
     }
 
     render() {

@@ -6,22 +6,26 @@ const bodyParser = require('body-parser');
 const keys = require('./config/keys')
 
 // *** wire this up for authentication (services) *** require('./services/passport');
+mongoose.connect(keys.mongoURI);
+// ^^ must create user admin in database to be able to connect!!
 
 const app = express();
 
 app.use(bodyParser.json());
-app.use(
-    cookieSession({
-        maxAge: 30 * 24 * 60 * 60 * 1000,
-        // ^^ this is equal to: 30 days * 24 hours * 60 minutes * 60 seconds * 1000 miliseconds.
-        keys: [keys.cookieKey]
-        // ^^ this is used to encrypt. These two properties are required for cookies. Multiple keys are
-        // allowed for multiple levels of security
-    })
-);
+// app.use(
+//     cookieSession({
+//         maxAge: 30 * 24 * 60 * 60 * 1000,
+//         // ^^ this is equal to: 30 days * 24 hours * 60 minutes * 60 seconds * 1000 miliseconds.
+//         keys: [keys.cookieKey]
+//         // ^^ this is used to encrypt. These two properties are required for cookies. Multiple keys are
+//         // allowed for multiple levels of security
+//     })
+// );
 
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
+
+require('./routes/theaterRoutes')(app);
 
 if (process.env.NODE_ENV = 'productions') { // ****
     app.use(express.static('client/build'));
