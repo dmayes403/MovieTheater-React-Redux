@@ -9,7 +9,7 @@ module.exports = app => {
 
     app.post('/api/theaters', async (req, res) => {
         const theater = new Theater({
-            room: 'Jamanji'
+            room: 'Nero'
         });
 
         theater.save();
