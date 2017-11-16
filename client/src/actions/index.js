@@ -47,7 +47,10 @@ export const getMovieDetails = (movieId) => async dispatch => {
 }
 
 export const getTheaterList = () => async dispatch => {
-    console.log('here')
     const theaters = await axios.get('/api/theaters');
     dispatch({ type: THEATER_LIST, payload: theaters.data })
+}
+
+export const saveShowing = () => async dispatch => {
+    console.log('saving...');
 }
