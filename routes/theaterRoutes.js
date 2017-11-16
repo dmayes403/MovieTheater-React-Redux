@@ -16,4 +16,10 @@ module.exports = app => {
 
         res.send(theater);
     });
+
+    app.get('/api/theaters', async (req, res) => {
+        const theaters = await Theater.find({}, (err, theaters) => {
+            res.send(theaters);
+        });
+    })
 };

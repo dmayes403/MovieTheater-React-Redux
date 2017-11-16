@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field, reset, change } from 'redux-form';
 import { Link } from 'react-router-dom';
-import * as actions from '../../actions';
 import './createShowing.css';
 import theaterList from '../../variables/theaters';
 import { DatePicker, TimePicker } from 'redux-form-material-ui';
 import _ from 'lodash';
+import * as actions from '../../actions';
 import * as moment from 'moment';
 
 import MenuItem from 'material-ui/MenuItem'
@@ -25,6 +25,7 @@ class CreateShowing extends Component {
 
     componentDidMount() {
         this.props.getMovieDetails(this.props.match.params.id);
+        this.props.getTheaterList();
     }
 
     render() {
@@ -83,9 +84,9 @@ class CreateShowing extends Component {
                                     </thead>
                                     <tbody>
                                         {this.state.showingTimes.map((showTime, index) => 
-                                            <tr key={index} style={{color: '#3454b4'}} class="selectable" onClick={() => this.loadShowing(showTime, index)}>
+                                            <tr key={index} style={{color: '#3454b4'}} className="selectable" onClick={() => this.loadShowing(showTime, index)}>
                                                 <td onClick={(event) => this.delete(event, index)}><i className="material-icons" style={{cursor: 'pointer', maxWidth: '50px'}}>delete</i></td>
-                                                <td>{showTime.theaterChoice.name}</td>
+                                                <td>{showTime.theaterChoice.room}</td>
                                                 <td>{showTime.startDate.toString().split(' ').slice(0, 4).join(' ')}</td>
                                                 <td>{showTime.endDate ? showTime.endDate.toString().split(' ').slice(0, 4).join(' ') : showTime.startDate.toString().split(' ').slice(0, 4).join(' ')}</td>
                                                 <td style={{textAlign: 'center'}}>{this.convert(showTime.time.toString().split(' ').slice(4, 5).join(' '))}</td>
@@ -154,8 +155,8 @@ class CreateShowing extends Component {
                         name="theaterChoice"
                         label="Theater"
                         onChange={() => this.setState({ theaterNotSelected: false })}>
-                        {theaterList.map((theater) =>
-                            <MenuItem key={theater.id} value={theater} primaryText={theater.name} style={{fontFamily: '"Prompt", sans-serif'}}/>
+                        {this.props.theaterList.map((theater) =>
+                            <MenuItem key={theater._id} value={theater} primaryText={theater.room} style={{fontFamily: '"Prompt", sans-serif'}}/>
                         )}
                     </Field>
                 </div>
@@ -226,8 +227,6 @@ class CreateShowing extends Component {
     }
 
     loadShowing(showing, index) {
-        console.log(showing);
-        console.log(this.props.formValues);
         this.props.dispatch(change('createShowing', 'theaterChoice', showing.theaterChoice));
         this.props.dispatch(change('createShowing', 'startDate', showing.startDate));
         this.props.dispatch(change('createShowing', 'time', showing.time));
@@ -246,11 +245,13 @@ function mapStateToProps(state) {
     if (_.has(state.form, 'createShowing') && _.has(state.form.createShowing, 'values')) {
         return { 
             movieDetails: state.movieDetails,
-            formValues: state.form.createShowing.values
+            theaterList: state.theaterList,
+            formValues: state.form.createShowing.values,
         };
     } else {
         return { 
             movieDetails: state.movieDetails,
+            theaterList: state.theaterList,
         };
     }
 }

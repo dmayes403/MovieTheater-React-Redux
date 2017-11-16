@@ -1,6 +1,6 @@
 import axios from 'axios';
 import _ from 'lodash';
-import { SEARCH_MOVIES, MOVIE_DETAILS } from './types';
+import { SEARCH_MOVIES, MOVIE_DETAILS, THEATER_LIST } from './types';
 
 const movieDBKEY = process.env.REACT_APP_MOVIE_DB_KEY;
 
@@ -46,9 +46,8 @@ export const getMovieDetails = (movieId) => async dispatch => {
 
 }
 
-export const testBackEnd = () => async dispatch => {
+export const getTheaterList = () => async dispatch => {
     console.log('here')
-    axios.post('/api/theaters').then(res => {
-        console.log(res);
-    });
+    const theaters = await axios.get('/api/theaters');
+    dispatch({ type: THEATER_LIST, payload: theaters.data })
 }
