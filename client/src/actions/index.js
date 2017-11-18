@@ -51,6 +51,13 @@ export const getTheaterList = () => async dispatch => {
     dispatch({ type: THEATER_LIST, payload: theaters.data })
 }
 
-export const saveShowing = () => async dispatch => {
-    console.log('saving...');
+export const saveShowing = (showDetails) => async dispatch => {
+    console.log(showDetails);
+    const res = await axios.post('/api/newShowing', showDetails);
+    // dispatch({ })
+}
+
+export const getShowings = () => async dispatch => {
+    const res = await axios.get('/api/showings');
+    console.log(res);
 }

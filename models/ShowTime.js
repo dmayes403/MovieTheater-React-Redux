@@ -9,4 +9,4 @@ const showTimeSchema = new Schema({
     startTime: String
 });
 
-mongoose.model('showTimes', theaterSchema);
+mongoose.model('showTimes', showTimeSchema);

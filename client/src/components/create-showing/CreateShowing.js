@@ -26,6 +26,7 @@ class CreateShowing extends Component {
     componentDidMount() {
         this.props.getMovieDetails(this.props.match.params.id);
         this.props.getTheaterList();
+        // this.props.getShowings();
     }
 
     render() {
@@ -96,7 +97,7 @@ class CreateShowing extends Component {
                                 </table>
                                 <div className="bottom-links">
                                     <Link to={`/movie-details/${this.props.match.params.id}`}><h6 className="z-depth-3 cancel-button" onClick={() => this.setState({createShowing: false})}>Cancel</h6></Link>
-                                    <button className="z-depth-3 save-button" type="submit">Save</button>
+                                    <button className="z-depth-3 save-button" type="submit" onClick={() => this.props.saveShowing({ movieId: this.props.match.params.id, showDetails: this.state.showingTimes })}>Save</button>
                                 </div>
                             </div>
                         </div>
