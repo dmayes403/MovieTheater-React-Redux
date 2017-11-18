@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { reduxForm, Field, reset, change } from 'redux-form';
 import { Link } from 'react-router-dom';
 import './createShowing.css';
-import theaterList from '../../variables/theaters';
 import { DatePicker, TimePicker } from 'redux-form-material-ui';
 import _ from 'lodash';
 import * as actions from '../../actions';

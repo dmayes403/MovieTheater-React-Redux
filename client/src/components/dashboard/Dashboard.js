@@ -1,11 +1,18 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import * as moment from 'moment';
+import _ from 'lodash';
+import * as actions from '../../actions';
 
 import './dashboard.css';
 
 
 class Dashboard extends Component {
     state = { focusedDate: 0 };
+
+    componentDidMount() {
+        this.props.getShowings();
+    }
 
     render() {
         const dateBoxes = [];
@@ -36,4 +43,8 @@ class Dashboard extends Component {
     }
 } 
 
-export default Dashboard;
+function mapStateToProps({ movieShowings }) {
+    return { movieShowings };
+}
+
+export default connect(mapStateToProps, actions)(Dashboard);

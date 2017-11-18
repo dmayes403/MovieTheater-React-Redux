@@ -46,7 +46,7 @@ module.exports = app => {
     });
 
     app.get('/api/showings', async (req, res) => {
-        const showings = await ShowTime.find({ movieId: "354912"}, (err, showTimes) => {
+        const showings = await ShowTime.find({}, (err, showTimes) => {
             console.log(showTimes);
             res.send(showTimes);
         })
