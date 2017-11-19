@@ -1,9 +1,31 @@
+.field-line-theater hr {
+    border-bottom: 1px solid #3454b4 !important;
+}
+
+.field-line-theater div {
+    width: 125px !important;
+}
+
 .field-line hr {
     border-bottom: 1px solid #3454b4 !important;
 }
 
 .field-line div {
     width: 125px !important;
+    height: 40px !important;
+}
+
+.field-line label {
+    top: 10px !important;
+    height: 40px !important;
+}
+
+.field-line input {
+    margin-top: 0px !important;
+}
+
+.theaterChoice div {
+    margin-top: 0px !important;
 }
 
 .time-table {
@@ -95,4 +117,22 @@
 
 .selectable:hover td {
     color: white;
+}
+
+.add-time-button {
+    text-align: center; 
+    background-color: #44ACA1;
+    color: white; 
+    border-radius: 5px;
+    padding: 5px; 
+    width: 100px;
+    cursor: pointer;
+    border: none;
+    height: 20px;
+    line-height: 0px;
+    margin-left: 5px;
+}
+
+.add-time-button:active {
+    background-color: #3454b4;
 }

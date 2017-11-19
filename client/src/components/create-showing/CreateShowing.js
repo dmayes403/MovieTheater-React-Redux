@@ -17,6 +17,7 @@ import SelectFieldContainer from '../../material-ui/SelectFieldContainer';
 class CreateShowing extends Component {
     state = { 
         showingTimes: [],
+        times: [],
         theaterNotSelected: true,
         startDateNotSelected: true,
         updateIndex: null
@@ -25,7 +26,6 @@ class CreateShowing extends Component {
     componentDidMount() {
         this.props.getMovieDetails(this.props.match.params.id);
         this.props.getTheaterList();
-        // this.props.getShowings();
     }
 
     render() {
@@ -66,7 +66,7 @@ class CreateShowing extends Component {
                                     {this.renderDatePicker()}
                                     {this.renderTimePicker()}
                                     <div style={{display: 'flex', flexDirection: 'row'}}>
-                                        <button className="z-depth-3 add-button" type="submit" onClick={() => this.clearForm()}>Clear</button>
+                                        <button className="z-depth-3 add-button" onClick={() => this.clearForm()}>Clear</button>
                                         <button className="z-depth-3 add-button" style={{marginLeft: '5px', backgroundColor: '#44ACA1'}} type="submit">Add</button>
                                     </div>
                                 </form>
@@ -147,8 +147,9 @@ class CreateShowing extends Component {
         return (
             <div>
                 <div style={{fontSize: '1.2em', marginTop: '15px'}} className="heading">Theater</div>
-                <div className="field-line">
+                <div className="field-line-theater">
                     <Field
+                        class="inputOverride"
                         type="text"
                         floatingLabelText="Theater"
                         component={SelectFieldContainer}
@@ -208,8 +209,21 @@ class CreateShowing extends Component {
                         disabled={this.state.startDateNotSelected}
                     />
                 </div>
+                <button className="z-depth-3 add-time-button" type="submit">Add Time</button>
             </div>
         )
+    }
+
+    renderTimes() {
+        if (this.state.times.length > 0) {
+            return (
+                <div>
+                    {this.state.times.map(time => {
+                        <div>{this.convert(time.toString().split(' ').slice(4, 5).join(' '))}</div>
+                    })}
+                </div>
+            )
+        }
     }
 
     addToShowTimes(values) {
@@ -224,6 +238,10 @@ class CreateShowing extends Component {
                 this.setState({ showingTimes: tempShowTimes, theaterNotSelected: true, startDateNotSelected: true});
             }
         }
+    }
+
+    addToTimes() {
+
     }
 
     loadShowing(showing, index) {
