@@ -26,28 +26,22 @@ module.exports = app => {
     })
 
     app.post('/api/newShowing', async (req, res) => {
-        console.log(req.body);
         req.body.showDetails.map(singleShowing => {
             const showTime = new ShowTime({
                 movieId: req.body.movieId,
                 _theater: singleShowing.theaterChoice._id,
                 startDate: singleShowing.startDate,
                 endDate: singleShowing.endDate ? singleShowing.endDate : singleShowing.startDate,
-                startTime: moment(singleShowing.time)
+                startTime: singleShowing.timeOptions
             });
 
             showTime.save();
-            console.log('timeeeeeee');
-            console.log(req.body);
             newTime = moment(req.body.showDetails[0].time);
-            // console.log(showTime);
-            console.log(newTime);
         })
     });
 
     app.get('/api/showings', async (req, res) => {
         const showings = await ShowTime.find({}, (err, showTimes) => {
-            console.log(showTimes);
             res.send(showTimes);
         })
     });

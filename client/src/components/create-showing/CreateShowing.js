@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { reduxForm, Field, reset, change } from 'redux-form';
 import { Link } from 'react-router-dom';
 import './createShowing.css';
-import { DatePicker, TimePicker, Checkbox, SelectField } from 'redux-form-material-ui';
+import { DatePicker, TimePicker, SelectField } from 'redux-form-material-ui';
 import _ from 'lodash';
 import * as actions from '../../actions';
 import * as moment from 'moment';
@@ -238,8 +238,7 @@ class CreateShowing extends Component {
                                 value={time.hour} 
                                 primaryText={time.hour} 
                                 insetChildren={true}
-                                style={{color: 'blue'}}
-                                checked={this.props.formValues && this.props.formValues.timeOptions.indexOf(time.hour) > -1}
+                                checked={this.props.formValues && this.props.formValues.timeOptions && this.props.formValues.timeOptions.indexOf(time.hour) > -1}
                                 style={{fontFamily: '"Prompt", sans-serif'}}/>
                         )}
                     </Field>
