@@ -3,14 +3,15 @@ import { connect } from 'react-redux';
 import { reduxForm, Field, reset, change } from 'redux-form';
 import { Link } from 'react-router-dom';
 import './createShowing.css';
-import { DatePicker, TimePicker } from 'redux-form-material-ui';
+import { DatePicker, TimePicker, Checkbox, SelectField } from 'redux-form-material-ui';
 import _ from 'lodash';
 import * as actions from '../../actions';
 import * as moment from 'moment';
-
 import MenuItem from 'material-ui/MenuItem'
 
 import SelectFieldContainer from '../../material-ui/SelectFieldContainer';
+
+import timeOptions from '../../variables/times';
 
 
 
@@ -64,7 +65,8 @@ class CreateShowing extends Component {
                                 <form onSubmit={handleSubmit(values => this.addToShowTimes(values))}>
                                     {this.renderField()}
                                     {this.renderDatePicker()}
-                                    {this.renderTimePicker()}
+                                    {/* {this.renderTimePicker()} */}
+                                    {this.renderTimeOptions()}
                                     <div style={{display: 'flex', flexDirection: 'row'}}>
                                         <button className="z-depth-3 add-button" onClick={() => this.clearForm()}>Clear</button>
                                         <button className="z-depth-3 add-button" style={{marginLeft: '5px', backgroundColor: '#44ACA1'}} type="submit">Add</button>
@@ -89,7 +91,8 @@ class CreateShowing extends Component {
                                                 <td>{showTime.theaterChoice.room}</td>
                                                 <td>{showTime.startDate.toString().split(' ').slice(0, 4).join(' ')}</td>
                                                 <td>{showTime.endDate ? showTime.endDate.toString().split(' ').slice(0, 4).join(' ') : showTime.startDate.toString().split(' ').slice(0, 4).join(' ')}</td>
-                                                <td style={{textAlign: 'center'}}>{this.convert(showTime.time.toString().split(' ').slice(4, 5).join(' '))}</td>
+                                                {/* <td style={{textAlign: 'center'}}>{this.convert(showTime.time.toString().split(' ').slice(4, 5).join(' '))}</td> */}
+                                                <td style={{textAlign: 'center'}}>{showTime.timeOptions[0]}</td>
                                             </tr>
                                         )}
                                     </tbody>
@@ -149,7 +152,6 @@ class CreateShowing extends Component {
                 <div style={{fontSize: '1.2em', marginTop: '15px'}} className="heading">Theater</div>
                 <div className="field-line-theater">
                     <Field
-                        class="inputOverride"
                         type="text"
                         floatingLabelText="Theater"
                         component={SelectFieldContainer}
@@ -214,16 +216,36 @@ class CreateShowing extends Component {
         )
     }
 
-    renderTimes() {
-        if (this.state.times.length > 0) {
-            return (
-                <div>
-                    {this.state.times.map(time => {
-                        <div>{this.convert(time.toString().split(' ').slice(4, 5).join(' '))}</div>
-                    })}
+    renderTimeOptions() {
+        return (
+            <div>
+                <div style={{fontSize: '1.2em', marginTop: '15px'}} className="heading">Times</div>
+                <div className="field-line">
+                    <Field
+                        type="text"
+                        multiple={true}
+                        floatingLabelText="Time(s)"
+                        component={SelectField}
+                        name="timeOptions"
+                        onChange={() => console.log(this.props.formValues)}
+                        labelStyle={{top: '-60px'}}
+                        selectedMenuItemStyle={{color: '#44ACA1'}}
+                        iconStyle={{color: 'blue'}}
+                        label="Time(s)">
+                        {timeOptions.map((time) =>
+                            <MenuItem 
+                                key={time.id} 
+                                value={time.hour} 
+                                primaryText={time.hour} 
+                                insetChildren={true}
+                                style={{color: 'blue'}}
+                                checked={this.props.formValues && this.props.formValues.timeOptions.indexOf(time.hour) > -1}
+                                style={{fontFamily: '"Prompt", sans-serif'}}/>
+                        )}
+                    </Field>
                 </div>
-            )
-        }
+            </div>
+        )
     }
 
     addToShowTimes(values) {
@@ -238,16 +260,25 @@ class CreateShowing extends Component {
                 this.setState({ showingTimes: tempShowTimes, theaterNotSelected: true, startDateNotSelected: true});
             }
         }
-    }
 
-    addToTimes() {
-
+        // if (values.theaterChoice) {
+        //     if (this.state.updateIndex !== null) {
+        //         let tempShowTimes = this.state.showingTimes;
+        //         tempShowTimes[this.state.updateIndex] = values;
+        //         this.setState({ showingTimes: tempShowTimes, theaterNotSelected: true, startDateNotSelected: true, updateIndex: null });
+        //     } else {
+        //         let tempShowTimes = this.state.showingTimes;
+        //         tempShowTimes.push(values);
+        //         this.setState({ showingTimes: tempShowTimes, theaterNotSelected: true, startDateNotSelected: true});
+        //     }
+        // }
     }
 
     loadShowing(showing, index) {
         this.props.dispatch(change('createShowing', 'theaterChoice', showing.theaterChoice));
         this.props.dispatch(change('createShowing', 'startDate', showing.startDate));
-        this.props.dispatch(change('createShowing', 'time', showing.time));
+        // this.props.dispatch(change('createShowing', 'time', showing.time));
+        this.props.dispatch(change('createShowing', 'timeOptions', showing.timeOptions));
         if (showing.endDate) {
             this.props.dispatch(change('createShowing', 'endDate', showing.endDate));
         }

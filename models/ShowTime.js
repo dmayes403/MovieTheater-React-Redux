@@ -6,7 +6,7 @@ const showTimeSchema = new Schema({
     _theater: { type: Schema.Types.ObjectId, ref: 'Theater'},
     startDate: String,
     endDate: String,
-    startTime: String
+    startTime: [String]
 });
 
 mongoose.model('showTimes', showTimeSchema);

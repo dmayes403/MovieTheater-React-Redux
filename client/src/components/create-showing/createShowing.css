@@ -13,6 +13,7 @@
 .field-line div {
     width: 125px !important;
     height: 40px !important;
+    padding-right: 0px !important;
 }
 
 .field-line label {
@@ -135,4 +136,8 @@
 
 .add-time-button:active {
     background-color: #3454b4;
+}
+
+span[role="menuItem"] div {
+    padding: 0px !important;
 }
