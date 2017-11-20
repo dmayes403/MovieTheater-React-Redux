@@ -8,7 +8,10 @@ import './dashboard.css';
 
 
 class Dashboard extends Component {
-    state = { focusedDate: 0 };
+    state = { 
+        focusedDate: 0,
+        movieDetails: []
+    };
 
     componentDidMount() {
         this.props.getShowings();

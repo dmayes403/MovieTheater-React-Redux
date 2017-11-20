@@ -4,7 +4,8 @@ import {
     SEARCH_MOVIES, 
     MOVIE_DETAILS, 
     THEATER_LIST, 
-    MOVIE_SHOWINGS 
+    MOVIE_SHOWINGS,
+    DASHBOARD_DETAILS 
     } from './types';
 
 const movieDBKEY = process.env.REACT_APP_MOVIE_DB_KEY;
@@ -47,7 +48,7 @@ export const getMovieDetails = (movieId) => async dispatch => {
         const rating = _.find(ratings.data.results, {iso_3166_1: "US"})
         const data = [videos.data.results, rating.release_dates[rating.release_dates.length-1].certification, details.data];
         dispatch({ type: MOVIE_DETAILS, payload: data });
-    }))
+    }));
 
 }
 
@@ -60,8 +61,37 @@ export const saveShowing = (showDetails) => async dispatch => {
     const res = await axios.post('/api/newShowing', showDetails);
 }
 
+// export const getShowings = () => async dispatch => {
+//     const showings = await axios.get('/api/showings');
+//     console.log(showings.data);
+//     dispatch({ type: MOVIE_SHOWINGS, payload: showings.data })
+// }
+
 export const getShowings = () => async dispatch => {
+    let movieDetails = [];
     const showings = await axios.get('/api/showings');
-    console.log(showings.data);
-    dispatch({ type: MOVIE_SHOWINGS, payload: showings.data })
+
+    showings.data.forEach((showing, index) => {
+        const getDetailsURL = `https://api.themoviedb.org/3/movie/${showing.movieId}?api_key=${movieDBKEY}&language=en-US`;
+        const getVideosURL = `https://api.themoviedb.org/3/movie/${showing.movieId}/videos?api_key=${movieDBKEY}&language=en-US`;
+        const getRatingsURL = `https://api.themoviedb.org/3/movie/${showing.movieId}/release_dates?api_key=${movieDBKEY}&language=en-US`;
+
+        axios.all([
+            axios.get(getVideosURL),
+            axios.get(getRatingsURL),
+            axios.get(getDetailsURL)
+        ]).then(axios.spread((videos, ratings, details) => {
+            const rating = _.find(ratings.data.results, {iso_3166_1: "US"})
+            const data = [videos.data.results, rating.release_dates[rating.release_dates.length-1].certification, details.data];
+            movieDetails.push(data);
+
+            console.log(index);
+            console.log(showings.data.length);
+            console.log(showings);
+            if (index === showings.data.length - 1) {
+                console.log(movieDetails);
+                dispatch({type: MOVIE_SHOWINGS, payload: {showings: showings, movieDetails: movieDetails}});
+            }
+        }));
+    });
 }
