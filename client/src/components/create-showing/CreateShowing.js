@@ -259,24 +259,11 @@ class CreateShowing extends Component {
                 this.setState({ showingTimes: tempShowTimes, theaterNotSelected: true, startDateNotSelected: true});
             }
         }
-
-        // if (values.theaterChoice) {
-        //     if (this.state.updateIndex !== null) {
-        //         let tempShowTimes = this.state.showingTimes;
-        //         tempShowTimes[this.state.updateIndex] = values;
-        //         this.setState({ showingTimes: tempShowTimes, theaterNotSelected: true, startDateNotSelected: true, updateIndex: null });
-        //     } else {
-        //         let tempShowTimes = this.state.showingTimes;
-        //         tempShowTimes.push(values);
-        //         this.setState({ showingTimes: tempShowTimes, theaterNotSelected: true, startDateNotSelected: true});
-        //     }
-        // }
     }
 
     loadShowing(showing, index) {
         this.props.dispatch(change('createShowing', 'theaterChoice', showing.theaterChoice));
         this.props.dispatch(change('createShowing', 'startDate', showing.startDate));
-        // this.props.dispatch(change('createShowing', 'time', showing.time));
         this.props.dispatch(change('createShowing', 'timeOptions', showing.timeOptions));
         if (showing.endDate) {
             this.props.dispatch(change('createShowing', 'endDate', showing.endDate));

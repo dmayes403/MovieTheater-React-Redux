@@ -61,12 +61,6 @@ export const saveShowing = (showDetails) => async dispatch => {
     const res = await axios.post('/api/newShowing', showDetails);
 }
 
-// export const getShowings = () => async dispatch => {
-//     const showings = await axios.get('/api/showings');
-//     console.log(showings.data);
-//     dispatch({ type: MOVIE_SHOWINGS, payload: showings.data })
-// }
-
 export const getShowings = () => async dispatch => {
     let movieDetails = [];
     const showings = await axios.get('/api/showings');
@@ -85,12 +79,9 @@ export const getShowings = () => async dispatch => {
             const data = [videos.data.results, rating.release_dates[rating.release_dates.length-1].certification, details.data];
             movieDetails.push(data);
 
-            console.log(index);
-            console.log(showings.data.length);
-            console.log(showings);
             if (index === showings.data.length - 1) {
-                console.log(movieDetails);
-                dispatch({type: MOVIE_SHOWINGS, payload: {showings: showings, movieDetails: movieDetails}});
+                console.log({showings: showings.data, movieDetails: movieDetails});
+                dispatch({type: MOVIE_SHOWINGS, payload: {showings: showings.data, movieDetails: movieDetails}});
             }
         }));
     });
