@@ -99,7 +99,9 @@ class CreateShowing extends Component {
                                 </table>
                                 <div className="bottom-links">
                                     <Link to={`/movie-details/${this.props.match.params.id}`}><h6 className="z-depth-3 cancel-button" onClick={() => this.setState({createShowing: false})}>Cancel</h6></Link>
-                                    <button className="z-depth-3 save-button" type="submit" onClick={() => this.props.saveShowing({ movieId: this.props.match.params.id, showDetails: this.state.showingTimes })}>Save</button>
+                                    {/* <button className="z-depth-3 save-button" type="submit" onClick={() => this.props.saveShowing({ movieId: this.props.match.params.id, showDetails: this.state.showingTimes })}>Save</button> */}
+                                    <Link to={'/'} className="headerLinkStyle z-depth-3 save-button" style={{marginLeft: '10px'}} onClick={() => this.props.saveShowing({ movieId: this.props.match.params.id, showDetails: this.state.showingTimes })}>Save</Link>
+                                    {/* <Link to={'/'} className="headerLinkStyle" style={{marginLeft: '10px'}}>Login</Link> */}
                                 </div>
                             </div>
                         </div>
