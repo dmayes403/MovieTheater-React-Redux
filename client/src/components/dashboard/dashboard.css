@@ -38,3 +38,19 @@
     background-color: #44ACA1;
     color: white;    
 }
+
+.dashboard-movie-title {
+    font-size: 2.2em;
+}
+
+.dashboard-linkStyle {
+    color: #3454b4;
+}
+
+.movie-detail-container {
+    color: #7e7e7e;
+    margin-left: 15px; 
+    vertical-align: top;
+    display: flex;
+    flex-direction: column;
+}

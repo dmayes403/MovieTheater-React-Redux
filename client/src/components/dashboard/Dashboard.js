@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import * as moment from 'moment';
 import _ from 'lodash';
 import * as actions from '../../actions';
+import { Link } from 'react-router-dom';
 
 import './dashboard.css';
 
@@ -18,7 +19,6 @@ class Dashboard extends Component {
 
     render() {
         if (this.props.movieShowings.showings) {
-            console.log(this.props.movieShowings);
             const dateBoxes = [];
             for (let i = 0; i < 30; i++) {
                 const date = new Date();
@@ -56,18 +56,24 @@ class Dashboard extends Component {
             this.props.movieShowings.movieDetails.forEach(detail => {
                if (detail[2].id.toString() === showing.movieId) {
                    showingDetails = detail;
-                   console.log(showingDetails);
                } 
             });
+
             return (
-                <div style={{marginTop: '15px'}}>
+                <div key={showingDetails[2].id} style={{marginTop: '15px', display: 'flex', flexDirection: 'row'}}>
+                    {console.log(showingDetails[2])}
+                    {console.log(showingDetails)}
                     <img src={ `http://image.tmdb.org/t/p/w154//${showingDetails[2].poster_path}` }
                     alt="poster"/>
+                    <div className="movie-detail-container">
+                        <span className="dashboard-movie-title">{showingDetails[2].original_title}</span>
+                        <span>{showingDetails[1]}</span>
+                        <span>{showingDetails[2].runtime}m</span>
+                        <span style={{marginTop: '25px'}}>{showingDetails[2].overview}</span>
+                        <Link to={`/movie-details/${showingDetails[2].id}`} className="dashboard-linkStyle" style={{marginTop: '15px'}}>More Details</Link>
+                    </div>
                 </div>
-                // <div key={showing.movieId}>{showing.movieId}</div>
-                // <img src={ `http://image.tmdb.org/t/p/w154//${movie.poster_path}` }
-                // alt="poster"/>
-            )
+            );
         });
     }
 

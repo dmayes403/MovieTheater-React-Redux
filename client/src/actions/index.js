@@ -80,7 +80,7 @@ export const getShowings = () => async dispatch => {
             movieDetails.push(data);
 
             if (index === showings.data.length - 1) {
-                console.log({showings: showings.data, movieDetails: movieDetails});
+                // console.log({showings: showings.data, movieDetails: movieDetails});
                 dispatch({type: MOVIE_SHOWINGS, payload: {showings: showings.data, movieDetails: movieDetails}});
             }
         }));
