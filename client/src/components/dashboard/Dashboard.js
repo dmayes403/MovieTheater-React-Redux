@@ -11,10 +11,14 @@ import './dashboard.css';
 class Dashboard extends Component {
     state = { 
         focusedDateIndex: 0,
-        focusedDate: moment(new Date()).toString()
+        focusedDate: ''
     };
 
     componentDidMount() {
+        let initialFocusDate = new Date();
+        initialFocusDate = moment(initialFocusDate).format("ddd MMM DD YYYY");
+        this.setState({focusedDate: initialFocusDate});
+        
         this.props.getShowings();
     }
 
@@ -54,19 +58,16 @@ class Dashboard extends Component {
     renderShowings() {
         return this.props.movieShowings.showings.map(showing => {
             let showingDetails = [];
-            const startDateString = moment(showing.startDate).toString();
-            const endDateString = moment(showing.endDate).toString();
-            console.log(startDateString);
-            // console.log(showing);
-            // console.log(this.state.focusedDate);
+            const startDateString = moment(showing.startDate).format("ddd MMM DD YYYY");
+            const endDateString = moment(showing.endDate).format("ddd MMM DD YYYY");
+
             this.props.movieShowings.movieDetails.forEach(detail => {
                if (detail[2].id.toString() === showing.movieId) {
                    showingDetails = detail;
                } 
             });
 
-            if (this.state.focusedDate >= startDateString && this.state.focusedDate <= endDateString) {
-                console.log(showingDetails[2]);
+            if (Date.parse(this.state.focusedDate) >= Date.parse(startDateString) && Date.parse(this.state.focusedDate) <= Date.parse(endDateString)) {
                 return (
                     <div key={showingDetails[2].id} style={{marginTop: '15px', display: 'flex', flexDirection: 'row'}}>
                         {/* {console.log(showingDetails[2])} */}
@@ -89,9 +90,10 @@ class Dashboard extends Component {
     }
 
     getDate(date, index) {
-        this.setState({ focusedDateIndex: index });
-        this.setState({ focusedDate: moment(date).toString() });
-        console.log(this.state.focusedDate);
+        this.setState({ 
+            focusedDateIndex: index, 
+            focusedDate: moment(date).format("ddd MMM DD YYYY")
+        });
     }
 } 
 
