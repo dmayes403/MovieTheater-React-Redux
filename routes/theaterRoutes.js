@@ -26,6 +26,7 @@ module.exports = app => {
     })
 
     app.post('/api/newShowing', async (req, res) => {
+        console.log(req.body);
         req.body.showDetails.map(singleShowing => {
             const showTime = new ShowTime({
                 movieId: req.body.movieId,
@@ -45,4 +46,11 @@ module.exports = app => {
             res.send(showTimes);
         })
     });
+
+    app.get('api/showingsById/:id', async (req, res) => {
+        const showings = await ShowTime.find({movieId: id}, (err, showTimes) => {
+            console.log(showTimes);
+            res.send(showTimes);
+        })
+    })
 };

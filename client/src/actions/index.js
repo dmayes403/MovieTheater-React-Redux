@@ -5,7 +5,8 @@ import {
     MOVIE_DETAILS, 
     THEATER_LIST, 
     MOVIE_SHOWINGS,
-    DASHBOARD_DETAILS 
+    DASHBOARD_DETAILS,
+    MOVIE_SHOWING_BY_ID 
     } from './types';
 
 const movieDBKEY = process.env.REACT_APP_MOVIE_DB_KEY;
@@ -85,4 +86,9 @@ export const getShowings = () => async dispatch => {
             }
         }));
     });
+}
+
+export const getShowingsById = (id) => async dispatch => {
+    const showings = await axios.get(`api/showingsById/${id}`);
+    console.log(showings);
 }
