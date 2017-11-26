@@ -79,7 +79,7 @@ class Dashboard extends Component {
                             <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                                 <span className="dashboard-movie-title">{showingDetails[2].original_title}</span>
                                 {showing.startTime.map(time => (
-                                    <div className="time-container">{time}</div>
+                                    <div key={time} className="time-container">{time}</div>
                                 ))}
                             </div>
                             <span>{showingDetails[1]}</span>
@@ -104,6 +104,13 @@ class Dashboard extends Component {
 } 
 
 function mapStateToProps({ movieShowings }) {
+    // if (movieShowings.showings.length > 0) {
+    // if (_.has(movieShowings, 'showings')) {
+    //     return { movieShowings };
+    // } else {
+    //     return {};
+    // }
+
     return { movieShowings };
 }
 

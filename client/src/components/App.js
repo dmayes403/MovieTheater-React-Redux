@@ -9,6 +9,7 @@ import SearchMovies from './search-movies/SearchMovies';
 import MovieDetails from './movie-details/MovieDetails';
 import CreateShowing from './create-showing/CreateShowing';
 import Dashboard from './dashboard/Dashboard';
+import AllShowings from './all-showings/AllShowings';
 
 class App extends Component {
     render() {
@@ -21,6 +22,7 @@ class App extends Component {
                         <Route exact path="/search-movies" component={SearchMovies} />
                         <Route exact path="/movie-details/:id" component={MovieDetails} />
                         <Route path="/create-showing/:id" component={CreateShowing} />
+                        <Route path="/all-showings" component={AllShowings} />
                     </div>
                 </BrowserRouter>
             </MuiThemeProvider>
