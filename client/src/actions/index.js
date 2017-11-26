@@ -89,6 +89,7 @@ export const getShowings = () => async dispatch => {
 }
 
 export const getShowingsById = (id) => async dispatch => {
-    const showings = await axios.get(`api/showingsById/${id}`);
-    console.log(showings);
+    const showings = await axios.get(`/api/showingsById/${id}`);
+    console.log(showings.data);
+    dispatch({ type: MOVIE_SHOWING_BY_ID, payload: showings.data })
 }

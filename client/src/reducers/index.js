@@ -4,11 +4,13 @@ import movieSearchResults from './movieSearchReducer';
 import movieDetails from './movieDetailsReducer';
 import theaterList from './theaterListReducer';
 import movieShowings from './movieShowings';
+import movieShowingsById from './movieShowingsById';
 
 export default combineReducers({
     form: reduxForm,
     movieSearchResults: movieSearchResults,
     movieDetails: movieDetails,
     theaterList: theaterList,
-    movieShowings: movieShowings
+    movieShowings: movieShowings,
+    movieShowingsById: movieShowingsById
 });

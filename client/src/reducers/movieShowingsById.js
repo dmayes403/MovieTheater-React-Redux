@@ -1,4 +1,4 @@
-import { MOVIE_SHOWING_BY_ID } from './types';
+import { MOVIE_SHOWING_BY_ID } from '../actions/types';
 
 export default function(state = [], action) {
     // ^^ default state to an empty array

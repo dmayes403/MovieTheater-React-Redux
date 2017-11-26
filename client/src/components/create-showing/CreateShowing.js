@@ -6,7 +6,8 @@ import './createShowing.css';
 import { DatePicker, TimePicker, SelectField } from 'redux-form-material-ui';
 import _ from 'lodash';
 import * as actions from '../../actions';
-import * as moment from 'moment';
+// import * as moment from 'moment';
+import * as moment from 'moment-timezone';
 import MenuItem from 'material-ui/MenuItem'
 
 import SelectFieldContainer from '../../material-ui/SelectFieldContainer';
@@ -19,6 +20,7 @@ class CreateShowing extends Component {
     state = { 
         showingTimes: [],
         times: [],
+        showTimesById: [],
         theaterNotSelected: true,
         startDateNotSelected: true,
         updateIndex: null
@@ -27,9 +29,15 @@ class CreateShowing extends Component {
     componentDidMount() {
         this.props.getMovieDetails(this.props.match.params.id);
         this.props.getTheaterList();
+        this.props.getShowingsById(this.props.match.params.id);
     }
 
     render() {
+        if (this.props.movieShowingsById && this.props.movieShowingsById.length > 0) {
+            console.log('working...');
+            console.log(this.props.theaterList);
+        }
+
         if (this.props.movieDetails.length > 0) {
             return (
                 this.renderCreateShowing()
@@ -39,6 +47,38 @@ class CreateShowing extends Component {
                 <div>Loading...</div>
             )
         }
+    }
+
+    coerceShowing() {
+        let showTimesById = [];
+        this.props.movieShowingsById.forEach(showing => {
+            let tempShowing = {};
+            let endDate = '';
+            const theaterChoice = _.find(this.props.theaterList, {'_id': showing._theater});
+            // const startDate = moment(showing.startDate).tz('America/Denver').toString();
+            const startDate = moment(showing.startDate).tz('America/Denver').toString() + ' (MST)';
+            // const startDate = moment(showing.startDate).tz('America/Denver').toString();
+            if (showing.endDate) {
+                endDate = moment(showing.endDate).tz('America/Denver').toString() + ' (MST)';
+                // endDate = moment(showing.endDate).tz('America/Denver').toString();
+            } else {
+                endDate = moment(showing.startDate).tz('America/Denver').toString() + ' (MST)';
+                // endDate = moment(showing.startDate).tz('America/Denver').toString();
+            }
+            const timeOptions = showing.startTime;
+
+            // const dateTest = new Date(startDate);
+            const dateTest = Date.parse(startDate);
+            console.log(dateTest);
+
+            tempShowing.theaterChoice = theaterChoice;
+            tempShowing.startDate = startDate;
+            tempShowing.endDate = endDate;
+            tempShowing.timeOptions = timeOptions;
+            showTimesById.push(tempShowing);
+        });
+
+        this.setState({ showingTimes: showTimesById });
     }
 
     renderCreateShowing() {
@@ -58,7 +98,7 @@ class CreateShowing extends Component {
                         style={{width: '30%', minWidth: '300px', height: '50%'}}
                         alt="poster"/>
                     <div className="create-description-container">
-                        <h2 style={{margin: 'auto', textAlign: 'center', backgroundColor: '#3454b4', color: 'white', borderRadius: '5px', padding: '5px'}} className="z-depth-3">{movieDetails[2].title}</h2>
+                        <h2 onClick={() => this.test()} style={{margin: 'auto', textAlign: 'center', backgroundColor: '#3454b4', color: 'white', borderRadius: '5px', padding: '5px'}} className="z-depth-3">{movieDetails[2].title}</h2>
                         
                         <div style={{display: 'flex', flexDirection: 'row'}}>
                             <div>
@@ -178,7 +218,13 @@ class CreateShowing extends Component {
                         name="startDate" 
                         floatingLabelText="Start Date"
                         component={DatePicker} 
-                        format={null}
+                        // format={null}
+                        // format={(value, name) => { 
+                        //     console.log('value being passed:', value);
+                        //     console.log('is of type:', typeof value);
+                        //     return value === '' ? null : value 
+                        // }}
+                        format={(value, name) => value === '' ? null : (typeof value === 'string') ? new Date(value) : value}
                         autoOk={true}
                         onChange={() => this.setState({ startDateNotSelected: false })}
                         DateTimeFormat={Intl.DateTimeFormat}
@@ -190,7 +236,9 @@ class CreateShowing extends Component {
                         name="endDate" 
                         floatingLabelText="End Date (optional)"
                         component={DatePicker} 
-                        format={null}
+                        // format={null}
+                        // format={(value, name) => value === '' ? null : value}
+                        format={(value, name) => value === '' ? null : (typeof value === 'string') ? new Date(value) : value}
                         autoOk={true}
                         DateTimeFormat={Intl.DateTimeFormat}
                         disabled={this.state.startDateNotSelected}
@@ -216,6 +264,11 @@ class CreateShowing extends Component {
                 <button className="z-depth-3 add-time-button" type="submit">Add Time</button>
             </div>
         )
+    }
+
+    test() {
+        console.log(this.state.showingTimes);
+        this.coerceShowing();
     }
 
     renderTimeOptions() {
@@ -250,6 +303,7 @@ class CreateShowing extends Component {
     }
 
     addToShowTimes(values) {
+        console.log(values);
         if (values.theaterChoice) {
             if (this.state.updateIndex !== null) {
                 let tempShowTimes = this.state.showingTimes;
@@ -284,11 +338,13 @@ function mapStateToProps(state) {
             movieDetails: state.movieDetails,
             theaterList: state.theaterList,
             formValues: state.form.createShowing.values,
+            movieShowingsById: state.movieShowingsById
         };
     } else {
         return { 
             movieDetails: state.movieDetails,
             theaterList: state.theaterList,
+            movieShowingsById: state.movieShowingsById
         };
     }
 }
