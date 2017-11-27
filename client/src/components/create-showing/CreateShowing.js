@@ -63,7 +63,7 @@ class CreateShowing extends Component {
                 // endDate = moment(showing.endDate).tz('America/Denver').toString();
             } else {
                 endDate = moment(showing.startDate).tz('America/Denver').toString() + ' (MST)';
-                // endDate = moment(showing.startDate).tz('America/Denver').toString();
+                /// endDate = moment(showing.startDate).tz('America/Denver').toString();
             }
             const timeOptions = showing.startTime;
 
