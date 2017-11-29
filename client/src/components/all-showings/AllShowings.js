@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import _ from 'lodash';
+// import _ from 'lodash';
 import * as actions from '../../actions';
 
 import './AllShowings.css';
@@ -26,6 +26,8 @@ class AllShowings extends Component {
     }
 
     renderShowings() {
+        const usedIds = [];
+
         return (
             this.props.movieShowings.showings.map(showing => {
                 let showingDetails = [];
@@ -35,15 +37,21 @@ class AllShowings extends Component {
                     } 
                 });
 
-                return (
-                    <div key={showingDetails[2].id} className="single-showing card small">
-                        <img src={ `http://image.tmdb.org/t/p/w154//${showingDetails[2].poster_path}` }
-                        alt="poster"/>
-                        <div>
-                            {showingDetails[2].original_title}
-                        </div>
-                    </div>
-                )
+                if (usedIds.indexOf(showing.movieId) === -1) {
+                    usedIds.push(showing.movieId);
+
+                    return (
+                        <Link to={`/create-showing/${showing.movieId}`} className="single-showing card small"><div key={showingDetails[2].id}>
+                            <img src={ `http://image.tmdb.org/t/p/w154//${showingDetails[2].poster_path}` }
+                            alt="poster"/>
+                            <div>
+                                {showingDetails[2].original_title}
+                            </div>
+                        </div></Link>
+                    )
+                } else {
+                    return;
+                }
             })
         );
     }

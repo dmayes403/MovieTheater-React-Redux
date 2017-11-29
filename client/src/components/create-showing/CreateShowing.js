@@ -29,15 +29,14 @@ class CreateShowing extends Component {
     componentDidMount() {
         this.props.getMovieDetails(this.props.match.params.id);
         this.props.getTheaterList();
-        this.props.getShowingsById(this.props.match.params.id);
+        this.props.getShowingsById(this.props.match.params.id).then(res => {
+            if (this.props.movieShowingsById && this.props.movieShowingsById.length > 0) {
+                this.coerceShowing();
+            }
+        })
     }
 
     render() {
-        if (this.props.movieShowingsById && this.props.movieShowingsById.length > 0) {
-            console.log('working...');
-            console.log(this.props.theaterList);
-        }
-
         if (this.props.movieDetails.length > 0) {
             return (
                 this.renderCreateShowing()
@@ -67,10 +66,6 @@ class CreateShowing extends Component {
             }
             const timeOptions = showing.startTime;
 
-            // const dateTest = new Date(startDate);
-            const dateTest = Date.parse(startDate);
-            console.log(dateTest);
-
             tempShowing.theaterChoice = theaterChoice;
             tempShowing.startDate = startDate;
             tempShowing.endDate = endDate;
@@ -82,6 +77,12 @@ class CreateShowing extends Component {
     }
 
     renderCreateShowing() {
+        // if (this.props.movieShowingsById && this.props.movieShowingsById.length > 0) {
+        //     console.log('working...');
+        //     console.log(this.props.theaterList);
+        //     this.coerceShowing();
+        // }
+
         const { handleSubmit } = this.props;
         const { movieDetails } = this.props;
         var detailContainerStyles = {
@@ -105,7 +106,6 @@ class CreateShowing extends Component {
                                 <form onSubmit={handleSubmit(values => this.addToShowTimes(values))}>
                                     {this.renderField()}
                                     {this.renderDatePicker()}
-                                    {/* {this.renderTimePicker()} */}
                                     {this.renderTimeOptions()}
                                     <div style={{display: 'flex', flexDirection: 'row'}}>
                                         <button className="z-depth-3 add-button" onClick={() => this.clearForm()}>Clear</button>

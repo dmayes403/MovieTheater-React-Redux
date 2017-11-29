@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as moment from 'moment';
-import _ from 'lodash';
+// import _ from 'lodash';
 import * as actions from '../../actions';
 import { Link } from 'react-router-dom';
 
@@ -57,7 +57,7 @@ class Dashboard extends Component {
 
     renderShowings() {
         return this.props.movieShowings.showings.map(showing => {
-            {console.log(showing)}
+            // {console.log(showing)}
             let showingDetails = [];
             const startDateString = moment(showing.startDate).format("ddd MMM DD YYYY");
             const endDateString = moment(showing.endDate).format("ddd MMM DD YYYY");
@@ -71,8 +71,7 @@ class Dashboard extends Component {
             if (Date.parse(this.state.focusedDate) >= Date.parse(startDateString) && Date.parse(this.state.focusedDate) <= Date.parse(endDateString)) {
                 return (
                     <div key={showingDetails[2].id} style={{marginTop: '15px', display: 'flex', flexDirection: 'row'}}>
-                        {/* {console.log(showingDetails[2])} */}
-                        {console.log(showingDetails)}
+                        {/* {console.log(showingDetails)} */}
                         <img src={ `http://image.tmdb.org/t/p/w154//${showingDetails[2].poster_path}` }
                         alt="poster"/>
                         <div className="movie-detail-container">
@@ -89,8 +88,6 @@ class Dashboard extends Component {
                         </div>
                     </div>
                 );
-            } else {
-                return;
             }
         });
     }
