@@ -41,7 +41,7 @@ class AllShowings extends Component {
                     usedIds.push(showing.movieId);
 
                     return (
-                        <Link to={`/create-showing/${showing.movieId}`} className="single-showing card small"><div key={showingDetails[2].id}>
+                        <Link to={`/create-showing/${showing.movieId}`} className="single-showing card small" key={showingDetails[2].id}><div>
                             <img src={ `http://image.tmdb.org/t/p/w154//${showingDetails[2].poster_path}` }
                             alt="poster"/>
                             <div>
@@ -65,7 +65,6 @@ function mapStateToProps({ movieShowings }) {
     //     return {};
     // }
 
-    console.log(movieShowings);
     return { movieShowings };
     
 }
