@@ -70,8 +70,8 @@ class Dashboard extends Component {
             if (Date.parse(this.state.focusedDate) >= Date.parse(startDateString) && Date.parse(this.state.focusedDate) <= Date.parse(endDateString)) {
                 return (
                     <div key={showingDetails[2].id} style={{marginTop: '15px', display: 'flex', flexDirection: 'row'}}>
-                        <img src={ `http://image.tmdb.org/t/p/w154//${showingDetails[2].poster_path}` }
-                        alt="poster"/>
+                        <Link to={`/movie-details/${showingDetails[2].id}`}><img src={ `http://image.tmdb.org/t/p/w154//${showingDetails[2].poster_path}` }
+                        alt="poster"/></Link>
                         <div className="movie-detail-container">
                             <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                                 <span className="dashboard-movie-title">{showingDetails[2].original_title}</span>

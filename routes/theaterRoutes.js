@@ -26,7 +26,6 @@ module.exports = app => {
     })
 
     app.post('/api/newShowing', async (req, res) => {
-        console.log(req.body);
         ShowTime.remove({ movieId: req.body.movieId }, (err, res) => {
             req.body.showDetails.map(singleShowing => {
                 const showTime = new ShowTime({
@@ -51,8 +50,17 @@ module.exports = app => {
 
     app.get('/api/showingsById/:id', async (req, res) => {
         const showings = await ShowTime.find({movieId: req.params.id}, (err, showTimes) => {
-            console.log(showTimes);
             res.send(showTimes);
+        })
+    });
+
+    app.delete('/api/showing/:id', async (req, res) => {
+        // ShowTime.remove({ movieId: req.params.id }, (err, success) => {
+        //     res.json({ message: 'Successfully deleted' });
+        // });
+
+        ShowTime.remove({ movieId: req.params.id }).then(() => {
+            res.json({ message: 'Successfully deleted' });
         })
     })
 };

@@ -33,7 +33,8 @@ class CreateShowing extends Component {
             if (this.props.movieShowingsById && this.props.movieShowingsById.length > 0) {
                 this.coerceShowing();
             }
-        })
+        });
+        // this.props.deleteShowing(this.props.match.params.id);
     }
 
     render() {
@@ -54,15 +55,11 @@ class CreateShowing extends Component {
             let tempShowing = {};
             let endDate = '';
             const theaterChoice = _.find(this.props.theaterList, {'_id': showing._theater});
-            // const startDate = moment(showing.startDate).tz('America/Denver').toString();
-            const startDate = moment(showing.startDate).tz('America/Denver').toString() + ' (MST)';
-            // const startDate = moment(showing.startDate).tz('America/Denver').toString();
+            const startDate = moment(showing.startDate, moment.ISO_8601).tz('America/Denver').toString() + ' (MST)';
             if (showing.endDate) {
-                endDate = moment(showing.endDate).tz('America/Denver').toString() + ' (MST)';
-                // endDate = moment(showing.endDate).tz('America/Denver').toString();
+                endDate = moment(showing.endDate, moment.ISO_8601).tz('America/Denver').toString() + ' (MST)';
             } else {
-                endDate = moment(showing.startDate).tz('America/Denver').toString() + ' (MST)';
-                /// endDate = moment(showing.startDate).tz('America/Denver').toString();
+                endDate = moment(showing.startDate, moment.ISO_8601).tz('America/Denver').toString() + ' (MST)';
             }
             const timeOptions = showing.startTime;
 
@@ -77,12 +74,6 @@ class CreateShowing extends Component {
     }
 
     renderCreateShowing() {
-        // if (this.props.movieShowingsById && this.props.movieShowingsById.length > 0) {
-        //     console.log('working...');
-        //     console.log(this.props.theaterList);
-        //     this.coerceShowing();
-        // }
-
         const { handleSubmit } = this.props;
         const { movieDetails } = this.props;
         var detailContainerStyles = {
@@ -139,9 +130,8 @@ class CreateShowing extends Component {
                                 </table>
                                 <div className="bottom-links">
                                     <Link to={`/movie-details/${this.props.match.params.id}`}><h6 className="z-depth-3 cancel-button" onClick={() => this.setState({createShowing: false})}>Cancel</h6></Link>
-                                    {/* <button className="z-depth-3 save-button" type="submit" onClick={() => this.props.saveShowing({ movieId: this.props.match.params.id, showDetails: this.state.showingTimes })}>Save</button> */}
+                                    <Link to={'/'} onClick={() => this.props.deleteShowing(this.props.match.params.id)}className="headerLinkStyle z-depth-3 delete-button" style={{marginLeft: '10px'}}>Delete</Link>
                                     <Link to={'/'} className="headerLinkStyle z-depth-3 save-button" style={{marginLeft: '10px'}} onClick={() => this.props.saveShowing({ movieId: this.props.match.params.id, showDetails: this.state.showingTimes })}>Save</Link>
-                                    {/* <Link to={'/'} className="headerLinkStyle" style={{marginLeft: '10px'}}>Login</Link> */}
                                 </div>
                             </div>
                         </div>
@@ -264,11 +254,6 @@ class CreateShowing extends Component {
                 <button className="z-depth-3 add-time-button" type="submit">Add Time</button>
             </div>
         )
-    }
-
-    test() {
-        console.log(this.state.showingTimes);
-        this.coerceShowing();
     }
 
     renderTimeOptions() {

@@ -54,7 +54,7 @@
 
 .cancel-button {
     text-align: center; 
-    background-color: #ff3232;
+    background-color: #3454b4;
     color: white; 
     border-radius: 5px;
     padding: 10px; 
@@ -62,6 +62,22 @@
     cursor: pointer;
     margin-top: 15px;
     margin-bottom: 0px;
+}
+
+.delete-button {
+    text-align: center; 
+    background-color: #ff3232;
+    color: white; 
+    border-radius: 5px;
+    padding: 7px; 
+    width: 100px;
+    cursor: pointer;
+    margin-top: 15px;
+    margin-bottom: 0px;
+}
+
+.delete-button:active {
+    background-color: #44ACA1;
 }
 
 .add-button {

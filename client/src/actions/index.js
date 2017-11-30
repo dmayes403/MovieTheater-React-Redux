@@ -91,3 +91,8 @@ export const getShowingsById = (id) => async dispatch => {
     const showings = await axios.get(`/api/showingsById/${id}`);
     dispatch({ type: MOVIE_SHOWING_BY_ID, payload: showings.data })
 }
+
+export const deleteShowing = (id) => async dispatch => {
+    console.log(id);
+    axios.delete(`/api/showing/${id}`);
+}
