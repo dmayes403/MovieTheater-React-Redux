@@ -16,7 +16,7 @@ class Dashboard extends Component {
 
     componentDidMount() {
         let initialFocusDate = new Date();
-        initialFocusDate = moment(initialFocusDate).format("ddd MMM DD YYYY");
+        initialFocusDate = moment(initialFocusDate, moment.ISO_8601).format("ddd MMM DD YYYY");
         this.setState({focusedDate: initialFocusDate});
 
         this.props.getShowings();
@@ -31,9 +31,9 @@ class Dashboard extends Component {
 
                 dateBoxes.push(
                                 <div key={i} className={ this.state.focusedDateIndex === i ? 'highlighted-date-box' : 'date-box' } onClick={() => this.getDate(date, i)}>
-                                    <div>{moment(date).format("ddd").toString()}</div>
-                                    <div style={{fontSize: '1.8em'}}>{moment(date).format("D").toString()}</div>
-                                    <div>{moment(date).format("MMMM").toString()}</div>
+                                    <div>{moment(date, moment.ISO_8601).format("ddd").toString()}</div>
+                                    <div style={{fontSize: '1.8em'}}>{moment(date, moment.ISO_8601).format("D").toString()}</div>
+                                    <div>{moment(date, moment.ISO_8601).format("MMMM").toString()}</div>
                                 </div>
                             );
             }
@@ -57,10 +57,9 @@ class Dashboard extends Component {
 
     renderShowings() {
         return this.props.movieShowings.showings.map(showing => {
-            // {console.log(showing)}
             let showingDetails = [];
-            const startDateString = moment(showing.startDate).format("ddd MMM DD YYYY");
-            const endDateString = moment(showing.endDate).format("ddd MMM DD YYYY");
+            const startDateString = moment(showing.startDate, moment.ISO_8601).format("ddd MMM DD YYYY");
+            const endDateString = moment(showing.endDate, moment.ISO_8601).format("ddd MMM DD YYYY");
 
             this.props.movieShowings.movieDetails.forEach(detail => {
                if (detail[2].id.toString() === showing.movieId) {
@@ -71,7 +70,6 @@ class Dashboard extends Component {
             if (Date.parse(this.state.focusedDate) >= Date.parse(startDateString) && Date.parse(this.state.focusedDate) <= Date.parse(endDateString)) {
                 return (
                     <div key={showingDetails[2].id} style={{marginTop: '15px', display: 'flex', flexDirection: 'row'}}>
-                        {/* {console.log(showingDetails)} */}
                         <img src={ `http://image.tmdb.org/t/p/w154//${showingDetails[2].poster_path}` }
                         alt="poster"/>
                         <div className="movie-detail-container">
@@ -88,6 +86,8 @@ class Dashboard extends Component {
                         </div>
                     </div>
                 );
+            } else {
+                return null;
             }
         });
     }
@@ -95,7 +95,7 @@ class Dashboard extends Component {
     getDate(date, index) {
         this.setState({ 
             focusedDateIndex: index, 
-            focusedDate: moment(date).format("ddd MMM DD YYYY")
+            focusedDate: moment(date, moment.ISO_8601).format("ddd MMM DD YYYY")
         });
     }
 } 

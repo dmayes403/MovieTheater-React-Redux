@@ -5,7 +5,6 @@ import {
     MOVIE_DETAILS, 
     THEATER_LIST, 
     MOVIE_SHOWINGS,
-    DASHBOARD_DETAILS,
     MOVIE_SHOWING_BY_ID 
     } from './types';
 
@@ -59,7 +58,7 @@ export const getTheaterList = () => async dispatch => {
 }
 
 export const saveShowing = (showDetails) => async dispatch => {
-    const res = await axios.post('/api/newShowing', showDetails);
+    axios.post('/api/newShowing', showDetails);
 }
 
 export const getShowings = () => async dispatch => {
@@ -90,6 +89,5 @@ export const getShowings = () => async dispatch => {
 
 export const getShowingsById = (id) => async dispatch => {
     const showings = await axios.get(`/api/showingsById/${id}`);
-    console.log(showings.data);
     dispatch({ type: MOVIE_SHOWING_BY_ID, payload: showings.data })
 }

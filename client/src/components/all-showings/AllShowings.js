@@ -29,7 +29,7 @@ class AllShowings extends Component {
         const usedIds = [];
 
         return (
-            this.props.movieShowings.showings.map(showing => {
+            this.props.movieShowings.showings.reverse().map(showing => {
                 let showingDetails = [];
                 this.props.movieShowings.movieDetails.forEach(detail => {
                     if (detail[2].id.toString() === showing.movieId) {
@@ -50,7 +50,7 @@ class AllShowings extends Component {
                         </div></Link>
                     )
                 } else {
-                    return;
+                    return null;
                 }
             })
         );
