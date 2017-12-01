@@ -93,6 +93,5 @@ export const getShowingsById = (id) => async dispatch => {
 }
 
 export const deleteShowing = (id) => async dispatch => {
-    console.log(id);
     axios.delete(`/api/showing/${id}`);
 }
