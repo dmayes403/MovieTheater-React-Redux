@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Card } from 'material-ui/Card';
 import { connect } from 'react-redux';
 import * as moment from 'moment';
 // import _ from 'lodash';
@@ -69,22 +70,24 @@ class Dashboard extends Component {
 
             if (Date.parse(this.state.focusedDate) >= Date.parse(startDateString) && Date.parse(this.state.focusedDate) <= Date.parse(endDateString)) {
                 return (
-                    <div key={showingDetails[2].id} style={{marginTop: '15px', display: 'flex', flexDirection: 'row'}}>
-                        <Link to={`/movie-details/${showingDetails[2].id}`}><img src={ `http://image.tmdb.org/t/p/w154//${showingDetails[2].poster_path}` }
-                        alt="poster"/></Link>
-                        <div className="movie-detail-container">
-                            <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                                <span className="dashboard-movie-title">{showingDetails[2].original_title}</span>
-                                {showing.startTime.map(time => (
-                                    <div key={time} className="time-container">{time}</div>
-                                ))}
+                    <Card key={showingDetails[2].id} style={{borderRadius: '5px', padding: '10px', margin: '15px 0px'}}><Link to={`/movie-details/${showingDetails[2].id}`}>
+                        <div style={{display: 'flex', flexDirection: 'row'}}>
+                            <img src={ `http://image.tmdb.org/t/p/w154//${showingDetails[2].poster_path}` }
+                            alt="poster"/>
+                            <div className="movie-detail-container">
+                                <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                                    <span className="dashboard-movie-title">{showingDetails[2].original_title}</span>
+                                    {showing.startTime.map(time => (
+                                        <div key={time} className="time-container">{time}</div>
+                                    ))}
+                                </div>
+                                <span>{showingDetails[1]}</span>
+                                <span>{showingDetails[2].runtime}m</span>
+                                <span style={{marginTop: '25px'}}>{showingDetails[2].overview}</span>
+                                <Link to={`/movie-details/${showingDetails[2].id}`} className="dashboard-linkStyle" style={{marginTop: '15px'}}>More Details</Link>
                             </div>
-                            <span>{showingDetails[1]}</span>
-                            <span>{showingDetails[2].runtime}m</span>
-                            <span style={{marginTop: '25px'}}>{showingDetails[2].overview}</span>
-                            <Link to={`/movie-details/${showingDetails[2].id}`} className="dashboard-linkStyle" style={{marginTop: '15px'}}>More Details</Link>
                         </div>
-                    </div>
+                    </Link></Card>
                 );
             } else {
                 return null;
