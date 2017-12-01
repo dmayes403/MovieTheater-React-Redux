@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { reduxForm, Field, reset, change } from 'redux-form';
+import { withRouter } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import './createShowing.css';
 import { DatePicker, TimePicker, SelectField } from 'redux-form-material-ui';
@@ -130,8 +131,8 @@ class CreateShowing extends Component {
                                 </table>
                                 <div className="bottom-links">
                                     <Link to={`/movie-details/${this.props.match.params.id}`}><h6 className="z-depth-3 cancel-button" onClick={() => this.setState({createShowing: false})}>Cancel</h6></Link>
-                                    <Link to={'/'} onClick={() => this.props.deleteShowing(this.props.match.params.id)}className="headerLinkStyle z-depth-3 delete-button" style={{marginLeft: '10px'}}>Delete</Link>
-                                    <Link to={'/'} className="headerLinkStyle z-depth-3 save-button" style={{marginLeft: '10px'}} onClick={() => this.props.saveShowing({ movieId: this.props.match.params.id, showDetails: this.state.showingTimes })}>Save</Link>
+                                    <div onClick={() => this.props.deleteShowing(this.props.match.params.id, this.props.history)}className="headerLinkStyle z-depth-3 delete-button" style={{marginLeft: '10px'}}>Delete</div>
+                                    <div className="headerLinkStyle z-depth-3 save-button" style={{marginLeft: '10px'}} onClick={() => this.props.saveShowing({ movieId: this.props.match.params.id, showDetails: this.state.showingTimes }, this.props.history)}>Save</div>
                                 </div>
                             </div>
                         </div>
@@ -267,7 +268,6 @@ class CreateShowing extends Component {
                         floatingLabelText="Time(s)"
                         component={SelectField}
                         name="timeOptions"
-                        onChange={() => console.log(this.props.formValues)}
                         labelStyle={{top: '-60px'}}
                         selectedMenuItemStyle={{color: '#44ACA1'}}
                         iconStyle={{color: 'blue'}}
@@ -288,7 +288,6 @@ class CreateShowing extends Component {
     }
 
     addToShowTimes(values) {
-        console.log(values);
         if (values.theaterChoice) {
             if (this.state.updateIndex !== null) {
                 let tempShowTimes = this.state.showingTimes;
@@ -334,7 +333,7 @@ function mapStateToProps(state) {
     }
 }
 
-CreateShowing = connect(mapStateToProps, actions)(CreateShowing);
+CreateShowing = connect(mapStateToProps, actions)(withRouter(CreateShowing));
 export default reduxForm({
     form: 'createShowing',
     onSubmitSuccess: afterSubmit

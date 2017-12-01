@@ -58,6 +58,7 @@ module.exports = app => {
             // ShowTime.find({}).then(showings => {
             //     res.send(showings);
             // })
+            res.send('success');
         });
     });
 

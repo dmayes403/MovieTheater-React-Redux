@@ -1,6 +1,5 @@
 import axios from 'axios';
 import _ from 'lodash';
-import { NavigationActions } from 'react-navigation'
 import { 
     SEARCH_MOVIES, 
     MOVIE_DETAILS, 
@@ -58,16 +57,13 @@ export const getTheaterList = () => async dispatch => {
     dispatch({ type: THEATER_LIST, payload: theaters.data })
 }
 
-export const saveShowing = (showDetails) => async dispatch => {
-    // const savedShowings = await axios.post('/api/newShowing', showDetails);
-    // console.log(savedShowings);
+export const saveShowing = (showDetails, history) => async dispatch => {
     axios.post('/api/newShowing', showDetails).then(() => {
-        dispatch(NavigationActions.navigate({ routeName: '/'}));
+        history.push('/');
     })
 }
 
 export const getShowings = () => async dispatch => {
-    console.log('calling...');
     let movieDetails = [];
     const showings = await axios.get('/api/showings');
 
@@ -86,7 +82,6 @@ export const getShowings = () => async dispatch => {
             movieDetails.push(data);
 
             if (index === showings.data.length - 1) {
-                // console.log({showings: showings.data, movieDetails: movieDetails});
                 dispatch({type: MOVIE_SHOWINGS, payload: {showings: showings.data, movieDetails: movieDetails}});
             }
         }));
@@ -98,6 +93,8 @@ export const getShowingsById = (id) => async dispatch => {
     dispatch({ type: MOVIE_SHOWING_BY_ID, payload: showings.data })
 }
 
-export const deleteShowing = (id) => async dispatch => {
-    axios.delete(`/api/showing/${id}`);
+export const deleteShowing = (id, history) => async dispatch => {
+    axios.delete(`/api/showing/${id}`).then(() => {
+        history.push('/');
+    });
 }
