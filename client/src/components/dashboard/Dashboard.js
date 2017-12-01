@@ -57,7 +57,7 @@ class Dashboard extends Component {
     }
 
     renderShowings() {
-        return this.props.movieShowings.showings.map(showing => {
+        return this.props.movieShowings.showings.reverse().map(showing => {
             let showingDetails = [];
             const startDateString = moment(showing.startDate, moment.ISO_8601).format("ddd MMM DD YYYY");
             const endDateString = moment(showing.endDate, moment.ISO_8601).format("ddd MMM DD YYYY");
@@ -84,7 +84,6 @@ class Dashboard extends Component {
                                 <span>{showingDetails[1]}</span>
                                 <span>{showingDetails[2].runtime}m</span>
                                 <span style={{marginTop: '25px'}}>{showingDetails[2].overview}</span>
-                                <Link to={`/movie-details/${showingDetails[2].id}`} className="dashboard-linkStyle" style={{marginTop: '15px'}}>More Details</Link>
                             </div>
                         </div>
                     </Link></Card>

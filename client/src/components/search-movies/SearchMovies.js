@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
+import { Card } from 'material-ui/Card';
 import { Link } from 'react-router-dom';
 import * as actions from '../../actions';
 
 import './searchMovies.css';
 
 class SearchMovies extends Component {
+    componentDidMount() {
+        this.props.searchMovies('searchMovieDefault');
+    }
+
     renderMovies() {
         return this.props.movieSearchResults.map(movie => {
             return (
@@ -35,15 +40,17 @@ class SearchMovies extends Component {
         return (
             <div className="new-showing-container">
                 <div className="form_container">
-                    <form onSubmit={this.props.handleSubmit((values) => this.searchMovies(values))}>
-                        <Field
-                            type="text"
-                            name="movieTitle"
-                            component="input"
-                            placeholder="Search movie title..."
-                            style={{width: '200px'}}
-                        />
-                    </form>
+                    <Card>
+                        <form onSubmit={this.props.handleSubmit((values) => this.searchMovies(values))}>
+                            <Field
+                                type="text"
+                                name="movieTitle"
+                                component="input"
+                                placeholder="Search movie title..."
+                                style={{width: '400px', paddingTop: '10px'}}
+                            />
+                        </form>
+                    </Card>
                 </div>
                 <div className="moviesContainer">
                     {this.renderMovies()}

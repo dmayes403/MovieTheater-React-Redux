@@ -12,6 +12,7 @@ import * as moment from 'moment-timezone';
 import MenuItem from 'material-ui/MenuItem'
 
 import SelectFieldContainer from '../../material-ui/SelectFieldContainer';
+import DeleteShowingDialog from '../delete-showing-dialog/DeleteShowingDialog';
 
 import timeOptions from '../../variables/times';
 
@@ -35,7 +36,6 @@ class CreateShowing extends Component {
                 this.coerceShowing();
             }
         });
-        // this.props.deleteShowing(this.props.match.params.id);
     }
 
     render() {
@@ -140,6 +140,7 @@ class CreateShowing extends Component {
                     </div>
                 </div>
                 <div className="videos-container">
+                    <DeleteShowingDialog />
                     {this.renderVideos()}
                 </div>
             </div>

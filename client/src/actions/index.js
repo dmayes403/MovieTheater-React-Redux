@@ -11,28 +11,44 @@ import {
 const movieDBKEY = process.env.REACT_APP_MOVIE_DB_KEY;
 
 export const searchMovies = (movieTitle) => async dispatch => {
-    let alteredMovieTitle = '';
-    let movieBaseUrl = '';
-    if (movieTitle.split(' ').length > 1) {
-        for (let i = 0; i < movieTitle.split(' ').length; i++) {
-            alteredMovieTitle += movieTitle.split(' ')[i];
-            if (i < movieTitle.split(' ').length - 1){
-                alteredMovieTitle += '%20';
+    if (movieTitle === 'searchMovieDefault') {
+        let movieBaseUrl = `https://api.themoviedb.org/3/movie/upcoming?api_key=${movieDBKEY}&language=en-US`;
+        
+        const res = await axios.get(movieBaseUrl);
+        const movies = res.data.results.filter(movie => {
+            if (movie.poster_path) {
+                return movie;
+            } else {
+                return false;
             }
-        }
-        movieBaseUrl = `https://api.themoviedb.org/3/search/movie?api_key=${movieDBKEY}&language=en-US&query=${alteredMovieTitle}`;
+        });
+
+        dispatch({ type: SEARCH_MOVIES, payload: movies });
     } else {
-        movieBaseUrl = `https://api.themoviedb.org/3/search/movie?api_key=${movieDBKEY}&language=en-US&query=${movieTitle}`;
-    }
-    const res = await axios.get(movieBaseUrl);
-    const movies = res.data.results.filter(movie => {
-        if (movie.poster_path) {
-            return movie;
+        let alteredMovieTitle = '';
+        let movieBaseUrl = '';
+        if (movieTitle.split(' ').length > 1) {
+            for (let i = 0; i < movieTitle.split(' ').length; i++) {
+                alteredMovieTitle += movieTitle.split(' ')[i];
+                if (i < movieTitle.split(' ').length - 1){
+                    alteredMovieTitle += '%20';
+                }
+            }
+            movieBaseUrl = `https://api.themoviedb.org/3/search/movie?api_key=${movieDBKEY}&language=en-US&query=${alteredMovieTitle}`;
         } else {
-            return false;
+            movieBaseUrl = `https://api.themoviedb.org/3/search/movie?api_key=${movieDBKEY}&language=en-US&query=${movieTitle}`;
         }
-    })
-    dispatch({ type: SEARCH_MOVIES, payload: movies });
+        const res = await axios.get(movieBaseUrl);
+        const movies = res.data.results.filter(movie => {
+            if (movie.poster_path) {
+                return movie;
+            } else {
+                return false;
+            }
+        });
+
+        dispatch({ type: SEARCH_MOVIES, payload: movies });
+    }
 };
 
 export const getMovieDetails = (movieId) => async dispatch => {
