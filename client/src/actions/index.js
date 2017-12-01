@@ -1,5 +1,6 @@
 import axios from 'axios';
 import _ from 'lodash';
+import { NavigationActions } from 'react-navigation'
 import { 
     SEARCH_MOVIES, 
     MOVIE_DETAILS, 
@@ -58,10 +59,15 @@ export const getTheaterList = () => async dispatch => {
 }
 
 export const saveShowing = (showDetails) => async dispatch => {
-    axios.post('/api/newShowing', showDetails);
+    // const savedShowings = await axios.post('/api/newShowing', showDetails);
+    // console.log(savedShowings);
+    axios.post('/api/newShowing', showDetails).then(() => {
+        dispatch(NavigationActions.navigate({ routeName: '/'}));
+    })
 }
 
 export const getShowings = () => async dispatch => {
+    console.log('calling...');
     let movieDetails = [];
     const showings = await axios.get('/api/showings');
 
