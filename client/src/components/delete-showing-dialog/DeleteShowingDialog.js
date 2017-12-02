@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
+import * as actions from '../../actions';
+
+import './deleteShowingDialog.css';
 
 /**
  * Dialog with action buttons. The actions are passed in as an array of React objects,
@@ -18,36 +21,24 @@ class DeleteShowingDialog extends Component {
         this.setState({ open: true });
     };
 
-    handleClose = () => {
-        this.setState({ open: false });
-    };
-
     render() {
         const actions = [
-            <FlatButton
-                label="Cancel"
-                primary={true}
-                onClick={this.handleClose}
-            />,
-            <FlatButton
-                label="Submit"
-                primary={true}
-                keyboardFocused={true}
-                onClick={this.handleClose}
-            />,
+            <div className="dialog-button z-depth-3" style={{backgroundColor: "#a8a8a8"}}onClick={this.handleClose}>Cancel</div>,
+            <div className="dialog-button z-depth-3" style={{marginLeft: '10px', marginRight: '20px'}} onClick={this.props.onDelete}>Okay</div>
         ];
 
         return (
             <div>
-                <RaisedButton label="Dialog" onClick={this.handleOpen} />
+                <div onClick={this.handleOpen} className="headerLinkStyle z-depth-3 delete-button">Delete</div>
                 <Dialog
-                    title="Dialog With Actions"
                     actions={actions}
-                    modal={false}
+                    modal={true}
                     open={this.state.open}
                     onRequestClose={this.handleClose}
+                    contentStyle={{maxWidth: '375px'}}
+                    actionsContainerStyle={{display: 'flex', flexDirection: 'row', justifyContent: 'flex-end'}}
                 >
-                    The actions in this window were passed in as an array of React objects.
+                    Are you sure you want to delete this showing?
         </Dialog>
             </div>
         );

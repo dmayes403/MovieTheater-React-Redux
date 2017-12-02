@@ -131,7 +131,8 @@ class CreateShowing extends Component {
                                 </table>
                                 <div className="bottom-links">
                                     <Link to={`/movie-details/${this.props.match.params.id}`}><h6 className="z-depth-3 cancel-button" onClick={() => this.setState({createShowing: false})}>Cancel</h6></Link>
-                                    <div onClick={() => this.props.deleteShowing(this.props.match.params.id, this.props.history)}className="headerLinkStyle z-depth-3 delete-button" style={{marginLeft: '10px'}}>Delete</div>
+                                    {/* <div onClick={() => this.props.deleteShowing(this.props.match.params.id, this.props.history)} className="headerLinkStyle z-depth-3 delete-button" style={{marginLeft: '10px'}}>Delete</div> */}
+                                    <DeleteShowingDialog onDelete={() => this.props.deleteShowing(this.props.match.params.id, this.props.history)}/>
                                     <div className="headerLinkStyle z-depth-3 save-button" style={{marginLeft: '10px'}} onClick={() => this.props.saveShowing({ movieId: this.props.match.params.id, showDetails: this.state.showingTimes }, this.props.history)}>Save</div>
                                 </div>
                             </div>
@@ -140,7 +141,6 @@ class CreateShowing extends Component {
                     </div>
                 </div>
                 <div className="videos-container">
-                    <DeleteShowingDialog />
                     {this.renderVideos()}
                 </div>
             </div>
