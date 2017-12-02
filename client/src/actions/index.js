@@ -74,6 +74,7 @@ export const getTheaterList = () => async dispatch => {
 }
 
 export const saveShowing = (showDetails, history) => async dispatch => {
+    console.log(showDetails.showDetails);
     axios.post('/api/newShowing', showDetails).then(() => {
         history.push('/');
     })

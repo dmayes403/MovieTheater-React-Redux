@@ -55,11 +55,19 @@ class CreateShowing extends Component {
             let tempShowing = {};
             let endDate = '';
             const theaterChoice = _.find(this.props.theaterList, {'_id': showing._theater});
-            const startDate = moment(showing.startDate, moment.ISO_8601).tz('America/Denver').toString() + ' (MST)';
+            // const startDate = moment(showing.startDate, moment.ISO_8601).toString();
+            const startDateConvert = moment(showing.startDate, moment.ISO_8601);
+            const startDate = startDateConvert._i;
+            // const startDate = moment(showing.startDate, moment.ISO_8601).tz('America/Denver').toString() + ' (MST)';
             if (showing.endDate) {
-                endDate = moment(showing.endDate, moment.ISO_8601).tz('America/Denver').toString() + ' (MST)';
+                const endDateConvert = moment(showing.endDate, moment.ISO_8601);
+                endDate = endDateConvert._i;
+                // endDate = moment(showing.endDate, moment.ISO_8601).toString();
+                // endDate = moment(showing.endDate, moment.ISO_8601).tz('America/Denver').toString() + ' (MST)';
             } else {
-                endDate = moment(showing.startDate, moment.ISO_8601).tz('America/Denver').toString() + ' (MST)';
+                endDate = startDateConvert._i;
+                // endDate = moment(showing.startDate, moment.ISO_8601).toString();
+                // endDate = moment(showing.startDate, moment.ISO_8601).tz('America/Denver').toString() + ' (MST)';
             }
             const timeOptions = showing.startTime;
 
@@ -120,8 +128,8 @@ class CreateShowing extends Component {
                                             <tr key={index} style={{color: '#3454b4'}} className="selectable" onClick={() => this.loadShowing(showTime, index)}>
                                                 <td onClick={(event) => this.delete(event, index)}><i className="material-icons" style={{cursor: 'pointer', maxWidth: '50px'}}>delete</i></td>
                                                 <td>{showTime.theaterChoice.room}</td>
-                                                <td>{showTime.startDate.toString().split(' ').slice(0, 4).join(' ')}</td>
-                                                <td>{showTime.endDate ? showTime.endDate.toString().split(' ').slice(0, 4).join(' ') : showTime.startDate.toString().split(' ').slice(0, 4).join(' ')}</td>
+                                                <td>{this.convertDate(showTime.startDate)}</td>
+                                                <td>{showTime.endDate ? this.convertDate(showTime.endDate) : this.convertDate(showTime.startDate)}</td>
                                                 <td style={{textAlign: 'center'}}>{showTime.timeOptions[0]}</td>
                                             </tr>
                                         )}
@@ -144,9 +152,13 @@ class CreateShowing extends Component {
         )
     }
 
-    convert(time) {
-        const theMoment = moment(time, ["HH:mm"])
-        return theMoment.format("h:mm A")
+    convertDate(time) {
+        if (time.toString().indexOf("Z") !== -1) {
+            const tempTime = moment(time, moment.ISO_8601).toString().split(' ').slice(0, 4).join(' ');
+            return tempTime
+        } else {
+            return time.toString().split(' ').slice(0, 4).join(' ')
+        }
     }
 
     delete(event, index) {
@@ -207,12 +219,6 @@ class CreateShowing extends Component {
                         name="startDate" 
                         floatingLabelText="Start Date"
                         component={DatePicker} 
-                        // format={null}
-                        // format={(value, name) => { 
-                        //     console.log('value being passed:', value);
-                        //     console.log('is of type:', typeof value);
-                        //     return value === '' ? null : value 
-                        // }}
                         format={(value, name) => value === '' ? null : (typeof value === 'string') ? new Date(value) : value}
                         autoOk={true}
                         onChange={() => this.setState({ startDateNotSelected: false })}
@@ -225,8 +231,6 @@ class CreateShowing extends Component {
                         name="endDate" 
                         floatingLabelText="End Date (optional)"
                         component={DatePicker} 
-                        // format={null}
-                        // format={(value, name) => value === '' ? null : value}
                         format={(value, name) => value === '' ? null : (typeof value === 'string') ? new Date(value) : value}
                         autoOk={true}
                         DateTimeFormat={Intl.DateTimeFormat}

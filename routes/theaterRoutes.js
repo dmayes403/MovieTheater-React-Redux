@@ -26,9 +26,9 @@ module.exports = app => {
     })
 
     app.post('/api/newShowing', async (req, res) => {
-
         ShowTime.remove({ movieId: req.body.movieId }).then(() => {
             req.body.showDetails.map(singleShowing => {
+                console.log(singleShowing.startDate);
                 const showTime = new ShowTime({
                     movieId: req.body.movieId,
                     _theater: singleShowing.theaterChoice._id,
@@ -39,6 +39,7 @@ module.exports = app => {
     
                 showTime.save();
                 newTime = moment(req.body.showDetails[0].time);
+                console.log(newTime);
             });
 
             res.send('success');
