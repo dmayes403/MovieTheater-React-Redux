@@ -57,7 +57,7 @@ class Dashboard extends Component {
     }
 
     renderShowings() {
-        return this.props.movieShowings.showings.reverse().map(showing => {
+        return this.props.movieShowings.showings.map(showing => {
             let showingDetails = [];
             const startDateString = moment(showing.startDate, moment.ISO_8601).format("ddd MMM DD YYYY");
             const endDateString = moment(showing.endDate, moment.ISO_8601).format("ddd MMM DD YYYY");

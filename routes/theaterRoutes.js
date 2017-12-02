@@ -26,20 +26,6 @@ module.exports = app => {
     })
 
     app.post('/api/newShowing', async (req, res) => {
-        // ShowTime.remove({ movieId: req.body.movieId }, (err, res) => {
-        //     req.body.showDetails.map(singleShowing => {
-        //         const showTime = new ShowTime({
-        //             movieId: req.body.movieId,
-        //             _theater: singleShowing.theaterChoice._id,
-        //             startDate: singleShowing.startDate,
-        //             endDate: singleShowing.endDate ? singleShowing.endDate : singleShowing.startDate,
-        //             startTime: singleShowing.timeOptions
-        //         });
-    
-        //         showTime.save();
-        //         newTime = moment(req.body.showDetails[0].time);
-        //     })
-        // });
 
         ShowTime.remove({ movieId: req.body.movieId }).then(() => {
             req.body.showDetails.map(singleShowing => {
@@ -55,9 +41,6 @@ module.exports = app => {
                 newTime = moment(req.body.showDetails[0].time);
             });
 
-            // ShowTime.find({}).then(showings => {
-            //     res.send(showings);
-            // })
             res.send('success');
         });
     });

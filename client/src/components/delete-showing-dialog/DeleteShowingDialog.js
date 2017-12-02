@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
-import RaisedButton from 'material-ui/RaisedButton';
-import * as actions from '../../actions';
 
 import './deleteShowingDialog.css';
 
@@ -20,6 +17,10 @@ class DeleteShowingDialog extends Component {
     handleOpen = () => {
         this.setState({ open: true });
     };
+
+    handleClose = () => {
+        this.setState({ open: false });
+    }
 
     render() {
         const actions = [

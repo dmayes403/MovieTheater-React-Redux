@@ -81,9 +81,9 @@ export const saveShowing = (showDetails, history) => async dispatch => {
 
 export const getShowings = () => async dispatch => {
     let movieDetails = [];
-    const showings = await axios.get('/api/showings');
+    let showings = await axios.get('/api/showings');
 
-    showings.data.forEach((showing, index) => {
+    showings.data.reverse().forEach((showing, index) => {
         const getDetailsURL = `https://api.themoviedb.org/3/movie/${showing.movieId}?api_key=${movieDBKEY}&language=en-US`;
         const getVideosURL = `https://api.themoviedb.org/3/movie/${showing.movieId}/videos?api_key=${movieDBKEY}&language=en-US`;
         const getRatingsURL = `https://api.themoviedb.org/3/movie/${showing.movieId}/release_dates?api_key=${movieDBKEY}&language=en-US`;
