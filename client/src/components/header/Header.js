@@ -11,7 +11,8 @@ const Header = () => {
                 <Link to={'/search-movies'} className="headerLinkStyle">Search Movies</Link>
                 <Link to={'/all-showings'} className="headerLinkStyle" style={{marginLeft: '10px'}}>All Movies</Link>
                 <div style={{marginLeft: '10px'}}>|</div>
-                <Link to={'/'} className="headerLinkStyle" style={{marginLeft: '10px'}}>Login</Link>
+                {/* <Link to={'/'} className="headerLinkStyle" style={{marginLeft: '10px'}}>Login</Link> */}
+                <a href="/auth/google" className="headerLinkStyle" style={{marginLeft: '10px'}}>Login With Google</a>
             </div>
         </div>
     );
