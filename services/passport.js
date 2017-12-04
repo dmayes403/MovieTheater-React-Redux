@@ -46,7 +46,7 @@ passport.use(
             // is the data we want to pass back. Done is always used to close the async request.
         } else {
             // if we don't have a user record with this userId, make a new record
-            const user = await new User({ googleId: profile.id }).save()
+            const user = await new User({ googleId: profile.id, creator: false, admin: false }).save()
             done(null, user);
             // ^^ this is the user that's passed to passport.serializeUser()
             // ^^ this takes that model *instance* and saves it to the database for us
