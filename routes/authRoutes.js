@@ -23,7 +23,6 @@ module.exports = app => {
 
 
     app.get('/api/logout', (req, res) => {
-        console.log('logging out...');
         req.logout();
         // ^^ this is a function that is automatically attached to the request object by passport.
         // It wipes out the cookie
@@ -33,6 +32,7 @@ module.exports = app => {
     })
 
     app.get("/api/current_user", (req, res) => {
+        console.log(req.user);
         res.send(req.user);
         // ^^ current user data is sent on login
     })
