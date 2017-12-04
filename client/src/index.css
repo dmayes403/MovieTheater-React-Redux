@@ -10,5 +10,18 @@ body {
 }
 
 body > #root > div {
-  height: 100vh;
+  height: calc(100vh - 100px);
+}
+
+.main-container {
+  width: 100%;
+  min-height: calc(100vh - 100px);
+  background-color: #e4e4e4;
+}
+
+.inner-main-container {
+  margin: auto;
+  flex-direction: column;
+  max-width: 1200px;
+  min-width: 700px;
 }

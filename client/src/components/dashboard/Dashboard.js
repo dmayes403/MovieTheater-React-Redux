@@ -40,18 +40,22 @@ class Dashboard extends Component {
             }
     
             return (
-                <div className="dashboard-container">
-                    <div>
-                        <div style={{display: 'flex', overflow: 'auto'}}>
-                            {dateBoxes}
+                <div className="main-container">
+                    <div className="dashboard-container">
+                        <div>
+                            <div style={{display: 'flex', overflow: 'auto'}}>
+                                {dateBoxes}
+                            </div>
                         </div>
+                        <div>{this.renderShowings()}</div>
                     </div>
-                    <div>{this.renderShowings()}</div>
                 </div>
             );
         } else {
             return (
-                <div>Loading...</div>
+                <div className="main-container">
+                    <div>Loading...</div>
+                </div>
             )
         }
     }

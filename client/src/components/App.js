@@ -10,13 +10,14 @@ import MovieDetails from './movie-details/MovieDetails';
 import CreateShowing from './create-showing/CreateShowing';
 import Dashboard from './dashboard/Dashboard';
 import AllShowings from './all-showings/AllShowings';
+import Admin from './admin/Admin';
 
 class App extends Component {
     componentDidMount() {
         this.props.fetchUser();
         //^^ props comes from actions being passed to the connect function below
     }
-    
+
     render() {
         return (
             <MuiThemeProvider>
@@ -28,6 +29,7 @@ class App extends Component {
                         <Route exact path="/movie-details/:id" component={MovieDetails} />
                         <Route path="/create-showing/:id" component={CreateShowing} />
                         <Route path="/all-showings" component={AllShowings} />
+                        <Route path="/admin" component={Admin} />
                     </div>
                 </BrowserRouter>
             </MuiThemeProvider>

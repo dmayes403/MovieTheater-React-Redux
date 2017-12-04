@@ -38,24 +38,26 @@ class SearchMovies extends Component {
 
     render() {
         return (
-            <div className="new-showing-container">
-                <div className="form_container">
-                    <Card>
-                        <form onSubmit={this.props.handleSubmit((values) => this.searchMovies(values))}>
-                            <Field
-                                type="text"
-                                name="movieTitle"
-                                component="input"
-                                placeholder="Search movie title..."
-                                style={{width: '400px', paddingTop: '10px'}}
-                            />
-                        </form>
-                    </Card>
+            <div className="main-container">
+                <div className="inner-main-container">
+                    <div className="form_container">
+                        <Card>
+                            <form onSubmit={this.props.handleSubmit((values) => this.searchMovies(values))}>
+                                <Field
+                                    type="text"
+                                    name="movieTitle"
+                                    component="input"
+                                    placeholder="Search movie title..."
+                                    style={{width: '400px', paddingTop: '10px'}}
+                                />
+                            </form>
+                        </Card>
+                    </div>
+                    <div className="moviesContainer">
+                        {this.renderMovies()}
+                    </div>
+                    <div className="emptyGrow"></div>
                 </div>
-                <div className="moviesContainer">
-                    {this.renderMovies()}
-                </div>
-                <div className="emptyGrow"></div>
             </div>
         );
     }

@@ -14,8 +14,10 @@ class AllShowings extends Component {
     render() {
         if (this.props.movieShowings.showings) {
             return (
-                <div className="all-showings-container">
-                    {this.renderShowings()}
+                <div className="main-container">
+                    <div className="all-showings-container">
+                        {this.renderShowings()}
+                    </div>
                 </div>
             )
         } else {

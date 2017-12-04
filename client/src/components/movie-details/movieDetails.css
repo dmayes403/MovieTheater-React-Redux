@@ -15,7 +15,7 @@
     margin: auto;
     background-color: #e4e4e4;
     flex-direction: column;
-    min-height: 88.5%;
+    min-height: calc(100vh - 100px);
     padding: 25px;
 }
 

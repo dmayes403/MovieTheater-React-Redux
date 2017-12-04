@@ -1,11 +1,8 @@
 .all-showings-container {
-    width: 82%;
     margin: auto;
-    background-color: #e4e4e4;
     display: flex;
     flex-wrap: wrap;
     padding: 20px;
-    min-height: 88.5%;
     max-width: 1200px;
     min-width: 700px;
 }

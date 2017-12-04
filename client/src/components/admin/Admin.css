@@ -1,0 +1,8 @@
+.admin-container {
+    margin: auto;
+    background-color: #e4e4e4;
+    display: flex;
+    flex-wrap: wrap;
+    min-height: calc(100vh - 100px);
+    padding: 20px;
+}

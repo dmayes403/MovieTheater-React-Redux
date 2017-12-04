@@ -92,61 +92,63 @@ class CreateShowing extends Component {
         }
 
         return (
-            <div className="video-details-container">
-                <div style={detailContainerStyles}>
-                    <img src={ `http://image.tmdb.org/t/p/w342//${movieDetails[2].poster_path}` }
-                        style={{width: '30%', minWidth: '300px', height: '50%'}}
-                        alt="poster"/>
-                    <div className="create-description-container">
-                        <h2 onClick={() => this.test()} style={{margin: 'auto', textAlign: 'center', backgroundColor: '#3454b4', color: 'white', borderRadius: '5px', padding: '5px'}} className="z-depth-3">{movieDetails[2].title}</h2>
-                        
-                        <div style={{display: 'flex', flexDirection: 'row'}}>
-                            <div>
-                                <form onSubmit={handleSubmit(values => this.addToShowTimes(values))}>
-                                    {this.renderField()}
-                                    {this.renderDatePicker()}
-                                    {this.renderTimeOptions()}
-                                    <div style={{display: 'flex', flexDirection: 'row'}}>
-                                        <button className="z-depth-3 add-button" onClick={() => this.clearForm()}>Clear</button>
-                                        <button className="z-depth-3 add-button" style={{marginLeft: '5px', backgroundColor: '#44ACA1'}} type="submit">Add</button>
-                                    </div>
-                                </form>
-                            </div>
-                            <div className="time-table">
-                                <table>
-                                    <thead>
-                                        <tr className="heading">
-                                            <th style={{width: '50px'}}></th>
-                                            <th>Theater</th>
-                                            <th>Start Date</th>
-                                            <th>End Date</th>
-                                            <th style={{textAlign: 'center'}}>Time</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        {this.state.showingTimes.map((showTime, index) => 
-                                            <tr key={index} style={{color: '#3454b4'}} className="selectable" onClick={() => this.loadShowing(showTime, index)}>
-                                                <td onClick={(event) => this.delete(event, index)}><i className="material-icons" style={{cursor: 'pointer', maxWidth: '50px'}}>delete</i></td>
-                                                <td>{showTime.theaterChoice.room}</td>
-                                                <td>{this.convertDate(showTime.startDate)}</td>
-                                                <td>{showTime.endDate ? this.convertDate(showTime.endDate) : this.convertDate(showTime.startDate)}</td>
-                                                <td style={{textAlign: 'center'}}>{showTime.timeOptions[0]}</td>
+            <div className="main-container">
+                <div className="video-details-container">
+                    <div style={detailContainerStyles}>
+                        <img src={ `http://image.tmdb.org/t/p/w342//${movieDetails[2].poster_path}` }
+                            style={{width: '30%', minWidth: '300px', height: '50%'}}
+                            alt="poster"/>
+                        <div className="create-description-container">
+                            <h2 onClick={() => this.test()} style={{margin: 'auto', textAlign: 'center', backgroundColor: '#3454b4', color: 'white', borderRadius: '5px', padding: '5px'}} className="z-depth-3">{movieDetails[2].title}</h2>
+                            
+                            <div style={{display: 'flex', flexDirection: 'row'}}>
+                                <div>
+                                    <form onSubmit={handleSubmit(values => this.addToShowTimes(values))}>
+                                        {this.renderField()}
+                                        {this.renderDatePicker()}
+                                        {this.renderTimeOptions()}
+                                        <div style={{display: 'flex', flexDirection: 'row'}}>
+                                            <button className="z-depth-3 add-button" onClick={() => this.clearForm()}>Clear</button>
+                                            <button className="z-depth-3 add-button" style={{marginLeft: '5px', backgroundColor: '#44ACA1'}} type="submit">Add</button>
+                                        </div>
+                                    </form>
+                                </div>
+                                <div className="time-table">
+                                    <table>
+                                        <thead>
+                                            <tr className="heading">
+                                                <th style={{width: '50px'}}></th>
+                                                <th>Theater</th>
+                                                <th>Start Date</th>
+                                                <th>End Date</th>
+                                                <th style={{textAlign: 'center'}}>Time</th>
                                             </tr>
-                                        )}
-                                    </tbody>
-                                </table>
-                                <div className="bottom-links">
-                                    <Link to={`/movie-details/${this.props.match.params.id}`}><h6 className="z-depth-3 cancel-button" onClick={() => this.setState({createShowing: false})}>Cancel</h6></Link>
-                                    <DeleteShowingDialog onDelete={() => this.props.deleteShowing(this.props.match.params.id, this.props.history)}/>
-                                    <div className="headerLinkStyle z-depth-3 save-button" style={{marginLeft: '10px'}} onClick={() => this.props.saveShowing({ movieId: this.props.match.params.id, showDetails: this.state.showingTimes }, this.props.history)}>Save</div>
+                                        </thead>
+                                        <tbody>
+                                            {this.state.showingTimes.map((showTime, index) => 
+                                                <tr key={index} style={{color: '#3454b4'}} className="selectable" onClick={() => this.loadShowing(showTime, index)}>
+                                                    <td onClick={(event) => this.delete(event, index)}><i className="material-icons" style={{cursor: 'pointer', maxWidth: '50px'}}>delete</i></td>
+                                                    <td>{showTime.theaterChoice.room}</td>
+                                                    <td>{this.convertDate(showTime.startDate)}</td>
+                                                    <td>{showTime.endDate ? this.convertDate(showTime.endDate) : this.convertDate(showTime.startDate)}</td>
+                                                    <td style={{textAlign: 'center'}}>{showTime.timeOptions[0]}</td>
+                                                </tr>
+                                            )}
+                                        </tbody>
+                                    </table>
+                                    <div className="bottom-links">
+                                        <Link to={`/movie-details/${this.props.match.params.id}`}><h6 className="z-depth-3 cancel-button" onClick={() => this.setState({createShowing: false})}>Cancel</h6></Link>
+                                        <DeleteShowingDialog onDelete={() => this.props.deleteShowing(this.props.match.params.id, this.props.history)}/>
+                                        <div className="headerLinkStyle z-depth-3 save-button" style={{marginLeft: '10px'}} onClick={() => this.props.saveShowing({ movieId: this.props.match.params.id, showDetails: this.state.showingTimes }, this.props.history)}>Save</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
+                        </div>
                     </div>
-                </div>
-                <div className="videos-container">
-                    {this.renderVideos()}
+                    <div className="videos-container">
+                        {this.renderVideos()}
+                    </div>
                 </div>
             </div>
         )
