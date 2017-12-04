@@ -12,6 +12,11 @@ import Dashboard from './dashboard/Dashboard';
 import AllShowings from './all-showings/AllShowings';
 
 class App extends Component {
+    componentDidMount() {
+        this.props.fetchUser();
+        //^^ props comes from actions being passed to the connect function below
+    }
+    
     render() {
         return (
             <MuiThemeProvider>

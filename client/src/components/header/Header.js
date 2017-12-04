@@ -11,16 +11,15 @@ class Header extends Component {
                 return;
             case false:
                 return (
-                    <li><a href="/auth/google">Login With Google</a></li>
+                    <a href="/auth/google" className="headerLinkStyle">Login With Google</a>
                 );
             default:
                 return (
                     <div style={{color: 'white', display: 'flex', flexDirection: 'row'}}>
-                        <Link to={'/all-showings'} className="headerLinkStyle" style={{marginLeft: '10px'}}>All Movies</Link>
                         <Link to={'/search-movies'} className="headerLinkStyle">Search Movies</Link>
+                        <Link to={'/all-showings'} className="headerLinkStyle" style={{marginLeft: '10px'}}>All Showings</Link>
                         <div style={{marginLeft: '10px'}}>|</div>
                         <a href="/api/logout" className="headerLinkStyle" style={{marginLeft: '10px'}}>Logout</a>
-                        <li><a href="/auth/google">Login With Google</a></li>
                     </div>
                 );
         }
@@ -31,6 +30,7 @@ class Header extends Component {
             <div className="container">
                 <Link 
                     to={'/'}
+                    style={{fontSize: '48px'}}
                     className="headerLinkStyle"
                 >
                     Towne Cinemas

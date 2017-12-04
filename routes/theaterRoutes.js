@@ -3,13 +3,14 @@ const Path = require('path-parser');
 const { URL } = require('url');
 const mongoose = require('mongoose');
 const moment = require('moment');
+const requireLogin = require('../middlewares/requireLogin');
 
 const Theater = mongoose.model('theaters');
 const ShowTime = mongoose.model('showTimes');
 
 module.exports = app => {
 
-    app.post('/api/theaters', async (req, res) => {
+    app.post('/api/theaters', requireLogin, async (req, res) => {
         const theater = new Theater({
             room: 'Nero'
         });
@@ -25,7 +26,7 @@ module.exports = app => {
         });
     })
 
-    app.post('/api/newShowing', async (req, res) => {
+    app.post('/api/newShowing', requireLogin, async (req, res) => {
         ShowTime.remove({ movieId: req.body.movieId }).then(() => {
             req.body.showDetails.map(singleShowing => {
                 console.log(singleShowing.startDate);

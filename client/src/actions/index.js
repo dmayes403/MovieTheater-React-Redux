@@ -1,6 +1,7 @@
 import axios from 'axios';
 import _ from 'lodash';
 import { 
+    FETCH_USER,
     SEARCH_MOVIES, 
     MOVIE_DETAILS, 
     THEATER_LIST, 
@@ -9,6 +10,13 @@ import {
     } from './types';
 
 const movieDBKEY = process.env.REACT_APP_MOVIE_DB_KEY;
+
+export const fetchUser = () => async dispatch => {
+    // if fetchUser is calling a function, redux-thunk will *automatically*
+    // pass in *dispatch* as an argument
+    const res = await axios.get('/api/current_user');
+    dispatch({ type: FETCH_USER, payload: res.data });
+};
 
 export const searchMovies = (movieTitle) => async dispatch => {
     if (movieTitle === 'searchMovieDefault') {
@@ -74,7 +82,6 @@ export const getTheaterList = () => async dispatch => {
 }
 
 export const saveShowing = (showDetails, history) => async dispatch => {
-    console.log(showDetails.showDetails);
     axios.post('/api/newShowing', showDetails).then(() => {
         history.push('/');
     })

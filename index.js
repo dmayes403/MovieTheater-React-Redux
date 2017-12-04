@@ -8,8 +8,8 @@ const keys = require('./config/keys')
 // *** wire this up for authentication (services) *** require('./services/passport');
 require('./models/Theater');
 require('./models/ShowTime');
-require('./services/passport');
 require('./models/User');
+require('./services/passport');
 mongoose.connect(keys.mongoURI);
 // ^^ must create user admin in database to be able to connect!!
 
