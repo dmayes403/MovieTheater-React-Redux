@@ -31,6 +31,7 @@ app.use(passport.session());
 
 require('./routes/authRoutes')(app);
 require('./routes/theaterRoutes')(app);
+require('./routes/userRoutes')(app);
 
 if (process.env.NODE_ENV = 'productions') { // ****
     app.use(express.static('client/build'));

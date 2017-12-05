@@ -24,8 +24,8 @@ class DeleteShowingDialog extends Component {
 
     render() {
         const actions = [
-            <div className="dialog-button z-depth-3" style={{backgroundColor: "#a8a8a8"}}onClick={this.handleClose}>Cancel</div>,
-            <div className="dialog-button z-depth-3" style={{marginLeft: '10px', marginRight: '20px'}} onClick={this.props.onDelete}>Okay</div>
+            <div className="button background-green z-depth-3" style={{backgroundColor: "#a8a8a8"}} onClick={this.handleClose}>Cancel</div>,
+            <div className="button background-red z-depth-3" style={{marginLeft: '10px', marginRight: '20px'}} onClick={this.props.onDelete}>Okay</div>
         ];
 
         return (

@@ -4,8 +4,9 @@ import authReducer from './authReducer';
 import movieSearchResults from './movieSearchReducer';
 import movieDetails from './movieDetailsReducer';
 import theaterList from './theaterListReducer';
-import movieShowings from './movieShowings';
-import movieShowingsById from './movieShowingsById';
+import movieShowings from './movieShowingsReducer';
+import movieShowingsById from './movieShowingsByIdReducer';
+import allUsers from './allUsersReducer';
 
 export default combineReducers({
     auth: authReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
     movieDetails: movieDetails,
     theaterList: theaterList,
     movieShowings: movieShowings,
-    movieShowingsById: movieShowingsById
+    movieShowingsById: movieShowingsById,
+    allUsers: allUsers
 });

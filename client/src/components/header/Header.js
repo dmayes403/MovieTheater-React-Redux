@@ -4,8 +4,23 @@ import { connect } from 'react-redux';
 import './header.css';
 
 class Header extends Component {
+    
+    render() {
+        return (
+            <div className="container">
+                <Link 
+                    to={'/'}
+                    style={{fontSize: '48px'}}
+                    className="headerLinkStyle"
+                    >
+                    Towne Cinemas
+                </Link>
+                {this.renderContent()}
+            </div>
+        );
+    }
+    
     renderContent() {
-        console.log(this.props.auth);
         switch(this.props.auth) {
             case null:
                 return;
@@ -26,22 +41,8 @@ class Header extends Component {
                 );
         }
     }
-
-    render() {
-        return (
-            <div className="container">
-                <Link 
-                    to={'/'}
-                    style={{fontSize: '48px'}}
-                    className="headerLinkStyle"
-                >
-                    Towne Cinemas
-                </Link>
-                {this.renderContent()}
-            </div>
-        );
-    }
 }
+
 
 function mapStateToProps({ auth }) {
     return { auth };

@@ -1,0 +1,10 @@
+:host {
+    min-height: 100%;
+}
+
+.privilege-container {
+    width: 60%;
+    min-height: 30vh;
+    background-color: white;
+    padding: 25px;
+}

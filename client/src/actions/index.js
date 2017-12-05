@@ -6,7 +6,8 @@ import {
     MOVIE_DETAILS, 
     THEATER_LIST, 
     MOVIE_SHOWINGS,
-    MOVIE_SHOWING_BY_ID 
+    MOVIE_SHOWING_BY_ID ,
+    FETCH_ALL_USERS
     } from './types';
 
 const movieDBKEY = process.env.REACT_APP_MOVIE_DB_KEY;
@@ -121,4 +122,9 @@ export const deleteShowing = (id, history) => async dispatch => {
     axios.delete(`/api/showing/${id}`).then(() => {
         history.push('/');
     });
+}
+
+export const getAllUsers = () => async dispatch => {
+    const users = await axios.get(`/api/users`);
+    dispatch({ type: FETCH_ALL_USERS, payload: users.data });
 }

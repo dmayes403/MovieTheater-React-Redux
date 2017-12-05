@@ -11,31 +11,7 @@ class SearchMovies extends Component {
     componentDidMount() {
         this.props.searchMovies('searchMovieDefault');
     }
-
-    renderMovies() {
-        return this.props.movieSearchResults.map(movie => {
-            return (
-                <div className="single_movie_container card small" key={movie.id}>
-                    <Link to={`/movie-details/${movie.id}`} className="linkStyle">
-                        <div>
-                            <div>
-                                <img src={ `http://image.tmdb.org/t/p/w154//${movie.poster_path}` }
-                                    alt="poster"/>
-                            </div>
-                            <div>
-                                {movie.title}
-                            </div>
-                        </div>
-                    </ Link>
-                </div>
-            );
-        });
-    }
-
-    searchMovies(formValues) {
-        this.props.searchMovies(formValues.movieTitle);
-    }
-
+    
     render() {
         return (
             <div className="main-container">
@@ -61,6 +37,31 @@ class SearchMovies extends Component {
             </div>
         );
     }
+    
+    renderMovies() {
+        return this.props.movieSearchResults.map(movie => {
+            return (
+                <div className="single_movie_container card small" key={movie.id}>
+                    <Link to={`/movie-details/${movie.id}`} className="linkStyle">
+                        <div>
+                            <div>
+                                <img src={ `http://image.tmdb.org/t/p/w154//${movie.poster_path}` }
+                                    alt="poster"/>
+                            </div>
+                            <div>
+                                {movie.title}
+                            </div>
+                        </div>
+                    </ Link>
+                </div>
+            );
+        });
+    }
+
+    searchMovies(formValues) {
+        this.props.searchMovies(formValues.movieTitle);
+    }
+
 }
 
 function mapStateToProps({ movieSearchResults }) {
