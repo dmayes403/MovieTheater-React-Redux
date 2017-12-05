@@ -23,8 +23,8 @@ class UserPrivileges extends Component {
                         <tr>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Creator</th>
-                            <th>Admin</th>
+                            <th colSpan="2" style={{textAlign: 'center'}}>Creator</th>
+                            <th colSpan="2" style={{paddingLeft: '50px', textAlign: 'center'}}>Admin</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -32,8 +32,10 @@ class UserPrivileges extends Component {
                             <tr key={user.googleId}>
                                 <td>{user.name}</td>
                                 <td>{user.email[0]}</td>
-                                <td>{user.creator.toString()}</td>
-                                <td>{user.admin.toString()}</td>
+                                <td style={{textAlign: 'center'}} className={user.creator ? "highlighted" : ""}>{'True'}</td>
+                                <td style={{textAlign: 'center'}}><div className={user.creator ? "" : "highlighted"}>{'False'}</div></td>
+                                <td style={{textAlign: 'center', paddingLeft: '50px'}} className={user.admin ? "highlighted" : ""}>{'True'}</td>
+                                <td style={{textAlign: 'center'}}><div className={user.admin ? "" : "highlighted"}>{'False'}</div></td>
                             </tr>
                         )}
                     </tbody>

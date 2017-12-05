@@ -8,3 +8,9 @@
     background-color: white;
     padding: 25px;
 }
+
+.highlighted {
+    background-color: #44ACA1;
+    color: white;
+    border-radius: 15px;
+}
