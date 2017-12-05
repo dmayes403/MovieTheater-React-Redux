@@ -52,72 +52,6 @@
     position: relative;
 }
 
-.cancel-button {
-    text-align: center; 
-    background-color: #3454b4;
-    color: white; 
-    border-radius: 5px;
-    padding: 10px; 
-    width: 100px;
-    cursor: pointer;
-    margin-top: 15px;
-    margin-bottom: 0px;
-}
-
-.delete-button {
-    text-align: center; 
-    background-color: #ff3232;
-    color: white; 
-    border-radius: 5px;
-    padding: 7px; 
-    width: 100px;
-    cursor: pointer;
-    margin-top: 15px;
-    margin-bottom: 0px;
-}
-
-.delete-button:active {
-    background-color: #44ACA1;
-}
-
-.add-button {
-    text-align: center; 
-    background-color: #3454b4;
-    color: white; 
-    border-radius: 5px;
-    padding: 10px; 
-    width: 60px;
-    cursor: pointer;
-    margin-top: 30px;
-    border: none;
-    height: 36px;
-    line-height: 0px;
-}
-
-.add-button:active {
-    background-color: #44ACA1;
-}
-
-.save-button {
-    text-align: center; 
-    background-color: #44ACA1;
-    color: white; 
-    border-radius: 5px;
-    padding: 10px; 
-    width: 100px;
-    cursor: pointer;
-    margin-top: 15px;
-    margin-bottom: 0px;
-    border: none;
-    height: 36px;
-    line-height: 15px;
-    margin-left: 5px;
-}
-
-.save-button:active {
-    background-color: #3454b4;
-}
-
 .bottom-links {
     display: flex;
     flex-direction: row;
@@ -134,26 +68,4 @@
 
 .selectable:hover td {
     color: white;
-}
-
-.add-time-button {
-    text-align: center; 
-    background-color: #44ACA1;
-    color: white; 
-    border-radius: 5px;
-    padding: 5px; 
-    width: 100px;
-    cursor: pointer;
-    border: none;
-    height: 20px;
-    line-height: 0px;
-    margin-left: 5px;
-}
-
-.add-time-button:active {
-    background-color: #3454b4;
-}
-
-span[role="menuItem"] div {
-    padding: 0px !important;
 }

@@ -9,13 +9,9 @@ body {
   color: #939393;
 }
 
-body > #root > div {
-  height: calc(100vh - 100px);
-}
-
 .main-container {
   width: 100%;
-  min-height: calc(100vh - 100px);
+  min-height: calc(100vh - 75px);
   background-color: #e4e4e4;
 }
 
@@ -24,4 +20,57 @@ body > #root > div {
   flex-direction: column;
   max-width: 1200px;
   min-width: 700px;
+}
+
+.background-blue {
+  background-color: #3454b4;
+}
+
+.background-red {
+  background-color: #ff3232;
+}
+
+.background-green {
+  background-color: #44ACA1;
+}
+
+.button {
+  text-align: center; 
+  color: white; 
+  border: none;
+  border-radius: 5px;
+  padding: 10px; 
+  width: 100px;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-bottom: 0px;
+  line-height: 15px;
+}
+
+.button:active {
+    background-color: #e4e4e4;
+}
+
+.small {
+    width: 60px;
+} 
+
+.small:active {
+    background-color: #e4e4e4;
+}
+
+.delete-button {
+  text-align: center; 
+  background-color: #ff3232;
+  color: white; 
+  border-radius: 5px;
+  padding: 7px; 
+  width: 100px;
+  cursor: pointer;
+  margin-top: 15px;
+  margin-bottom: 0px;
+}
+
+.delete-button:active {
+  background-color: #44ACA1;
 }

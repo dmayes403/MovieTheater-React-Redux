@@ -108,8 +108,8 @@ class CreateShowing extends Component {
                                         {this.renderDatePicker()}
                                         {this.renderTimeOptions()}
                                         <div style={{display: 'flex', flexDirection: 'row'}}>
-                                            <button className="z-depth-3 add-button" onClick={() => this.clearForm()}>Clear</button>
-                                            <button className="z-depth-3 add-button" style={{marginLeft: '5px', backgroundColor: '#44ACA1'}} type="submit">Add</button>
+                                            <button className="z-depth-3 button small background-blue" onClick={() => this.clearForm()}>Clear</button>
+                                            <button className="z-depth-3 button small background-green" style={{marginLeft: '5px'}} type="submit">Add</button>
                                         </div>
                                     </form>
                                 </div>
@@ -137,9 +137,9 @@ class CreateShowing extends Component {
                                         </tbody>
                                     </table>
                                     <div className="bottom-links">
-                                        <Link to={`/movie-details/${this.props.match.params.id}`}><h6 className="z-depth-3 cancel-button" onClick={() => this.setState({createShowing: false})}>Cancel</h6></Link>
+                                        <Link to={`/movie-details/${this.props.match.params.id}`}><h6 className="z-depth-3 button background-blue" onClick={() => this.setState({createShowing: false})}>Cancel</h6></Link>
                                         <DeleteShowingDialog onDelete={() => this.props.deleteShowing(this.props.match.params.id, this.props.history)}/>
-                                        <div className="headerLinkStyle z-depth-3 save-button" style={{marginLeft: '10px'}} onClick={() => this.props.saveShowing({ movieId: this.props.match.params.id, showDetails: this.state.showingTimes }, this.props.history)}>Save</div>
+                                        <div className="headerLinkStyle z-depth-3 button background-green" style={{marginLeft: '10px'}} onClick={() => this.props.saveShowing({ movieId: this.props.match.params.id, showDetails: this.state.showingTimes }, this.props.history)}>Save</div>
                                     </div>
                                 </div>
                             </div>
