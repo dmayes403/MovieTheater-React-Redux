@@ -11,5 +11,20 @@ module.exports = app => {
         User.find({}).then(users => {
             res.send(users);
         })
-    })
+    });
+
+    app.post('/api/users', requireLogin, async (req, res) => {
+        req.body.forEach(user => {
+            User.updateOne({
+                _id: user._id
+            }, {
+                creator: user.creator,
+                admin: user.admin
+            }).exec();
+        }).then(() => {
+            User.find({}).then(users => {
+                res.send(users);
+            });
+        });
+    }); 
 };

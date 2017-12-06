@@ -9,8 +9,14 @@
     padding: 25px;
 }
 
-.highlighted {
+.true-highlighted {
     background-color: #44ACA1;
+    color: white;
+    border-radius: 15px;
+}
+
+.false-highlighted {
+    background-color: #3454b4;
     color: white;
     border-radius: 15px;
 }

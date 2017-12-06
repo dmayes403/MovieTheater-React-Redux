@@ -128,3 +128,8 @@ export const getAllUsers = () => async dispatch => {
     const users = await axios.get(`/api/users`);
     dispatch({ type: FETCH_ALL_USERS, payload: users.data });
 }
+
+export const updateUsers = (updatedUsers) => async dispatch => {
+    const savedUsers = await axios.post(`/api/users`, updatedUsers);
+    dispatch({ type: FETCH_ALL_USERS, payload: savedUsers.data });
+}

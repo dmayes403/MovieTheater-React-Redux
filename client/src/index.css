@@ -76,3 +76,21 @@ body {
 .delete-button:active {
   background-color: #44ACA1;
 }
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-colmumn {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-grow {
+    flex: 1;
+}
+
+.flex-end {
+    justify-content: flex-end;
+}

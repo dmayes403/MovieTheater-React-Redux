@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Card } from 'material-ui/Card';
 import * as actions from '../../actions';
+import _ from 'lodash';
 
 import './userPrivileges.css';
 /**
@@ -11,38 +12,47 @@ import './userPrivileges.css';
  * You can also close this dialog by clicking outside the dialog, or with the 'Esc' key.
  */
 class UserPrivileges extends Component {
+    state = {
+        updatedUsers: [],
+    }
+
     componentDidMount() {
-        this.props.getAllUsers();
+        this.props.getAllUsers().then(users => {
+            console.log(this.props.allUsers);
+            this.setState({ updatedUsers: _.cloneDeep(this.props.allUsers) });
+        })
     }
 
     render() {
         return (
-            <Card className="privilege-container">
+            <Card className="privilege-container flex-column">
                 <table>
                     <thead>
                         <tr>
                             <th>Name</th>
                             <th>Email</th>
                             <th colSpan="2" style={{textAlign: 'center'}}>Creator</th>
-                            <th colSpan="2" style={{paddingLeft: '50px', textAlign: 'center'}}>Admin</th>
+                            <th colSpan="2" style={{marginLeft: '50px', textAlign: 'center'}}>Admin</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {this.props.allUsers.map(user => 
+                        {this.state.updatedUsers.map((user, index) => 
                             <tr key={user.googleId}>
                                 <td>{user.name}</td>
                                 <td>{user.email[0]}</td>
-                                <td style={{textAlign: 'center'}} className={user.creator ? "highlighted" : ""}>{'True'}</td>
-                                <td style={{textAlign: 'center'}}><div className={user.creator ? "" : "highlighted"}>{'False'}</div></td>
-                                <td style={{textAlign: 'center', paddingLeft: '50px'}} className={user.admin ? "highlighted" : ""}>{'True'}</td>
-                                <td style={{textAlign: 'center'}}><div className={user.admin ? "" : "highlighted"}>{'False'}</div></td>
+                                <td onClick={() => {this.creatorToTrue(index)}} style={{textAlign: 'center'}}><div className={user.creator ? "true-highlighted" : ""}>{'True'}</div></td>
+                                <td onClick={() => {this.creatorToFalse(index)}} style={{textAlign: 'center'}}><div className={user.creator ? "" : "false-highlighted"}>{'False'}</div></td>
+                                <td onClick={() => {this.adminToTrue(index)}} style={{textAlign: 'center', borderSpacing: '50px'}}><div className={user.admin ? "true-highlighted" : ""}>{'True'}</div></td>
+                                <td onClick={() => {this.adminToFalse(index)}} style={{textAlign: 'center'}}><div className={user.admin ? "" : "false-highlighted"}>{'False'}</div></td>
                             </tr>
                         )}
                     </tbody>
                 </table>
-                {/* <div>
-                    {this.renderUsers()}
-                </div> */}
+                <span className="flex-grow"></span>
+                <div className="flex-row flex-end">
+                    <div className="z-depth-3 button background-blue" onClick={() => this.cancelUserPrivileges()}>Cancel</div>
+                    <div className="z-depth-3 button background-green" style={{marginLeft: '10px'}} onClick={() => this.props.updateUsers(this.state.updatedUsers)}>Save</div>
+                </div>
             </Card>
         )
     }
@@ -56,10 +66,45 @@ class UserPrivileges extends Component {
             )
         })
     }
+
+    creatorToTrue(index) {
+        let allTempUsers = this.state.updatedUsers;
+        let tempUser = this.state.updatedUsers[index];
+        tempUser.creator = true;
+        allTempUsers[index] = tempUser;
+        this.setState({ updatedUsers: allTempUsers });
+    }
+
+    creatorToFalse(index) {
+        let allTempUsers = this.state.updatedUsers;
+        let tempUser = this.state.updatedUsers[index];
+        tempUser.creator = false;
+        allTempUsers[index] = tempUser;
+        this.setState({ updatedUsers: allTempUsers });
+    }
+
+    adminToTrue(index) {
+        let allTempUsers = this.state.updatedUsers;
+        let tempUser = this.state.updatedUsers[index];
+        tempUser.admin = true;
+        allTempUsers[index] = tempUser;
+        this.setState({ updatedUsers: allTempUsers });
+    }
+
+    adminToFalse(index) {
+        let allTempUsers = this.state.updatedUsers;
+        let tempUser = this.state.updatedUsers[index];
+        tempUser.admin = false;
+        allTempUsers[index] = tempUser;
+        this.setState({ updatedUsers: allTempUsers });
+    }
+
+    cancelUserPrivileges() {
+        this.setState({ updatedUsers: this.props.allUsers });
+    }
 }
 
 function mapStateToProps({ allUsers }) {
-    console.log(allUsers);
     return { allUsers };
 }
 

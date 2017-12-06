@@ -2,7 +2,6 @@ const passport = require("passport");
 // ^^ this requires in the original passport node module
 
 module.exports = app => {
-    console.log('OAuth...');
     //^^ this exports the next two functions and calls it with the app object
     app.get(
         "/auth/google",

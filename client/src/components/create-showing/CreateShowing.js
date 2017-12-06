@@ -55,19 +55,13 @@ class CreateShowing extends Component {
             let tempShowing = {};
             let endDate = '';
             const theaterChoice = _.find(this.props.theaterList, {'_id': showing._theater});
-            // const startDate = moment(showing.startDate, moment.ISO_8601).toString();
             const startDateConvert = moment(showing.startDate, moment.ISO_8601);
             const startDate = startDateConvert._i;
-            // const startDate = moment(showing.startDate, moment.ISO_8601).tz('America/Denver').toString() + ' (MST)';
             if (showing.endDate) {
                 const endDateConvert = moment(showing.endDate, moment.ISO_8601);
                 endDate = endDateConvert._i;
-                // endDate = moment(showing.endDate, moment.ISO_8601).toString();
-                // endDate = moment(showing.endDate, moment.ISO_8601).tz('America/Denver').toString() + ' (MST)';
             } else {
                 endDate = startDateConvert._i;
-                // endDate = moment(showing.startDate, moment.ISO_8601).toString();
-                // endDate = moment(showing.startDate, moment.ISO_8601).tz('America/Denver').toString() + ' (MST)';
             }
             const timeOptions = showing.startTime;
 
