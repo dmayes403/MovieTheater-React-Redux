@@ -1,10 +1,24 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter } from 'react-router';
+
 import './admin.css';
 
 import UserPrivileges from '../user-privileges/userPrivileges';
 import TheaterListUpdate from '../theater-list-update/theaterListUpdate';
 
 class Admin extends Component {
+    componentDidMount() {
+        this.checkAuth();
+    }
+
+    checkAuth() {
+        console.log(this.props.auth);
+        if (!this.props.auth) {
+            this.props.history.push('/');
+        }
+    }
+
     render() {
         return (
             <div className="main-container">
@@ -19,4 +33,10 @@ class Admin extends Component {
     }
 }
 
-export default Admin;
+// export default Admin;
+
+function mapStateToProps({ auth }) {
+    return { auth };
+}
+
+export default connect(mapStateToProps)(withRouter(Admin));

@@ -15,8 +15,6 @@ import DeleteShowingDialog from '../delete-showing-dialog/DeleteShowingDialog';
 
 import timeOptions from '../../variables/times';
 
-
-
 class CreateShowing extends Component {
     state = { 
         showingTimes: [],
