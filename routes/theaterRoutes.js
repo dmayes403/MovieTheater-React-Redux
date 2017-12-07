@@ -11,13 +11,16 @@ const ShowTime = mongoose.model('showTimes');
 module.exports = app => {
 
     app.post('/api/theaters', requireLogin, async (req, res) => {
+        console.log(req.body);
         const theater = new Theater({
-            room: 'Nero'
+            room: req.body
         });
 
-        theater.save();
-
-        res.send(theater);
+        theater.save().then(() => {
+            Theater.find({}).then(theaters => {
+                res.send(theaters);
+            });
+        });
     });
 
     app.get('/api/theaters', async (req, res) => {

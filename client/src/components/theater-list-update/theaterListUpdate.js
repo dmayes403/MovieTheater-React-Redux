@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { reduxForm, Field, reset, change } from 'redux-form';
+import { reduxForm, Field, reset } from 'redux-form';
 import { connect } from 'react-redux';
 import { Card } from 'material-ui/Card';
 import * as actions from '../../actions';
@@ -11,15 +11,13 @@ class TheaterListUpdate extends Component {
         theaterList: []
     }
     componentDidMount() {
-        this.props.getTheaterList().then(() => {
-            this.setState({ theaterList: this.props.theaterList });
-        });
+        this.props.getTheaterList();
     }
 
     render() {
         return (
             <Card className="theater-list-container">
-                <form onSubmit={this.props.handleSubmit((values) => console.log(values))}>
+                <form onSubmit={this.props.handleSubmit((theater) => this.addTheater(theater))}>
                     <Field
                         type="text"
                         name="theaterName"
@@ -35,6 +33,11 @@ class TheaterListUpdate extends Component {
                 })}
             </Card>
         )
+    }
+
+    addTheater(theater) {
+        console.log(theater.theaterName);
+        this.props.saveTheater(theater.theaterName);
     }
 }
 

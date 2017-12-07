@@ -133,3 +133,9 @@ export const updateUsers = (updatedUsers) => async dispatch => {
     const savedUsers = await axios.post(`/api/users`, updatedUsers);
     dispatch({ type: FETCH_ALL_USERS, payload: savedUsers.data });
 }
+
+export const saveTheater = (theater) => async dispatch => {
+    console.log(theater)
+    const savedTheaters = await axios.post(`/api/theaters`, theater);
+    dispatch({ type: THEATER_LIST, payload: savedTheaters.data });
+}
