@@ -18,14 +18,13 @@ class UserPrivileges extends Component {
 
     componentDidMount() {
         this.props.getAllUsers().then(users => {
-            console.log(this.props.allUsers);
             this.setState({ updatedUsers: _.cloneDeep(this.props.allUsers) });
         })
     }
 
     render() {
         return (
-            <Card className="privilege-container flex-column">
+            <Card className="privilege-container flex-column flex-grow">
                 <table>
                     <thead>
                         <tr>

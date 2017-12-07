@@ -25,24 +25,38 @@ class TheaterListUpdate extends Component {
                         placeholder="Add Theater"
                     />
                 </form>
-                {console.log(this.props.theaterList)}
-                {this.props.theaterList.map(theater => {
-                    return (
-                        <div key={theater._id}>{theater.room}</div>
-                    )
-                })}
+                {this.renderTheaterTable()}
             </Card>
         )
     }
 
+    renderTheaterTable() {
+        return (
+            <table>
+                <tbody>
+                    {this.props.theaterList.map(theater => {
+                        return (
+                            <tr key={theater._id}>
+                                <td value={theater} onClick={() => this.deleteTheater(theater)} className="theater-td" style={{maxWidth: '15px'}}><i className="material-icons" style={{cursor: 'pointer', maxWidth: '25px'}}>delete</i></td>
+                                <td className="theater-td">{theater.room}</td>
+                            </tr>
+                        )
+                    })}
+                </tbody>
+            </table>
+        )
+    }
+
     addTheater(theater) {
-        console.log(theater.theaterName);
-        this.props.saveTheater(theater.theaterName);
+        this.props.saveTheater(theater);
+    }
+
+    deleteTheater(theater) {
+        this.props.deleteTheater(theater);
     }
 }
 
 function mapStateToProps(state) {
-    // console.log(state.form.theaterListUpdate);
     return { 
         theaterList: state.theaterList,
         formValues: state.form.theaterListUpdate

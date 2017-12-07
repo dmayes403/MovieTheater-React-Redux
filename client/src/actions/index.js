@@ -5,6 +5,7 @@ import {
     SEARCH_MOVIES, 
     MOVIE_DETAILS, 
     THEATER_LIST, 
+    THEATER_DELETE,
     MOVIE_SHOWINGS,
     MOVIE_SHOWING_BY_ID ,
     FETCH_ALL_USERS
@@ -135,7 +136,11 @@ export const updateUsers = (updatedUsers) => async dispatch => {
 }
 
 export const saveTheater = (theater) => async dispatch => {
-    console.log(theater)
     const savedTheaters = await axios.post(`/api/theaters`, theater);
     dispatch({ type: THEATER_LIST, payload: savedTheaters.data });
+}
+
+export const deleteTheater = (theater) => async dispatch => {
+    axios.delete(`/api/theaters/${theater._id}`);
+    dispatch({ type: THEATER_DELETE, payload: theater });
 }

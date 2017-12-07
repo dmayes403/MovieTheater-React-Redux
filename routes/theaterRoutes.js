@@ -13,7 +13,7 @@ module.exports = app => {
     app.post('/api/theaters', requireLogin, async (req, res) => {
         console.log(req.body);
         const theater = new Theater({
-            room: req.body
+            room: req.body.theaterName
         });
 
         theater.save().then(() => {
@@ -69,6 +69,12 @@ module.exports = app => {
 
         ShowTime.remove({ movieId: req.params.id }).then(() => {
             res.json({ message: 'Successfully deleted' });
-        })
-    })
+        });
+    });
+
+    app.delete(`/api/theaters/:id`, requireLogin, async (req, res) => {
+        Theater.remove({ _id: req.params.id}).then(() => {
+            res.json({ message: 'Successfully deleted theater' });
+        });
+    });
 };
