@@ -37,9 +37,10 @@ class SearchMovies extends Component {
             </div>
         );
     }
-    
+
     renderMovies() {
-        return this.props.movieSearchResults.map(movie => {
+        console.log(this.props.movieSearchResults);
+        return this.props.movieSearchResults.movies.map(movie => {
             return (
                 <div className="single_movie_container card small" key={movie.id}>
                     <Link to={`/movie-details/${movie.id}`} className="linkStyle">
@@ -56,6 +57,7 @@ class SearchMovies extends Component {
                 </div>
             );
         });
+        // return <div>working</div>
     }
 
     searchMovies(formValues) {

@@ -33,9 +33,9 @@ class Header extends Component {
                     <div style={{color: 'white', display: 'flex', flexDirection: 'row'}}>
                         <Link to={'/search-movies'} className="headerLinkStyle">Search Movies</Link>
                         <Link to={'/all-showings'} className="headerLinkStyle" style={{marginLeft: '10px'}}>All Showings</Link>
-                        <div style={{marginLeft: '10px'}}>|</div>
+                        <div style={{marginLeft: '10px'}}>||</div>
                         <Link to={'/admin'} className="headerLinkStyle" style={{marginLeft: '10px'}}>Admin</Link>
-                        <div style={{marginLeft: '10px'}}>|</div>
+                        <div style={{marginLeft: '10px'}}>||</div>
                         <a href="/api/logout" className="headerLinkStyle" style={{marginLeft: '10px'}}>Logout</a>
                     </div>
                 );

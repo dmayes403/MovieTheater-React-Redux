@@ -32,8 +32,11 @@ export const searchMovies = (movieTitle) => async dispatch => {
                 return false;
             }
         });
+        const pageData = {};
+        pageData.page = 1;
+        pageData.page_totals = 1;
 
-        dispatch({ type: SEARCH_MOVIES, payload: movies });
+        dispatch({ type: SEARCH_MOVIES, payload: { movies: movies, pageData: pageData }});
     } else {
         let alteredMovieTitle = '';
         let movieBaseUrl = '';
@@ -44,9 +47,9 @@ export const searchMovies = (movieTitle) => async dispatch => {
                     alteredMovieTitle += '%20';
                 }
             }
-            movieBaseUrl = `https://api.themoviedb.org/3/search/movie?api_key=${movieDBKEY}&language=en-US&query=${alteredMovieTitle}`;
+            movieBaseUrl = `https://api.themoviedb.org/3/search/movie?api_key=${movieDBKEY}&language=en-US&query=${alteredMovieTitle}&page=1`;
         } else {
-            movieBaseUrl = `https://api.themoviedb.org/3/search/movie?api_key=${movieDBKEY}&language=en-US&query=${movieTitle}`;
+            movieBaseUrl = `https://api.themoviedb.org/3/search/movie?api_key=${movieDBKEY}&language=en-US&query=${movieTitle}&page=1`;
         }
         const res = await axios.get(movieBaseUrl);
         const movies = res.data.results.filter(movie => {
@@ -57,7 +60,11 @@ export const searchMovies = (movieTitle) => async dispatch => {
             }
         });
 
-        dispatch({ type: SEARCH_MOVIES, payload: movies });
+        const pageData = {};
+        pageData.page = res.data.page;
+        pageData.page_totals = res.data.page_totals;
+
+        dispatch({ type: SEARCH_MOVIES, payload: { movies: movies, pageData: pageData }});
     }
 };
 

@@ -37,7 +37,7 @@ class TheaterListUpdate extends Component {
                     {this.props.theaterList.map(theater => {
                         return (
                             <tr key={theater._id}>
-                                <td value={theater} onClick={() => this.deleteTheater(theater)} className="theater-td" style={{maxWidth: '15px'}}><i className="material-icons" style={{cursor: 'pointer', maxWidth: '25px'}}>delete</i></td>
+                                <td value={theater} onClick={() => this.deleteTheater(theater)} className="theater-td" style={{maxWidth: '15px', color: '#44ACA1'}}><i className="material-icons" style={{cursor: 'pointer', maxWidth: '25px'}}>delete</i></td>
                                 <td className="theater-td">{theater.room}</td>
                             </tr>
                         )
