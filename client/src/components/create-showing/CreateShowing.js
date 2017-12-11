@@ -120,7 +120,7 @@ class CreateShowing extends Component {
                                             {this.state.showingTimes.map((showTime, index) => 
                                                 <tr key={index} style={{color: '#3454b4'}} className="selectable" onClick={() => this.loadShowing(showTime, index)}>
                                                     <td onClick={(event) => this.delete(event, index)}><i className="material-icons" style={{cursor: 'pointer', maxWidth: '50px'}}>delete</i></td>
-                                                    <td>{showTime.theaterChoice.room}</td>
+                                                    <td>{showTime.theaterChoice ? showTime.theaterChoice.room : ''}</td>
                                                     <td>{this.convertDate(showTime.startDate)}</td>
                                                     <td>{showTime.endDate ? this.convertDate(showTime.endDate) : this.convertDate(showTime.startDate)}</td>
                                                     <td style={{textAlign: 'center'}}>{showTime.timeOptions[0]}</td>

@@ -11,7 +11,6 @@ const ShowTime = mongoose.model('showTimes');
 module.exports = app => {
 
     app.post('/api/theaters', requireLogin, async (req, res) => {
-        console.log(req.body);
         const theater = new Theater({
             room: req.body.theaterName
         });
@@ -32,7 +31,6 @@ module.exports = app => {
     app.post('/api/newShowing', requireLogin, async (req, res) => {
         ShowTime.remove({ movieId: req.body.movieId }).then(() => {
             req.body.showDetails.map(singleShowing => {
-                console.log(singleShowing.startDate);
                 const showTime = new ShowTime({
                     movieId: req.body.movieId,
                     _theater: singleShowing.theaterChoice._id,
@@ -43,7 +41,6 @@ module.exports = app => {
     
                 showTime.save();
                 newTime = moment(req.body.showDetails[0].time);
-                console.log(newTime);
             });
 
             res.send('success');

@@ -7,7 +7,6 @@ export default function(state = [], action) {
             return action.payload;
         case THEATER_DELETE:
             const newState = Object.assign([], state);
-            console.log(newState);
             const indexOfTheaterToDelete = state.findIndex(theater => {
                 return theater._id === action.payload._id;
             });
