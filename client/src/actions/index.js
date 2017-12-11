@@ -62,7 +62,7 @@ export const searchMovies = (movieTitle) => async dispatch => {
 
         const pageData = {};
         pageData.page = res.data.page;
-        pageData.page_totals = res.data.page_totals;
+        pageData.total_pages = res.data.total_pages;
 
         dispatch({ type: SEARCH_MOVIES, payload: { movies: movies, pageData: pageData }});
     }

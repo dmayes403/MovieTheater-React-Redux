@@ -5,6 +5,8 @@ import { Card } from 'material-ui/Card';
 import { Link } from 'react-router-dom';
 import * as actions from '../../actions';
 
+import Paginator from '../paginator/Paginator';
+
 import './searchMovies.css';
 
 class SearchMovies extends Component {
@@ -34,6 +36,8 @@ class SearchMovies extends Component {
                     </div>
                     <div className="emptyGrow"></div>
                 </div>
+
+                <Paginator pageData="props.movieSearchResults.pageData"/>
             </div>
         );
     }
@@ -65,6 +69,7 @@ class SearchMovies extends Component {
 }
 
 function mapStateToProps({ movieSearchResults }) {
+    console.log(movieSearchResults);
     return { movieSearchResults };
 }
 
