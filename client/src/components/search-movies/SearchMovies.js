@@ -37,7 +37,7 @@ class SearchMovies extends Component {
                     <div className="emptyGrow"></div>
                 </div>
 
-                <Paginator pageData="props.movieSearchResults.pageData"/>
+                <Paginator pageData={this.props.movieSearchResults.pageData}/>
             </div>
         );
     }
@@ -69,7 +69,7 @@ class SearchMovies extends Component {
 }
 
 function mapStateToProps({ movieSearchResults }) {
-    console.log(movieSearchResults);
+    // console.log(movieSearchResults);
     return { movieSearchResults };
 }
 
