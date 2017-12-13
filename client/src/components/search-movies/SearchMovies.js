@@ -63,6 +63,7 @@ class SearchMovies extends Component {
     }
 
     searchMovies(formValues) {
+        // console.log(this.state.form.searchMovies.values)
         this.props.searchMovies(formValues.movieTitle);
     }
 

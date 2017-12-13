@@ -16,26 +16,29 @@ class Paginator extends Component {
     }
 
     render () {
-
         const numArray = [];
 
         for (let i = this.state.rangeBottom; i < this.state.rangeTop + 1; i++) {
-            numArray.push(<div key={i}>{i}</div>);
+            numArray.push(<div key={i} style={{marginLeft: '10px', marginRight: '10px'}} onClick={() => this.pageChange()}>{i}</div>);
         }
 
         return (
             <div className="flex-row" style={{width: '50%', margin: 'auto', justifyContent: 'center'}}>
-                <div>{'<<'}</div>
-                <div style={{marginLeft: '10px', marginRight: '10px'}}>{'<'}</div>
+                <i className="material-icons">first_page</i>
+                <i className="material-icons" style={{marginLeft: '10px', marginRight: '10px'}}>chevron_left</i>
                 <div className="flex-row">
                     {numArray.map(num => {
                         return num;
                     })}
                 </div>
-                <div style={{marginLeft: '10px', marginRight: '10px'}}>{'>'}</div>
-                <div>{'>>'}</div>
+                <i className="material-icons" style={{marginLeft: '10px', marginRight: '10px'}}>chevron_right</i>
+                <i className="material-icons">last_page</i>
             </div>
         )
+    }
+
+    pageChange() {
+        
     }
 
     setPageRange() {
