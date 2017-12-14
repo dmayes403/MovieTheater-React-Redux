@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Card } from 'material-ui/Card';
 import { Link } from 'react-router-dom';
 import * as actions from '../../actions';
+import _ from 'lodash';
 
 import Paginator from '../paginator/Paginator';
 
@@ -37,7 +38,7 @@ class SearchMovies extends Component {
                     <div className="emptyGrow"></div>
                 </div>
 
-                <Paginator pageData={this.props.movieSearchResults.pageData}/>
+                <Paginator pageData={this.props.movieSearchResults.pageData} currentSearch={this.props.formValues && this.props.formValues.movieTitle ? this.props.formValues.movieTitle : ''}/>
             </div>
         );
     }
@@ -64,14 +65,28 @@ class SearchMovies extends Component {
 
     searchMovies(formValues) {
         // console.log(this.state.form.searchMovies.values)
-        this.props.searchMovies(formValues.movieTitle);
+        console.log(this.props.formValues);
+        this.props.searchMovies(formValues.movieTitle, 1);
     }
 
 }
 
-function mapStateToProps({ movieSearchResults }) {
-    // console.log(movieSearchResults);
-    return { movieSearchResults };
+// function mapStateToProps({ movieSearchResults }) {
+//     return { movieSearchResults };
+// }
+
+function mapStateToProps(state) {
+    // If statements are required because form values don't exist on initial load
+    if (_.has(state.form, 'searchMovies') && _.has(state.form.searchMovies, 'values')) {
+        return { 
+            movieSearchResults: state.movieSearchResults,
+            formValues: state.form.searchMovies.values
+        };
+    } else {
+        return {
+            movieSearchResults: state.movieSearchResults,
+        }
+    }
 }
 
 SearchMovies = connect(mapStateToProps, actions)(SearchMovies);

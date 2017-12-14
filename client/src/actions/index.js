@@ -20,7 +20,7 @@ export const fetchUser = () => async dispatch => {
     dispatch({ type: FETCH_USER, payload: res.data });
 };
 
-export const searchMovies = (movieTitle) => async dispatch => {
+export const searchMovies = (movieTitle, pageNumber) => async dispatch => {
     if (movieTitle === 'searchMovieDefault') {
         let movieBaseUrl = `https://api.themoviedb.org/3/movie/upcoming?api_key=${movieDBKEY}&language=en-US`;
         
@@ -47,9 +47,9 @@ export const searchMovies = (movieTitle) => async dispatch => {
                     alteredMovieTitle += '%20';
                 }
             }
-            movieBaseUrl = `https://api.themoviedb.org/3/search/movie?api_key=${movieDBKEY}&language=en-US&query=${alteredMovieTitle}&page=1`;
+            movieBaseUrl = `https://api.themoviedb.org/3/search/movie?api_key=${movieDBKEY}&language=en-US&query=${alteredMovieTitle}&page=${pageNumber}`;
         } else {
-            movieBaseUrl = `https://api.themoviedb.org/3/search/movie?api_key=${movieDBKEY}&language=en-US&query=${movieTitle}&page=1`;
+            movieBaseUrl = `https://api.themoviedb.org/3/search/movie?api_key=${movieDBKEY}&language=en-US&query=${movieTitle}&page=${pageNumber}`;
         }
         const res = await axios.get(movieBaseUrl);
         const movies = res.data.results.filter(movie => {

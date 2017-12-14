@@ -19,11 +19,11 @@ class Paginator extends Component {
         const numArray = [];
 
         for (let i = this.state.rangeBottom; i < this.state.rangeTop + 1; i++) {
-            numArray.push(<div key={i} style={{marginLeft: '10px', marginRight: '10px'}} onClick={() => this.pageChange()}>{i}</div>);
+            numArray.push(<div key={i} style={{marginLeft: '10px', marginRight: '10px'}} onClick={() => this.selectPageNumber(i)}>{i}</div>);
         }
 
         return (
-            <div className="flex-row" style={{width: '50%', margin: 'auto', justifyContent: 'center'}}>
+            <div className="flex-row" style={{width: '50%', margin: 'auto', paddingBottom: '25px', justifyContent: 'center'}}>
                 <i className="material-icons">first_page</i>
                 <i className="material-icons" style={{marginLeft: '10px', marginRight: '10px'}}>chevron_left</i>
                 <div className="flex-row">
@@ -37,8 +37,26 @@ class Paginator extends Component {
         )
     }
 
-    pageChange() {
+    selectPageNumber(pageNumber) {
+        console.log(pageNumber);
+        this.setState({ currentPage: pageNumber });
         
+    }
+
+    pageBack() {
+        this.setState({ currentPage: (this.state.currentPage - 1) });
+    }
+
+    pageForward() {
+        this.setState({ currentPage: (this.state.currentPage + 1) });
+    }
+
+    firstPage() {
+        this.setState({ currentPage: 1 });
+    }
+
+    lastPage() {
+        this.setState({ currentPage: this.props.pageData.total_pages });
     }
 
     setPageRange() {
