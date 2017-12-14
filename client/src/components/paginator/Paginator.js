@@ -15,6 +15,10 @@ class Paginator extends Component {
         this.setPageRange(this.state.currentPage);
     }
 
+    componentWillUpdate() {
+        console.log('here')
+    }
+
     render () {
         const numArray = [];
 
