@@ -38,7 +38,7 @@ class SearchMovies extends Component {
                     <div className="emptyGrow"></div>
                 </div>
 
-                <Paginator pageData={this.props.movieSearchResults.pageData} currentSearch={this.props.formValues && this.props.formValues.movieTitle ? this.props.formValues.movieTitle : ''}/>
+                <Paginator pageData={this.props.movieSearchResults.pageData} currentSearch={this.props.formValues && this.props.formValues.movieTitle ? this.props.formValues.movieTitle : 'searchMovieDefault'}/>
             </div>
         );
     }

@@ -8,18 +8,18 @@ class Paginator extends Component {
     state = {
         currentPage: 1,
         rangeBottom: 1,
-        rangeTop: 1
+        rangeTop: 1,
     }
 
     componentDidMount() {
-        this.setPageRange();
+        this.setPageRange(this.state.currentPage);
     }
 
     render () {
         const numArray = [];
 
-        for (let i = this.state.rangeBottom; i < this.state.rangeTop + 1; i++) {
-            numArray.push(<div key={i} style={{marginLeft: '10px', marginRight: '10px'}} onClick={() => this.selectPageNumber(i)}>{i}</div>);
+        for (let i = this.state.rangeBottom; i <= this.state.rangeTop; i++) {
+            numArray.push(<div className={ this.state.currentPage === i ? 'highlighted' : 'no-highlight' } key={i} onClick={() => this.selectPageNumber(i)}>{i}</div>);
         }
 
         return (
@@ -38,9 +38,9 @@ class Paginator extends Component {
     }
 
     selectPageNumber(pageNumber) {
-        console.log(pageNumber);
         this.setState({ currentPage: pageNumber });
-        
+        this.props.searchMovies(this.props.currentSearch, pageNumber);
+        this.setPageRange(pageNumber);
     }
 
     pageBack() {
@@ -59,16 +59,13 @@ class Paginator extends Component {
         this.setState({ currentPage: this.props.pageData.total_pages });
     }
 
-    setPageRange() {
-        if (this.state.currentPage > 2) {
-            console.log('1');
-            this.setState({ rangeBottom: this.state.currentPage - 2, rangeTop: (this.state.currentPage + 2) > this.props.pageData.total_pages ? this.props.pageData.total_pages : (this.state.currentPage + 2)});
-        } else if (this.state.currentPage === 2) {
-            this.setState({ rangeBottom: 1, rangeTop: (this.state.currentPage + 2) > this.props.pageData.total_pages ? this.props.pageData.total_pages : (this.state.currentPage + 2)});
-            console.log('2');
+    setPageRange(currentPage) {
+        if (currentPage > 2) {
+            this.setState({ rangeBottom: currentPage - 2, rangeTop: (currentPage + 2) > this.props.pageData.total_pages ? this.props.pageData.total_pages : (currentPage + 2)});
+        } else if (currentPage === 2) {
+            this.setState({ rangeBottom: 1, rangeTop: (currentPage + 2) > this.props.pageData.total_pages ? this.props.pageData.total_pages : (currentPage + 2)});
         } else {
-            console.log('3');
-            this.setState({ rangeBottom: 1, rangeTop: (this.state.currentPage + 2) > this.props.pageData.total_pages ? this.props.pageData.total_pages : (this.state.currentPage + 2)});
+            this.setState({ rangeBottom: 1, rangeTop: (currentPage + 2) > this.props.pageData.total_pages ? this.props.pageData.total_pages : (currentPage + 2)});
         }
     }
 }

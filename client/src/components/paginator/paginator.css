@@ -1,0 +1,12 @@
+.highlighted {
+    /* text-decoration: underline; */
+    background-color: #44ACA1;
+    color: white;
+    padding: 0px 10px;
+    margin: 0px;
+    border-radius: 3px;
+}
+
+.no-highlight {
+    margin: 0px 10px;
+}
