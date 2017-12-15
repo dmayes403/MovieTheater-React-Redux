@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { debounce } from 'throttle-debounce';
 import * as actions from '../../actions';
 
 import './paginator.css';
@@ -15,8 +16,10 @@ class Paginator extends Component {
         this.setPageRange(this.state.currentPage);
     }
 
-    componentWillUpdate() {
-        console.log('here')
+    componentWillUpdate(nextProps) {
+        debounce(1000, () => {
+            console.log(nextProps);
+        });
     }
 
     render () {
