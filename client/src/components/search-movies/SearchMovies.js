@@ -11,6 +11,9 @@ import Paginator from '../paginator/Paginator';
 import './searchMovies.css';
 
 class SearchMovies extends Component {
+    state = {
+        currentSearchValue: null,
+    }
     componentDidMount() {
         this.props.searchMovies('searchMovieDefault');
     }
@@ -38,7 +41,7 @@ class SearchMovies extends Component {
                     <div className="emptyGrow"></div>
                 </div>
 
-                <Paginator pageData={this.props.movieSearchResults.pageData} currentSearch={this.props.formValues && this.props.formValues.movieTitle ? this.props.formValues.movieTitle : 'searchMovieDefault'}/>
+                <Paginator pageData={this.props.movieSearchResults.pageData} currentSearch={this.state.currentSearchValue !== null ? this.state.currentSearchValue : 'searchMovieDefault'}/>
             </div>
         );
     }
@@ -64,16 +67,11 @@ class SearchMovies extends Component {
     }
 
     searchMovies(formValues) {
-        // console.log(this.state.form.searchMovies.values)
-        console.log(this.props.formValues);
         this.props.searchMovies(formValues.movieTitle, 1);
+        this.setState({ currentSearchValue: formValues.movieTitle });
     }
 
 }
-
-// function mapStateToProps({ movieSearchResults }) {
-//     return { movieSearchResults };
-// }
 
 function mapStateToProps(state) {
     // If statements are required because form values don't exist on initial load

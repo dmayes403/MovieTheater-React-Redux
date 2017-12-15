@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { debounce } from 'throttle-debounce';
 import * as actions from '../../actions';
 
 import './paginator.css';
@@ -10,16 +9,18 @@ class Paginator extends Component {
         currentPage: 1,
         rangeBottom: 1,
         rangeTop: 1,
+        currentSearchValue: null
     }
 
     componentDidMount() {
         this.setPageRange(this.state.currentPage);
     }
 
-    componentWillUpdate(nextProps) {
-        debounce(1000, () => {
-            console.log(nextProps);
-        });
+    componentDidUpdate(nextProps) {
+        if (nextProps.currentSearch !== this.state.currentSearchValue) {
+            this.setState({ currentSearchValue: nextProps.currentSearch, currentPage: 1 });
+            this.setPageRange(1);
+        }
     }
 
     render () {
@@ -30,7 +31,7 @@ class Paginator extends Component {
         }
 
         return (
-            <div className="flex-row" style={{width: '50%', margin: 'auto', paddingBottom: '25px', justifyContent: 'center'}}>
+            <div className="flex-row" style={{width: '50%', margin: 'auto', padding: '50px 0px', justifyContent: 'center'}}>
                 <i className="material-icons">first_page</i>
                 <i className="material-icons" style={{marginLeft: '10px', marginRight: '10px'}}>chevron_left</i>
                 <div className="flex-row">
