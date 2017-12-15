@@ -17,6 +17,7 @@ class Paginator extends Component {
     }
 
     componentDidUpdate(nextProps) {
+        console.log(nextProps);
         if (nextProps.currentSearch !== this.state.currentSearchValue) {
             this.setState({ currentSearchValue: nextProps.currentSearch, currentPage: 1 });
             this.setPageRange(1);
