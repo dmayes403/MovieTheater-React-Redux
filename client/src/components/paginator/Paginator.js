@@ -28,20 +28,20 @@ class Paginator extends Component {
         const numArray = [];
 
         for (let i = this.state.rangeBottom; i <= this.state.rangeTop; i++) {
-            numArray.push(<div className={ this.state.currentPage === i ? 'highlighted' : 'no-highlight' } key={i} onClick={() => this.selectPageNumber(i)}>{i}</div>);
+            numArray.push(<div style={{cursor: 'pointer'}} className={ this.state.currentPage === i ? 'highlighted' : 'no-highlight' } key={i} onClick={() => this.selectPageNumber(i)}>{i}</div>);
         }
 
         return (
             <div className="flex-row" style={{width: '50%', margin: 'auto', padding: '50px 0px', justifyContent: 'center'}}>
-                <i className="material-icons">first_page</i>
-                <i className="material-icons" style={{marginLeft: '10px', marginRight: '10px'}}>chevron_left</i>
+                <i className="material-icons focus-pointer" onClick={() => this.selectPageNumber(1)}>first_page</i>
+                <i className="material-icons focus-pointer" style={{marginLeft: '10px', marginRight: '10px'}} onClick={() => this.selectPageNumber(this.state.currentPage - 1)}>chevron_left</i>
                 <div className="flex-row">
                     {numArray.map(num => {
                         return num;
                     })}
                 </div>
-                <i className="material-icons" style={{marginLeft: '10px', marginRight: '10px'}}>chevron_right</i>
-                <i className="material-icons">last_page</i>
+                <i className="material-icons focus-pointer" style={{marginLeft: '10px', marginRight: '10px'}} onClick={() => this.selectPageNumber(this.state.currentPage + 1)}>chevron_right</i>
+                <i className="material-icons focus-pointer" onClick={() => this.selectPageNumber(this.props.pageData.total_pages)}>last_page</i>
             </div>
         )
     }

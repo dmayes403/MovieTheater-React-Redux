@@ -10,3 +10,7 @@
 .no-highlight {
     margin: 0px 10px;
 }
+
+.focus-pointer {
+    cursor: pointer;
+}
