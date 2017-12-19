@@ -91,7 +91,7 @@ class CreateShowing extends Component {
                             style={{width: '30%', minWidth: '300px', height: '50%'}}
                             alt="poster"/>
                         <div className="create-description-container">
-                            <h2 onClick={() => this.test()} style={{margin: 'auto', textAlign: 'center', backgroundColor: '#3454b4', color: 'white', borderRadius: '5px', padding: '5px'}} className="z-depth-3">{movieDetails[2].title}</h2>
+                            <h3 style={{margin: 'auto', textAlign: 'center', backgroundColor: '#3454b4', color: 'white', borderRadius: '5px', padding: '5px'}} className="z-depth-3">{movieDetails[2].title}</h3>
                             
                             <div style={{display: 'flex', flexDirection: 'row'}}>
                                 <div>

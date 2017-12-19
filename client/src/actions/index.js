@@ -21,7 +21,7 @@ export const fetchUser = () => async dispatch => {
 };
 
 export const searchMovies = (movieTitle, pageNumber) => async dispatch => {
-    if (movieTitle === 'searchMovieDefault') {
+    if (!movieTitle || movieTitle === 'searchMovieDefault') {
         let movieBaseUrl = `https://api.themoviedb.org/3/movie/upcoming?api_key=${movieDBKEY}&language=en-US&page=${pageNumber}`;
         
         const res = await axios.get(movieBaseUrl);

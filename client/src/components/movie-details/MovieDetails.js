@@ -79,7 +79,7 @@ class MovieDetails extends Component {
                         style={{width: '35%', minWidth: '300px', height: '50%'}}
                         alt="poster"/>
                     <div className="description-container">
-                        <h2 style={{margin: 'auto', textAlign: 'center', backgroundColor: '#3454b4', color: 'white', borderRadius: '5px', padding: '5px'}} className="z-depth-3">{movieDetails[2].title}</h2>
+                        <h3 style={{margin: 'auto', textAlign: 'center', backgroundColor: '#3454b4', color: 'white', borderRadius: '5px', padding: '5px'}} className="z-depth-3">{movieDetails[2].title}</h3>
                         
                         <h6 className="z-depth-3 cancel-button" onClick={() => this.setState({createShowing: false})}>Cancel</h6>
                     </div>

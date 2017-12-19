@@ -71,6 +71,7 @@ body {
   cursor: pointer;
   margin-top: 15px;
   margin-bottom: 0px;
+  margin-left: 10px;
 }
 
 .delete-button:active {
