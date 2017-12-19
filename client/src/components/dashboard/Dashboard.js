@@ -42,11 +42,13 @@ class Dashboard extends Component {
             return (
                 <div className="main-container">
                     <div className="dashboard-container">
-                        <div>
-                            <div style={{display: 'flex', overflow: 'auto'}}>
-                                {dateBoxes}
+                        <Card style={{borderRadius: '5px', padding: '10px', margin: '15px 0px'}}>
+                            <div style={{display: 'flex', justifyContent: 'center'}}>
+                                <div style={{display: 'flex', overflow: 'auto'}}>
+                                    {dateBoxes}
+                                </div>
                             </div>
-                        </div>
+                        </Card>
                         <div>{this.renderShowings()}</div>
                     </div>
                 </div>

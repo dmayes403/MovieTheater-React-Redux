@@ -99,7 +99,7 @@ class CreateShowing extends Component {
                                         {this.renderField()}
                                         {this.renderDatePicker()}
                                         {this.renderTimeOptions()}
-                                        <div style={{display: 'flex', flexDirection: 'row'}}>
+                                        <div style={{display: 'flex', flexDirection: 'row', marginTop: '25px'}}>
                                             <button className="z-depth-3 button small background-blue" onClick={() => this.clearForm()}>Clear</button>
                                             <button className="z-depth-3 button small background-green" style={{marginLeft: '5px'}} type="submit">Add</button>
                                         </div>

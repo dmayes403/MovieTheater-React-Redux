@@ -71,9 +71,9 @@ class Paginator extends Component {
         if (currentPage > 2) {
             this.setState({ rangeBottom: currentPage - 2, rangeTop: (currentPage + 2) > this.props.pageData.total_pages ? this.props.pageData.total_pages : (currentPage + 2)});
         } else if (currentPage === 2) {
-            this.setState({ rangeBottom: 1, rangeTop: (currentPage + 2) > this.props.pageData.total_pages ? this.props.pageData.total_pages : (currentPage + 2)});
+            this.setState({ rangeBottom: 1, rangeTop: (currentPage + 3) > this.props.pageData.total_pages ? this.props.pageData.total_pages : (currentPage + 3)});
         } else {
-            this.setState({ rangeBottom: 1, rangeTop: (currentPage + 2) > this.props.pageData.total_pages ? this.props.pageData.total_pages : (currentPage + 2)});
+            this.setState({ rangeBottom: 1, rangeTop: (currentPage + 4) > this.props.pageData.total_pages ? this.props.pageData.total_pages : (currentPage + 4)});
         }
     }
 }
