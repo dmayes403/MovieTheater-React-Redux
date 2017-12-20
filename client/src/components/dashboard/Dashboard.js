@@ -78,14 +78,13 @@ class Dashboard extends Component {
 
             if (Date.parse(this.state.focusedDate) >= Date.parse(startDateString) && Date.parse(this.state.focusedDate) <= Date.parse(endDateString)) {
                 return (
-                    // <Card key={showingDetails[2].id} style={{borderRadius: '5px', padding: '10px', margin: '15px 0px'}}><Link to={`/movie-details/${showingDetails[2].id}`}>
                     <Card key={count} style={{borderRadius: '5px', padding: '10px', margin: '15px 0px'}}><Link to={`/movie-details/${showingDetails[2].id}`}>
                         <div style={{display: 'flex', flexDirection: 'row'}}>
                             <img src={ `http://image.tmdb.org/t/p/w154//${showingDetails[2].poster_path}` }
                             alt="poster"/>
                             <div className="movie-detail-container">
+                                <span className="dashboard-movie-title">{showingDetails[2].original_title}</span>
                                 <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                                    <span className="dashboard-movie-title">{showingDetails[2].original_title}</span>
                                     {showing.startTime.map(time => (
                                         <div key={time} className="time-container">{time}</div>
                                     ))}

@@ -40,7 +40,6 @@ class SearchMovies extends Component {
                     </div>
                     <div className="emptyGrow"></div>
                 </div>
-
                 <Paginator pageData={this.props.movieSearchResults.pageData} currentSearch={this.state.currentSearchValue !== null ? this.state.currentSearchValue : 'searchMovieDefault'}/>
             </div>
         );
