@@ -63,7 +63,9 @@ class Dashboard extends Component {
     }
 
     renderShowings() {
+        let count = 0;
         return this.props.movieShowings.showings.map(showing => {
+            count++;
             let showingDetails = [];
             const startDateString = moment(showing.startDate, moment.ISO_8601).format("ddd MMM DD YYYY");
             const endDateString = moment(showing.endDate, moment.ISO_8601).format("ddd MMM DD YYYY");
@@ -76,7 +78,8 @@ class Dashboard extends Component {
 
             if (Date.parse(this.state.focusedDate) >= Date.parse(startDateString) && Date.parse(this.state.focusedDate) <= Date.parse(endDateString)) {
                 return (
-                    <Card key={showingDetails[2].id} style={{borderRadius: '5px', padding: '10px', margin: '15px 0px'}}><Link to={`/movie-details/${showingDetails[2].id}`}>
+                    // <Card key={showingDetails[2].id} style={{borderRadius: '5px', padding: '10px', margin: '15px 0px'}}><Link to={`/movie-details/${showingDetails[2].id}`}>
+                    <Card key={count} style={{borderRadius: '5px', padding: '10px', margin: '15px 0px'}}><Link to={`/movie-details/${showingDetails[2].id}`}>
                         <div style={{display: 'flex', flexDirection: 'row'}}>
                             <img src={ `http://image.tmdb.org/t/p/w154//${showingDetails[2].poster_path}` }
                             alt="poster"/>
