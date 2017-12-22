@@ -3,7 +3,7 @@
 }
 
 .field-line-theater div {
-    width: 125px !important;
+    width: 150px !important;
 }
 
 .field-line hr {
@@ -11,7 +11,7 @@
 }
 
 .field-line div {
-    width: 125px !important;
+    width: 150px !important;
     height: 40px !important;
     padding-right: 0px !important;
 }
@@ -31,7 +31,7 @@
 
 .time-table {
     width: 75%;
-    margin-left: 35px;
+    margin-left: 10px;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -68,4 +68,8 @@
 
 .selectable:hover td {
     color: white;
+}
+
+td {
+    border-radius: 0px;
 }

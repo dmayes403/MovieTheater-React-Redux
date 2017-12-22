@@ -123,7 +123,7 @@ class CreateShowing extends Component {
                                                     <td>{showTime.theaterChoice ? showTime.theaterChoice.room : ''}</td>
                                                     <td>{this.convertDate(showTime.startDate)}</td>
                                                     <td>{showTime.endDate ? this.convertDate(showTime.endDate) : this.convertDate(showTime.startDate)}</td>
-                                                    <td style={{textAlign: 'center'}}>{showTime.timeOptions[0]}</td>
+                                                    <td style={{textAlign: 'center'}}>{showTime.timeOptions.length > 1 ? (showTime.timeOptions.length - 1) + '+ times' : showTime.timeOptions[0]}</td>
                                                 </tr>
                                             )}
                                         </tbody>
