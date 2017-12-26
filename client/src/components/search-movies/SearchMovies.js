@@ -30,7 +30,7 @@ class SearchMovies extends Component {
                                     name="movieTitle"
                                     component="input"
                                     placeholder="Search movie title..."
-                                    style={{width: '400px', paddingTop: '10px'}}
+                                    style={{width: '400px', paddingTop: '10px', color: '#07889B'}}
                                 />
                             </form>
                         </Card>

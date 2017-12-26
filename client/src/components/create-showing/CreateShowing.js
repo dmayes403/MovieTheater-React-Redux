@@ -129,7 +129,7 @@ class CreateShowing extends Component {
                                         </tbody>
                                     </table>
                                     <div className="bottom-links">
-                                        <Link to={`/movie-details/${this.props.match.params.id}`}><h6 className="z-depth-3 button background-blue" onClick={() => this.setState({createShowing: false})}>Cancel</h6></Link>
+                                        <Link to={`/movie-details/${this.props.match.params.id}`}><h6 className="z-depth-3 button background-blue" style={{padding: '11px'}} onClick={() => this.setState({createShowing: false})}>Cancel</h6></Link>
                                         <DeleteShowingDialog onDelete={() => this.props.deleteShowing(this.props.match.params.id, this.props.history)}/>
                                         <div className="headerLinkStyle z-depth-3 button background-green" style={{marginLeft: '10px'}} onClick={() => this.props.saveShowing({ movieId: this.props.match.params.id, showDetails: this.state.showingTimes }, this.props.history)}>Save</div>
                                     </div>
