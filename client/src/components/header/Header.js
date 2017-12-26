@@ -13,7 +13,7 @@ class Header extends Component {
                     style={{fontSize: '48px'}}
                     className="headerLinkStyle"
                     >
-                    Towne Cinemas
+                    Ticket Cinemas
                 </Link>
                 {this.renderContent()}
             </div>

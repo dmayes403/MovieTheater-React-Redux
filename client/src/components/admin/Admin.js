@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 
-import './admin.css';
-
 import UserPrivileges from '../user-privileges/userPrivileges';
 import TheaterListUpdate from '../theater-list-update/theaterListUpdate';
 
