@@ -89,7 +89,7 @@ class Dashboard extends Component {
                                         <div key={time} className="time-container">{time}</div>
                                     ))}
                                 </div>
-                                <span>{showingDetails[1]}</span>
+                                <span style={{marginTop: '10px'}}>{showingDetails[1]}</span>
                                 <span>{showingDetails[2].runtime}m</span>
                                 <span style={{marginTop: '25px'}}>{showingDetails[2].overview}</span>
                             </div>
