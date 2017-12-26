@@ -48,11 +48,11 @@ class SearchMovies extends Component {
     renderMovies() {
         return this.props.movieSearchResults.movies.map(movie => {
             return (
-                <div className="single_movie_container card small" key={movie.id}>
+                <div className="single_movie_container card" key={movie.id}>
                     <Link to={`/movie-details/${movie.id}`} className="linkStyle">
                         <div>
                             <div>
-                                <img src={ `http://image.tmdb.org/t/p/w154//${movie.poster_path}` }
+                                <img src={ `http://image.tmdb.org/t/p/w185//${movie.poster_path}` }
                                     alt="poster"/>
                             </div>
                             <div>

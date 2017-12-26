@@ -31,7 +31,7 @@ class Paginator extends Component {
         }
 
         return (
-            <div className="flex-row" style={{width: '50%', margin: 'auto', padding: '50px 0px', justifyContent: 'center'}}>
+            <div className="flex-row paginator-container" style={{width: '50%', margin: 'auto', padding: '50px 0px', justifyContent: 'center'}}>
                 <i className="material-icons focus-pointer" onClick={() => this.selectPageNumber(1)}>first_page</i>
                 <i className="material-icons focus-pointer" style={{marginLeft: '10px', marginRight: '10px'}} onClick={() => this.selectPageNumber(this.state.currentPage - 1)}>chevron_left</i>
                 <div className="flex-row">

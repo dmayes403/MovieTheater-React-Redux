@@ -2,23 +2,27 @@
     margin: auto;
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
     padding: 20px;
     max-width: 1200px;
     min-width: 700px;
 }
 
 .single-showing {
-    width: 20%;
     margin: 10px;
-    padding-top: 15px;
     text-align: center;
-    color: black;
+    color: #07889B;
+    width: 185px;
 }
 
 .single-showing:hover {
     transform: scale(1.1);
     transition: all 200ms ease-in;
-    background-color: #44ACA1;
+    background-color: #66B9BF;
     color: white;
     cursor: pointer;
+}
+
+.linkStyle {
+    color: #07889B;
 }

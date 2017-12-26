@@ -13,16 +13,15 @@
 }
 
 .single_movie_container {
-    width: 20%;
+    width: 185px;
     margin: 10px;
-    padding-top: 15px;
     text-align: center;
 }
 
 .single_movie_container:hover {
     transform: scale(1.1);
     transition: all 200ms ease-in;
-    background-color: #44ACA1;
+    background-color: #66B9BF;
     color: white;
     cursor: pointer;
 }

@@ -43,13 +43,19 @@ class AllShowings extends Component {
                     usedIds.push(showing.movieId);
 
                     return (
-                        <Link to={`/create-showing/${showing.movieId}`} className="single-showing card small" key={showingDetails[2].id}><div>
-                            <img src={ `http://image.tmdb.org/t/p/w154//${showingDetails[2].poster_path}` }
-                            alt="poster"/>
-                            <div>
-                                {showingDetails[2].original_title}
-                            </div>
-                        </div></Link>
+                        <div className="single-showing card" key={showingDetails[2].id}>
+                            <Link to={`/create-showing/${showing.movieId}`} className="linkStyle">
+                                <div>
+                                    <div>
+                                        <img src={ `http://image.tmdb.org/t/p/w185//${showingDetails[2].poster_path}` }
+                                        alt="poster"/>
+                                    </div>
+                                    <div>
+                                        {showingDetails[2].original_title}
+                                    </div>
+                                </div>
+                            </Link>
+                        </div>
                     )
                 } else {
                     return null;
