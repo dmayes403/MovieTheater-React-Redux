@@ -69,20 +69,21 @@ export const searchMovies = (movieTitle, pageNumber) => async dispatch => {
 };
 
 export const getMovieDetails = (movieId) => async dispatch => {
-    const getDetailsURL = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${movieDBKEY}&language=en-US`;
-    const getVideosURL = `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${movieDBKEY}&language=en-US`;
-    const getRatingsURL = `https://api.themoviedb.org/3/movie/${movieId}/release_dates?api_key=${movieDBKEY}&language=en-US`;
+    // const getDetailsURL = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${movieDBKEY}&language=en-US`;
+    // const getVideosURL = `https://api.themoviedb.org/3/movie/${movieId}/videos?api_key=${movieDBKEY}&language=en-US`;
+    // const getRatingsURL = `https://api.themoviedb.org/3/movie/${movieId}/release_dates?api_key=${movieDBKEY}&language=en-US`;
 
-    axios.all([
-        axios.get(getVideosURL),
-        axios.get(getRatingsURL),
-        axios.get(getDetailsURL)
-    ]).then(axios.spread((videos, ratings, details) => {
-        const rating = _.find(ratings.data.results, {iso_3166_1: "US"})
-        const data = [videos.data.results, rating.release_dates[rating.release_dates.length-1].certification, details.data];
-        dispatch({ type: MOVIE_DETAILS, payload: data });
-    }));
-
+    // axios.all([
+    //     axios.get(getVideosURL),
+    //     axios.get(getRatingsURL),
+    //     axios.get(getDetailsURL)
+    // ]).then(axios.spread((videos, ratings, details) => {
+    //     const rating = _.find(ratings.data.results, {iso_3166_1: "US"})
+    //     const data = [videos.data.results, rating.release_dates[rating.release_dates.length-1].certification, details.data];
+    //     dispatch({ type: MOVIE_DETAILS, payload: data });
+    // }));
+    const movieDetails = await axios.get(`/api/movieDetailsById/${movieId}`);
+    dispatch({ type: MOVIE_DETAILS, payload: movieDetails });
 }
 
 export const getTheaterList = () => async dispatch => {
