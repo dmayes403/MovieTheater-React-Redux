@@ -39,10 +39,10 @@ class UserPrivileges extends Component {
                             <tr key={user.googleId}>
                                 <td>{user.name}</td>
                                 <td>{user.email[0]}</td>
-                                <td onClick={() => {this.creatorToTrue(index)}} style={{textAlign: 'center'}}><div className={user.creator ? "true-highlighted" : ""}>{'True'}</div></td>
-                                <td onClick={() => {this.creatorToFalse(index)}} style={{textAlign: 'center'}}><div className={user.creator ? "" : "false-highlighted"}>{'False'}</div></td>
-                                <td onClick={() => {this.adminToTrue(index)}} style={{textAlign: 'center', borderSpacing: '50px'}}><div className={user.admin ? "true-highlighted" : ""}>{'True'}</div></td>
-                                <td onClick={() => {this.adminToFalse(index)}} style={{textAlign: 'center'}}><div className={user.admin ? "" : "false-highlighted"}>{'False'}</div></td>
+                                <td onClick={() => {this.creatorToTrue(index)}} style={{textAlign: 'center', cursor: 'pointer'}}><div className={user.creator ? "true-highlighted" : ""}>{'True'}</div></td>
+                                <td onClick={() => {this.creatorToFalse(index)}} style={{textAlign: 'center', cursor: 'pointer'}}><div className={user.creator ? "" : "false-highlighted"}>{'False'}</div></td>
+                                <td onClick={() => {this.adminToTrue(index)}} style={{textAlign: 'center', borderSpacing: '50px', cursor: 'pointer'}}><div className={user.admin ? "true-highlighted" : ""}>{'True'}</div></td>
+                                <td onClick={() => {this.adminToFalse(index)}} style={{textAlign: 'center', cursor: 'pointer'}}><div className={user.admin ? "" : "false-highlighted"}>{'False'}</div></td>
                             </tr>
                         )}
                     </tbody>
@@ -67,35 +67,43 @@ class UserPrivileges extends Component {
     }
 
     creatorToTrue(index) {
-        let allTempUsers = this.state.updatedUsers;
-        let tempUser = this.state.updatedUsers[index];
-        tempUser.creator = true;
-        allTempUsers[index] = tempUser;
-        this.setState({ updatedUsers: allTempUsers });
+        if (this.state.updatedUsers[index].creator) {
+            let allTempUsers = this.state.updatedUsers;
+            let tempUser = this.state.updatedUsers[index];
+            tempUser.creator = true;
+            allTempUsers[index] = tempUser;
+            this.setState({ updatedUsers: allTempUsers });
+        }
     }
 
     creatorToFalse(index) {
-        let allTempUsers = this.state.updatedUsers;
-        let tempUser = this.state.updatedUsers[index];
-        tempUser.creator = false;
-        allTempUsers[index] = tempUser;
-        this.setState({ updatedUsers: allTempUsers });
+        if (this.state.updatedUsers[index].creator) {
+            let allTempUsers = this.state.updatedUsers;
+            let tempUser = this.state.updatedUsers[index];
+            tempUser.creator = false;
+            allTempUsers[index] = tempUser;
+            this.setState({ updatedUsers: allTempUsers });
+        }
     }
 
     adminToTrue(index) {
-        let allTempUsers = this.state.updatedUsers;
-        let tempUser = this.state.updatedUsers[index];
-        tempUser.admin = true;
-        allTempUsers[index] = tempUser;
-        this.setState({ updatedUsers: allTempUsers });
+        if (this.state.updatedUsers[index].creator) {
+            let allTempUsers = this.state.updatedUsers;
+            let tempUser = this.state.updatedUsers[index];
+            tempUser.admin = true;
+            allTempUsers[index] = tempUser;
+            this.setState({ updatedUsers: allTempUsers });
+        }
     }
 
     adminToFalse(index) {
-        let allTempUsers = this.state.updatedUsers;
-        let tempUser = this.state.updatedUsers[index];
-        tempUser.admin = false;
-        allTempUsers[index] = tempUser;
-        this.setState({ updatedUsers: allTempUsers });
+        if (this.state.updatedUsers[index].creator) {
+            let allTempUsers = this.state.updatedUsers;
+            let tempUser = this.state.updatedUsers[index];
+            tempUser.admin = false;
+            allTempUsers[index] = tempUser;
+            this.setState({ updatedUsers: allTempUsers });
+        }
     }
 
     cancelUserPrivileges() {
@@ -103,8 +111,8 @@ class UserPrivileges extends Component {
     }
 }
 
-function mapStateToProps({ allUsers }) {
-    return { allUsers };
+function mapStateToProps({ allUsers, auth }) {
+    return { allUsers, auth };
 }
 
 export default connect(mapStateToProps, actions)(UserPrivileges);

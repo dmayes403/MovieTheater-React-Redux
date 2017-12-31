@@ -30,8 +30,6 @@ class Admin extends Component {
     }
 }
 
-// export default Admin;
-
 function mapStateToProps({ auth }) {
     return { auth };
 }

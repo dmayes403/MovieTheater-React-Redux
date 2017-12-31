@@ -14,17 +14,19 @@ module.exports = app => {
     });
 
     app.post('/api/users', requireLogin, async (req, res) => {
-        req.body.forEach(user => {
+        req.body.forEach((user, index) => {
             User.updateOne({
                 _id: user._id
             }, {
                 creator: user.creator,
                 admin: user.admin
             }).exec();
-        }).then(() => {
-            User.find({}).then(users => {
-                res.send(users);
-            });
+
+            if (index === req.body.length - 1) {
+                User.find({}).then(users => {
+                    res.send(users);
+                });
+            }
         });
-    }); 
+    });
 };

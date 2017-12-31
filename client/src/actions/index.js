@@ -60,7 +60,9 @@ export const getAllUsers = () => async dispatch => {
 }
 
 export const updateUsers = (updatedUsers) => async dispatch => {
+    console.log('actions..');
     const savedUsers = await axios.post(`/api/users`, updatedUsers);
+    console.log('users: ' + savedUsers);
     dispatch({ type: FETCH_ALL_USERS, payload: savedUsers.data });
 }
 
