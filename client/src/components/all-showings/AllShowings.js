@@ -76,19 +76,7 @@ class AllShowings extends Component {
 }
 
 function mapStateToProps({ movieShowings, auth }) {
-    // if (movieShowings.movieDetails.length > 0 && movieShowings.showings.length > 0) {
-    //     console.log('1');
-    //     return { movieShowings };
-    // } else {
-    //     console.log('2');
-    //     movieShowings = {};
-    //     movieShowings.movieDetails = [];
-    //     movieShowings.showings = [];
-    //     return { movieShowings };
-    // }
-
-    return { movieShowings, auth };
-    
+    return { movieShowings, auth };    
 }
 
 export default connect(mapStateToProps, actions)(AllShowings);
