@@ -22,9 +22,16 @@ module.exports = app => {
                 admin: user.admin
             }).exec();
 
+            if (user.googleId === req.user.googleId) {
+                req.user.creator = user.creator;
+                req.user.admin = user.admin;
+            }
+
             if (index === req.body.length - 1) {
                 User.find({}).then(users => {
-                    res.send(users);
+                    payload = {updatedUsers: users, currentUser: req.user};
+                    res.send(payload);
+                    // res.send(users);
                 });
             }
         });

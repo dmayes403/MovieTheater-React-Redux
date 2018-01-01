@@ -67,7 +67,7 @@ class UserPrivileges extends Component {
     }
 
     creatorToTrue(index) {
-        if (this.state.updatedUsers[index].creator) {
+        if (this.props.auth.creator) {
             let allTempUsers = this.state.updatedUsers;
             let tempUser = this.state.updatedUsers[index];
             tempUser.creator = true;
@@ -77,7 +77,7 @@ class UserPrivileges extends Component {
     }
 
     creatorToFalse(index) {
-        if (this.state.updatedUsers[index].creator) {
+        if (this.props.auth.creator) {
             let allTempUsers = this.state.updatedUsers;
             let tempUser = this.state.updatedUsers[index];
             tempUser.creator = false;
@@ -87,7 +87,7 @@ class UserPrivileges extends Component {
     }
 
     adminToTrue(index) {
-        if (this.state.updatedUsers[index].creator) {
+        if (this.props.auth.creator) {
             let allTempUsers = this.state.updatedUsers;
             let tempUser = this.state.updatedUsers[index];
             tempUser.admin = true;
@@ -97,7 +97,7 @@ class UserPrivileges extends Component {
     }
 
     adminToFalse(index) {
-        if (this.state.updatedUsers[index].creator) {
+        if (this.props.auth.creator) {
             let allTempUsers = this.state.updatedUsers;
             let tempUser = this.state.updatedUsers[index];
             tempUser.admin = false;

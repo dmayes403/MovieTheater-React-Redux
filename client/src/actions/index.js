@@ -6,8 +6,9 @@ import {
     THEATER_LIST, 
     THEATER_DELETE,
     MOVIE_SHOWINGS,
-    MOVIE_SHOWING_BY_ID ,
-    FETCH_ALL_USERS
+    MOVIE_SHOWING_BY_ID,
+    FETCH_ALL_USERS,
+    UPDATE_ALL_USERS
     } from './types';
 
 export const fetchUser = () => async dispatch => {
@@ -60,10 +61,9 @@ export const getAllUsers = () => async dispatch => {
 }
 
 export const updateUsers = (updatedUsers) => async dispatch => {
-    console.log('actions..');
     const savedUsers = await axios.post(`/api/users`, updatedUsers);
-    console.log('users: ' + savedUsers);
-    dispatch({ type: FETCH_ALL_USERS, payload: savedUsers.data });
+    // this sends back the updated users and also the updated current user for authentication
+    dispatch({ type: UPDATE_ALL_USERS, payload: savedUsers.data });
 }
 
 export const saveTheater = (theater) => async dispatch => {

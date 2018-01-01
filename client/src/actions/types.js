@@ -7,3 +7,4 @@ export const DASHBOARD_DETAILS = 'dashboard_details';
 export const MOVIE_SHOWING_BY_ID = 'movie_showing_by_id';
 export const FETCH_USER = 'fetch_user';
 export const FETCH_ALL_USERS = 'fetch_all_users';
+export const UPDATE_ALL_USERS = 'update_all_users';
