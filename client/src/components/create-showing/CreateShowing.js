@@ -26,13 +26,23 @@ class CreateShowing extends Component {
     }
 
     componentDidMount() {
-        this.props.getMovieDetails(this.props.match.params.id);
-        this.props.getTheaterList();
-        this.props.getShowingsById(this.props.match.params.id).then(res => {
-            if (this.props.movieShowingsById && this.props.movieShowingsById.length > 0) {
-                this.coerceShowing();
-            }
+        this.props.fetchUser().then(() => {
+            this.checkAuth();
         });
+    }
+
+    checkAuth() {
+        if (!this.props.auth.admin) {
+            this.props.history.push('/');
+        } else {
+            this.props.getMovieDetails(this.props.match.params.id);
+            this.props.getTheaterList();
+            this.props.getShowingsById(this.props.match.params.id).then(res => {
+                if (this.props.movieShowingsById && this.props.movieShowingsById.length > 0) {
+                    this.coerceShowing();
+                }
+            });
+        }
     }
 
     render() {
@@ -318,13 +328,15 @@ function mapStateToProps(state) {
             movieDetails: state.movieDetails,
             theaterList: state.theaterList,
             formValues: state.form.createShowing.values,
-            movieShowingsById: state.movieShowingsById
+            movieShowingsById: state.movieShowingsById,
+            auth: state.auth
         };
     } else {
         return { 
             movieDetails: state.movieDetails,
             theaterList: state.theaterList,
-            movieShowingsById: state.movieShowingsById
+            movieShowingsById: state.movieShowingsById,
+            auth: state.auth
         };
     }
 }

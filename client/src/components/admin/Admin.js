@@ -1,17 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
+import * as actions from '../../actions';
 
 import UserPrivileges from '../user-privileges/userPrivileges';
 import TheaterListUpdate from '../theater-list-update/theaterListUpdate';
 
 class Admin extends Component {
     componentDidMount() {
-        this.checkAuth();
+        this.props.fetchUser().then(() => {
+            this.checkAuth();
+        });
     }
 
     checkAuth() {
-        if (!this.props.auth) {
+        if (!this.props.auth.admin) {
             this.props.history.push('/');
         }
     }
@@ -34,4 +37,4 @@ function mapStateToProps({ auth }) {
     return { auth };
 }
 
-export default connect(mapStateToProps)(withRouter(Admin));
+export default connect(mapStateToProps, actions)(withRouter(Admin));

@@ -71,6 +71,7 @@ class UserPrivileges extends Component {
             let allTempUsers = this.state.updatedUsers;
             let tempUser = this.state.updatedUsers[index];
             tempUser.creator = true;
+            tempUser.admin = true;
             allTempUsers[index] = tempUser;
             this.setState({ updatedUsers: allTempUsers });
         }

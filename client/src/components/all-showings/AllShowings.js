@@ -1,14 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-// import _ from 'lodash';
 import * as actions from '../../actions';
 
 import './AllShowings.css';
 
 class AllShowings extends Component {
     componentDidMount() {
-        this.props.getShowings();
+        this.props.fetchUser().then(() => {
+            this.checkAuth();
+        });
+    }
+
+    checkAuth() {
+        if (!this.props.auth.admin) {
+            this.props.history.push('/');
+        } else {
+            this.props.getShowings();
+        }
     }
 
     render() {
@@ -66,7 +75,7 @@ class AllShowings extends Component {
 
 }
 
-function mapStateToProps({ movieShowings }) {
+function mapStateToProps({ movieShowings, auth }) {
     // if (movieShowings.movieDetails.length > 0 && movieShowings.showings.length > 0) {
     //     console.log('1');
     //     return { movieShowings };
@@ -78,7 +87,7 @@ function mapStateToProps({ movieShowings }) {
     //     return { movieShowings };
     // }
 
-    return { movieShowings };
+    return { movieShowings, auth };
     
 }
 
