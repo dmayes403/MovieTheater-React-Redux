@@ -10,7 +10,7 @@ const ShowTime = mongoose.model('showTimes');
 
 module.exports = app => {
     // get movie details by movie id
-    app.get(`/api/movieDetailsById/:id`, requireLogin, async (req, res) => {
+    app.get(`/api/movieDetailsById/:id`, async (req, res) => {
         const getDetailsURL = `https://api.themoviedb.org/3/movie/${req.params.id}?api_key=${keys.movieDBKEY}&language=en-US`;
         const getVideosURL = `https://api.themoviedb.org/3/movie/${req.params.id}/videos?api_key=${keys.movieDBKEY}&language=en-US`;
         const getRatingsURL = `https://api.themoviedb.org/3/movie/${req.params.id}/release_dates?api_key=${keys.movieDBKEY}&language=en-US`;
