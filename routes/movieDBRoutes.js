@@ -80,7 +80,7 @@ module.exports = app => {
         }
     });
 
-    app.get(`/api/getShowings`, requireLogin, async (req, res) => {
+    app.get(`/api/getShowings`, async (req, res) => {
         let tempShowTimes = [];
         let movieDetails = [];
 
