@@ -14,7 +14,7 @@ class Admin extends Component {
     }
 
     checkAuth() {
-        if (!this.props.auth.admin) {
+        if (!this.props.auth.admin && !this.props.auth.creator) {
             this.props.history.push('/');
         }
     }

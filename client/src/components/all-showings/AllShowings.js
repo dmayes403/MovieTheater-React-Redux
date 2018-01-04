@@ -13,7 +13,7 @@ class AllShowings extends Component {
     }
 
     checkAuth() {
-        if (!this.props.auth.admin) {
+        if (!this.props.auth.admin && !this.props.auth.creator) {
             this.props.history.push('/');
         } else {
             this.props.getShowings();
@@ -40,7 +40,7 @@ class AllShowings extends Component {
         const usedIds = [];
 
         return (
-            this.props.movieShowings.showings.reverse().map(showing => {
+            this.props.movieShowings.showings.map(showing => {
                 let showingDetails = [];
                 this.props.movieShowings.movieDetails.forEach(detail => {
                     if (detail[2].id.toString() === showing.movieId) {

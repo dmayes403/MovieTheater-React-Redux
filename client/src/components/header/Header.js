@@ -29,7 +29,7 @@ class Header extends Component {
                     <a href="/auth/google" className="headerLinkStyle">Login With Google</a>
                 );
             default:
-                if (this.props.auth.admin) {
+                if (this.props.auth.admin || this.props.auth.creator) {
                     return (
                         <div style={{color: 'white', display: 'flex', flexDirection: 'row'}}>
                             <Link to={'/search-movies'} className="headerLinkStyle">Search Movies</Link>
