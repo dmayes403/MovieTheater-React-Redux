@@ -29,16 +29,24 @@ class Header extends Component {
                     <a href="/auth/google" className="headerLinkStyle">Login With Google</a>
                 );
             default:
-                return (
-                    <div style={{color: 'white', display: 'flex', flexDirection: 'row'}}>
-                        <Link to={'/search-movies'} className="headerLinkStyle">Search Movies</Link>
-                        <Link to={'/all-showings'} className="headerLinkStyle" style={{marginLeft: '10px'}}>All Showings</Link>
-                        <div style={{marginLeft: '10px'}}>||</div>
-                        <Link to={'/admin'} className="headerLinkStyle" style={{marginLeft: '10px'}}>Admin</Link>
-                        <div style={{marginLeft: '10px'}}>||</div>
-                        <a href="/api/logout" className="headerLinkStyle" style={{marginLeft: '10px'}}>Logout</a>
-                    </div>
-                );
+                if (this.props.auth.admin) {
+                    return (
+                        <div style={{color: 'white', display: 'flex', flexDirection: 'row'}}>
+                            <Link to={'/search-movies'} className="headerLinkStyle">Search Movies</Link>
+                            <Link to={'/all-showings'} className="headerLinkStyle" style={{marginLeft: '10px'}}>All Showings</Link>
+                            <div style={{marginLeft: '10px'}}>||</div>
+                            <Link to={'/admin'} className="headerLinkStyle" style={{marginLeft: '10px'}}>Admin</Link>
+                            <div style={{marginLeft: '10px'}}>||</div>
+                            <a href="/api/logout" className="headerLinkStyle" style={{marginLeft: '10px'}}>Logout</a>
+                        </div>
+                    );
+                } else {
+                    return (
+                        <div style={{color: 'white', display: 'flex', flexDirection: 'row'}}>
+                            <a href="/api/logout" className="headerLinkStyle" style={{marginLeft: '10px'}}>Logout</a>
+                        </div>
+                    );
+                }
         }
     }
 }

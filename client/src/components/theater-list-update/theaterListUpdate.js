@@ -22,7 +22,7 @@ class TheaterListUpdate extends Component {
                         type="text"
                         name="theaterName"
                         component="input"
-                        placeholder="Add Theater"
+                        placeholder="Add Theater Room"
                     />
                 </form>
                 {this.renderTheaterTable()}
