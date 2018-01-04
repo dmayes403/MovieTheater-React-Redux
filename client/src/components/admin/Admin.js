@@ -2,11 +2,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import * as actions from '../../actions';
+import Snackbar from 'material-ui/Snackbar';
 
 import UserPrivileges from '../user-privileges/userPrivileges';
 import TheaterListUpdate from '../theater-list-update/theaterListUpdate';
 
 class Admin extends Component {
+    state = {
+        snackBarOpen: false
+    }
+
     componentDidMount() {
         this.props.fetchUser().then(() => {
             this.checkAuth();
@@ -24,12 +29,27 @@ class Admin extends Component {
             <div className="main-container">
                 <div className="inner-main-container" style={{paddingTop: '50px'}}>
                     <div className="flex-row">
-                        <UserPrivileges />
+                        <UserPrivileges snackBarOpen={this.openToaster}/>
                         <TheaterListUpdate />
+                        <Snackbar
+                            open={this.state.snackBarOpen}
+                            message="Saved user privileges"
+                            autoHideDuration={3000}
+                            onRequestClose={this.closeToaster}
+                            contentStyle={{textAlign: 'center'}}
+                            />
                     </div>
                 </div>
             </div>
         )
+    }
+
+    openToaster = () => {
+        this.setState({ snackBarOpen: true });
+    }
+
+    closeToaster = () => {
+        this.setState({ snackBarOpen: false });
     }
 }
 

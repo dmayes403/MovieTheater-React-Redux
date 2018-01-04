@@ -50,7 +50,7 @@ class UserPrivileges extends Component {
                 <span className="flex-grow"></span>
                 <div className="flex-row flex-end">
                     <div className="z-depth-3 button background-blue" onClick={() => this.cancelUserPrivileges()}>Cancel</div>
-                    <div className="z-depth-3 button background-green" style={{marginLeft: '10px'}} onClick={() => this.props.updateUsers(this.state.updatedUsers)}>Save</div>
+                    <div className="z-depth-3 button background-green" style={{marginLeft: '10px'}} onClick={() => {this.props.updateUsers(this.state.updatedUsers); this.props.snackBarOpen()}}>Save</div>
                 </div>
             </Card>
         )
