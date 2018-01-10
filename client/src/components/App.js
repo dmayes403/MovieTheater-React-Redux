@@ -12,11 +12,31 @@ import Dashboard from './dashboard/Dashboard';
 import AllShowings from './all-showings/AllShowings';
 import Admin from './admin/Admin';
 
+import PrivateRoute from './private-route/PrivateRoute';
+
 class App extends Component {
     componentDidMount() {
         this.props.fetchUser();
         //^^ props comes from actions being passed to the connect function below
     }
+
+    // render() {
+    //     return (
+    //         <MuiThemeProvider>
+    //             <BrowserRouter>
+    //                 <div className="App" style={{ backgroundColor: "white" }}>
+    //                     <Header />
+    //                     <Route exact path="/" component={Dashboard} />
+    //                     <Route exact path="/search-movies" component={SearchMovies} />
+    //                     <Route exact path="/movie-details/:id" component={MovieDetails} />
+    //                     <Route path="/create-showing/:id" component={CreateShowing} />
+    //                     <Route path="/all-showings" component={AllShowings} />
+    //                     <Route path="/admin" component={Admin} />
+    //                 </div>
+    //             </BrowserRouter>
+    //         </MuiThemeProvider>
+    //     );
+    // }
 
     render() {
         return (
@@ -29,7 +49,7 @@ class App extends Component {
                         <Route exact path="/movie-details/:id" component={MovieDetails} />
                         <Route path="/create-showing/:id" component={CreateShowing} />
                         <Route path="/all-showings" component={AllShowings} />
-                        <Route path="/admin" component={Admin} />
+                        <PrivateRoute path="/admin" component={Admin} />
                     </div>
                 </BrowserRouter>
             </MuiThemeProvider>

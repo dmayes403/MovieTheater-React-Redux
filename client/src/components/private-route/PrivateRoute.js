@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import {
     BrowserRouter as Router,
     Route,
@@ -7,15 +9,19 @@ import {
     withRouter
 } from 'react-router-dom';
 
-const PrivateRoute = ({ component: Component, ...rest }) => (
-    <Route {...rest} render={(props) => (
-        fakeAuth.isAuthenticated === true
-            ? <Component {...props} />
-            : <Redirect to={{
-                pathname: '/login',
-                state: { from: props.location }
-            }} />
-    )} />
-)
+class PrivateRoute extends Component {
 
-export default PrivateRoute;
+    render() {
+        return (
+            <div>Private Route</div>
+        )
+    }
+
+}
+
+function mapStateToProps({ auth }) {
+    return { auth };
+}
+
+export default connect(mapStateToProps)(PrivateRoute);
+
