@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+// import { BrowserRouter, Route } from 'react-router-dom';
+import { 
+    BrowserRouter as Router,
+    Route,
+    Redirect
+} from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
@@ -12,7 +17,29 @@ import Dashboard from './dashboard/Dashboard';
 import AllShowings from './all-showings/AllShowings';
 import Admin from './admin/Admin';
 
-import PrivateRoute from './private-route/PrivateRoute';
+// import PrivateRoute from './private-route/PrivateRoute';
+
+const PrivateRoute = ({ component: Component, ...rest }) => {
+    let authProps = {rest};
+    authProps = authProps.rest.auth;
+    if (authProps) {
+        return (
+            <Route {...rest} render={(props) => (
+                authProps.admin || authProps.creator
+                // true
+                ? <Component {...props} />
+                : <Redirect to={{
+                    pathname: '/',
+                    state: { from: props.location }
+                }} />
+            )} />
+        )
+    } else {
+        return (
+            <div>Loading... </div>
+        )
+    }
+}
 
 class App extends Component {
     componentDidMount() {
@@ -41,7 +68,7 @@ class App extends Component {
     render() {
         return (
             <MuiThemeProvider>
-                <BrowserRouter>
+                <Router>
                     <div className="App" style={{ backgroundColor: "white" }}>
                         <Header />
                         <Route exact path="/" component={Dashboard} />
@@ -49,12 +76,18 @@ class App extends Component {
                         <Route exact path="/movie-details/:id" component={MovieDetails} />
                         <Route path="/create-showing/:id" component={CreateShowing} />
                         <Route path="/all-showings" component={AllShowings} />
-                        <PrivateRoute path="/admin" component={Admin} />
+                        <PrivateRoute path="/admin" component={Admin} auth={this.props.auth}/>
                     </div>
-                </BrowserRouter>
+                </Router>
             </MuiThemeProvider>
         );
     }
 }
 
-export default connect(null, actions)(App);
+// export default connect(null, actions)(App);
+
+function mapStateToProps({ auth }) {
+    return { auth };
+}
+
+export default connect(mapStateToProps, actions)(App);

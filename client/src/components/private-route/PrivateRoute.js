@@ -11,9 +11,18 @@ import {
 
 class PrivateRoute extends Component {
 
+    // render() {
+    //     console.log(this.props);
+    //     return (
+    //         <div>Private Route</div>
+    //     )
+    // }
+
     render() {
         return (
-            <div>Private Route</div>
+            <Route render = {() => (
+                <Component {...this.props} />
+            )} />
         )
     }
 
