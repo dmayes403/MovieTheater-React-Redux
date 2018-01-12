@@ -26,7 +26,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
         return (
             <Route {...rest} render={(props) => (
                 authProps.admin || authProps.creator
-                // true
                 ? <Component {...props} />
                 : <Redirect to={{
                     pathname: '/',
@@ -36,7 +35,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
         )
     } else {
         return (
-            <div>Loading... </div>
+            <div style={{display: 'none'}}>Loading... </div>
         )
     }
 }
@@ -47,24 +46,6 @@ class App extends Component {
         //^^ props comes from actions being passed to the connect function below
     }
 
-    // render() {
-    //     return (
-    //         <MuiThemeProvider>
-    //             <BrowserRouter>
-    //                 <div className="App" style={{ backgroundColor: "white" }}>
-    //                     <Header />
-    //                     <Route exact path="/" component={Dashboard} />
-    //                     <Route exact path="/search-movies" component={SearchMovies} />
-    //                     <Route exact path="/movie-details/:id" component={MovieDetails} />
-    //                     <Route path="/create-showing/:id" component={CreateShowing} />
-    //                     <Route path="/all-showings" component={AllShowings} />
-    //                     <Route path="/admin" component={Admin} />
-    //                 </div>
-    //             </BrowserRouter>
-    //         </MuiThemeProvider>
-    //     );
-    // }
-
     render() {
         return (
             <MuiThemeProvider>
@@ -72,10 +53,10 @@ class App extends Component {
                     <div className="App" style={{ backgroundColor: "white" }}>
                         <Header />
                         <Route exact path="/" component={Dashboard} />
-                        <Route exact path="/search-movies" component={SearchMovies} />
+                        <PrivateRoute exact path="/search-movies" component={SearchMovies} />
                         <Route exact path="/movie-details/:id" component={MovieDetails} />
-                        <Route path="/create-showing/:id" component={CreateShowing} />
-                        <Route path="/all-showings" component={AllShowings} />
+                        <PrivateRoute path="/create-showing/:id" component={CreateShowing} />
+                        <PrivateRoute path="/all-showings" component={AllShowings} />
                         <PrivateRoute path="/admin" component={Admin} auth={this.props.auth}/>
                     </div>
                 </Router>
