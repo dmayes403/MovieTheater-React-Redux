@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import { BrowserRouter, Route } from 'react-router-dom';
 import { 
     BrowserRouter as Router,
     Route,
@@ -16,8 +15,6 @@ import CreateShowing from './create-showing/CreateShowing';
 import Dashboard from './dashboard/Dashboard';
 import AllShowings from './all-showings/AllShowings';
 import Admin from './admin/Admin';
-
-// import PrivateRoute from './private-route/PrivateRoute';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
     let authProps = {rest};
@@ -53,19 +50,17 @@ class App extends Component {
                     <div className="App" style={{ backgroundColor: "white" }}>
                         <Header />
                         <Route exact path="/" component={Dashboard} />
-                        <PrivateRoute exact path="/search-movies" component={SearchMovies} />
+                        <PrivateRoute exact path="/search-movies" component={SearchMovies} auth={this.props.auth} />
                         <Route exact path="/movie-details/:id" component={MovieDetails} />
-                        <PrivateRoute path="/create-showing/:id" component={CreateShowing} />
-                        <PrivateRoute path="/all-showings" component={AllShowings} />
-                        <PrivateRoute path="/admin" component={Admin} auth={this.props.auth}/>
+                        <PrivateRoute path="/create-showing/:id" component={CreateShowing} auth={this.props.auth} />
+                        <PrivateRoute path="/all-showings" component={AllShowings} auth={this.props.auth} />
+                        <PrivateRoute path="/admin" component={Admin} auth={this.props.auth} />
                     </div>
                 </Router>
             </MuiThemeProvider>
         );
     }
 }
-
-// export default connect(null, actions)(App);
 
 function mapStateToProps({ auth }) {
     return { auth };
