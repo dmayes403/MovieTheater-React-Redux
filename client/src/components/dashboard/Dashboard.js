@@ -111,13 +111,6 @@ class Dashboard extends Component {
 } 
 
 function mapStateToProps({ movieShowings }) {
-    // if (movieShowings.showings.length > 0) {
-    // if (_.has(movieShowings, 'showings')) {
-    //     return { movieShowings };
-    // } else {
-    //     return {};
-    // }
-
     return { movieShowings };
 }
 

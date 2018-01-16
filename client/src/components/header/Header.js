@@ -31,13 +31,18 @@ class Header extends Component {
             default:
                 if (this.props.auth.admin || this.props.auth.creator) {
                     return (
-                        <div style={{color: 'white', display: 'flex', flexDirection: 'row'}}>
-                            <Link to={'/search-movies'} className="headerLinkStyle">Search Movies</Link>
-                            <Link to={'/all-showings'} className="headerLinkStyle" style={{marginLeft: '10px'}}>All Showings</Link>
-                            <div style={{marginLeft: '10px'}}>||</div>
-                            <Link to={'/admin'} className="headerLinkStyle" style={{marginLeft: '10px'}}>Admin</Link>
-                            <div style={{marginLeft: '10px'}}>||</div>
-                            <a href="/api/logout" className="headerLinkStyle" style={{marginLeft: '10px'}}>Logout</a>
+                        <div>
+                            <div className="large-header">
+                                <Link to={'/search-movies'} className="headerLinkStyle">Search Movies</Link>
+                                <Link to={'/all-showings'} className="headerLinkStyle" style={{marginLeft: '10px'}}>All Showings</Link>
+                                <div style={{marginLeft: '10px'}}>||</div>
+                                <Link to={'/admin'} className="headerLinkStyle" style={{marginLeft: '10px'}}>Admin</Link>
+                                <div style={{marginLeft: '10px'}}>||</div>
+                                <a href="/api/logout" className="headerLinkStyle" style={{marginLeft: '10px'}}>Logout</a>
+                            </div>
+                            <div className="small-header">
+                                <i className="material-icons">menu</i>
+                            </div>
                         </div>
                     );
                 } else {
