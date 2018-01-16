@@ -10,8 +10,7 @@ class Header extends Component {
             <div className="container">
                 <Link 
                     to={'/'}
-                    style={{fontSize: '48px'}}
-                    className="headerLinkStyle"
+                    className="logoLink"
                     >
                     Ticket Cinemas
                 </Link>

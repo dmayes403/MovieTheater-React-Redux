@@ -20,6 +20,20 @@
 }
 
 @media (min-width: 775px) {
+    .logoLink {
+        color: white;
+        font-size: 48px;
+    }
+}
+
+@media (max-width: 774px) {
+    .logoLink {
+        color: white;
+        font-size: 24px;
+    }
+}
+
+@media (min-width: 775px) {
     .large-header {
         color: white;
         display: flex;
@@ -30,6 +44,7 @@
 @media (max-width: 774px) {
     .large-header {
         display: none;
+        max-width: 100%;
     }
 }
 
