@@ -62,6 +62,7 @@ class Dashboard extends Component {
     }
 
     renderShowings() {
+        console.log(window.innerWidth);
         let count = 0;
         return this.props.movieShowings.showings.map(showing => {
             count++;
@@ -77,10 +78,10 @@ class Dashboard extends Component {
 
             if (Date.parse(this.state.focusedDate) >= Date.parse(startDateString) && Date.parse(this.state.focusedDate) <= Date.parse(endDateString)) {
                 return (
-                    <div>
-                        <Card key={count} className="large-movie-card" style={{borderRadius: '5px', padding: '10px', margin: '15px 0px'}}><Link to={`/movie-details/${showingDetails[2].id}`}>
+                    <div key={count}>
+                        <Card className="large-movie-card" style={{borderRadius: '5px', padding: '10px', margin: '15px 0px'}}><Link to={`/movie-details/${showingDetails[2].id}`}>
                             <div style={{display: 'flex', flexDirection: 'row'}}>
-                                <img src={ `http://image.tmdb.org/t/p/w154//${showingDetails[2].poster_path}` }
+                                <img style={{maxHeight: '250px'}} src={`http://image.tmdb.org/t/p/w154//${showingDetails[2].poster_path}`}
                                 alt="poster"/>
                                 <div className="movie-detail-container">
                                     <span className="dashboard-movie-title">{showingDetails[2].original_title}</span>
@@ -95,11 +96,11 @@ class Dashboard extends Component {
                                 </div>
                             </div>
                         </Link></Card>
-                        <Card key={count} className="small-movie-card" style={{borderRadius: '5px', padding: '10px', margin: '15px 0px'}}><Link to={`/movie-details/${showingDetails[2].id}`}>
+                        <Card className="small-movie-card" style={{borderRadius: '5px', padding: '10px', margin: '15px 0px'}}><Link to={`/movie-details/${showingDetails[2].id}`}>
                             <div style={{display: 'flex', flexDirection: 'column'}}>
-                                <img style={{maxWidth: '154px'}} src={ `http://image.tmdb.org/t/p/w154//${showingDetails[2].poster_path}` }
+                                <img style={{margin: 'auto'}} src={`http://image.tmdb.org/t/p/w300//${showingDetails[2].poster_path}` }
                                 alt="poster"/>
-                                <div className="movie-detail-container">
+                                <div className="movie-detail-container" style={{margin: 'auto'}}>
                                     <div style={{display: 'flex', flexDirection: 'row'}}>
                                         <span className="dashboard-movie-title">{showingDetails[2].original_title}</span>
                                         <span style={{marginTop: '15px'}}>Rating: {showingDetails[1]}</span>

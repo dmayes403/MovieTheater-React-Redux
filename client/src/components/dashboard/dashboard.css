@@ -92,13 +92,13 @@
     }
 }
 
-@media (max-width: 774px) {
+@media (max-width: 499px) {
     .large-movie-card {
         display: none;
     }
 }
 
-@media (min-width: 775px) {
+@media (min-width: 500px) {
     .large-movie-card {
         border-radius: 5px;
         padding: 10px; 
@@ -106,12 +106,12 @@
     }
 }
 
-@media (max-width: 774px) {
+@media (max-width: 499px) {
     .small-movie-card {
     }
 }
 
-@media (min-width: 775px) {
+@media (min-width: 500px) {
     .small-movie-card {
         display: none;
     }
