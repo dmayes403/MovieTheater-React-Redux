@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Card } from 'material-ui/Card';
 import { connect } from 'react-redux';
 import * as moment from 'moment';
-// import _ from 'lodash';
 import * as actions from '../../actions';
 import { Link } from 'react-router-dom';
 
@@ -32,9 +31,9 @@ class Dashboard extends Component {
 
                 dateBoxes.push(
                                 <div key={i} className={ this.state.focusedDateIndex === i ? 'highlighted-date-box' : 'date-box' } onClick={() => this.getDate(date, i)}>
-                                    <div>{moment(date, moment.ISO_8601).format("ddd").toString()}</div>
-                                    <div style={{fontSize: '1.8em'}}>{moment(date, moment.ISO_8601).format("D").toString()}</div>
-                                    <div>{moment(date, moment.ISO_8601).format("MMMM").toString()}</div>
+                                    <div className="box-date-size">{moment(date, moment.ISO_8601).format("ddd").toString()}</div>
+                                    <div className="box-date-size-middle" style={{fontSize: '1.8em'}}>{moment(date, moment.ISO_8601).format("D").toString()}</div>
+                                    <div className="box-date-size">{moment(date, moment.ISO_8601).format("MMM").toString()}</div>
                                 </div>
                             );
             }
@@ -78,23 +77,43 @@ class Dashboard extends Component {
 
             if (Date.parse(this.state.focusedDate) >= Date.parse(startDateString) && Date.parse(this.state.focusedDate) <= Date.parse(endDateString)) {
                 return (
-                    <Card key={count} style={{borderRadius: '5px', padding: '10px', margin: '15px 0px'}}><Link to={`/movie-details/${showingDetails[2].id}`}>
-                        <div style={{display: 'flex', flexDirection: 'row'}}>
-                            <img src={ `http://image.tmdb.org/t/p/w154//${showingDetails[2].poster_path}` }
-                            alt="poster"/>
-                            <div className="movie-detail-container">
-                                <span className="dashboard-movie-title">{showingDetails[2].original_title}</span>
-                                <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
-                                    {showing.startTime.map(time => (
-                                        <div key={time} className="time-container">{time}</div>
-                                    ))}
+                    <div key={count}>
+                        <Card className="large-movie-card" style={{borderRadius: '5px', padding: '10px', margin: '15px 0px'}}><Link to={`/movie-details/${showingDetails[2].id}`}>
+                            <div style={{display: 'flex', flexDirection: 'row'}}>
+                                <img style={{maxHeight: '250px'}} src={`http://image.tmdb.org/t/p/w154//${showingDetails[2].poster_path}`}
+                                alt="poster"/>
+                                <div className="movie-detail-container">
+                                    <span className="dashboard-movie-title">{showingDetails[2].original_title}</span>
+                                    <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                                        {showing.startTime.map(time => (
+                                            <div key={time} className="time-container">{time}</div>
+                                        ))}
+                                    </div>
+                                    <span style={{marginTop: '10px'}}>{showingDetails[1]}</span>
+                                    <span>{showingDetails[2].runtime}m</span>
+                                    <span style={{marginTop: '25px'}}>{showingDetails[2].overview}</span>
                                 </div>
-                                <span style={{marginTop: '10px'}}>{showingDetails[1]}</span>
-                                <span>{showingDetails[2].runtime}m</span>
-                                <span style={{marginTop: '25px'}}>{showingDetails[2].overview}</span>
                             </div>
-                        </div>
-                    </Link></Card>
+                        </Link></Card>
+                        <Card className="small-movie-card" style={{borderRadius: '5px', padding: '10px', margin: '15px 0px'}}><Link to={`/movie-details/${showingDetails[2].id}`}>
+                            <div style={{display: 'flex', flexDirection: 'column'}}>
+                                <img style={{margin: 'auto'}} src={`http://image.tmdb.org/t/p/w300//${showingDetails[2].poster_path}` }
+                                alt="poster"/>
+                                <div className="movie-detail-container" style={{margin: 'auto'}}>
+                                    <div style={{display: 'flex', flexDirection: 'row'}}>
+                                        <span className="dashboard-movie-title">{showingDetails[2].original_title}</span>
+                                        <span style={{marginTop: '15px'}}>Rating: {showingDetails[1]}</span>
+                                        <span style={{marginTop: '15px', marginLeft: '10px'}}>Run Time: {showingDetails[2].runtime}m</span>
+                                    </div>
+                                    <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                                        {showing.startTime.map(time => (
+                                            <div key={time} className="time-container">{time}</div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </Link></Card>
+                    </div>
                 );
             } else {
                 return null;

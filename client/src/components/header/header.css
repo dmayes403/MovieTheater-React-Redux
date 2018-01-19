@@ -19,3 +19,47 @@
     color: white;
 }
 
+@media (min-width: 775px) {
+    .logoLink {
+        color: white;
+        font-size: 48px;
+    }
+}
+
+@media (max-width: 774px) {
+    .logoLink {
+        color: white;
+        font-size: 24px;
+    }
+}
+
+@media (min-width: 775px) {
+    .large-header {
+        color: white;
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+@media (max-width: 774px) {
+    .large-header {
+        display: none;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 774px) {
+    .small-header {
+        color: white;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+@media (min-width: 775px) {
+    .small-header {
+        display: none;
+    }
+}
+
