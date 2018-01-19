@@ -62,7 +62,6 @@ class Dashboard extends Component {
     }
 
     renderShowings() {
-        console.log(window.innerWidth);
         let count = 0;
         return this.props.movieShowings.showings.map(showing => {
             count++;
