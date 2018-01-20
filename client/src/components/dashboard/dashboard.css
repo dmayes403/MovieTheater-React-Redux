@@ -97,10 +97,10 @@
     }
 }
 
-@media (max-width: 499px) {
+/* @media (max-width: 499px) {
     .small-movie-card {
     }
-}
+} */
 
 @media (min-width: 500px) {
     .small-movie-card {
