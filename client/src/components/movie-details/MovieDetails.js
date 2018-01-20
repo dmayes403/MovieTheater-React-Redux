@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { Card } from 'material-ui/Card';
 import * as actions from '../../actions';
 import './movieDetails.css';
 
@@ -33,7 +34,7 @@ class MovieDetails extends Component {
 
         return (
             <div className="main-container">
-                <div className="video-details-container">
+                <div className="large-video-details-container">
                     <div style={detailContainerStyles}>
                         <img src={ `http://image.tmdb.org/t/p/w342//${movieDetails[2].poster_path}` }
                             style={{width: '35%', minWidth: '300px', height: '50%'}}
@@ -54,10 +55,39 @@ class MovieDetails extends Component {
                             <p>{movieDetails[2].overview}</p>
                             
                             {this.renderButtons()}
-                            {/* <div className="flex-row" style={{justifyContent: 'center'}}>
-                                <Link to={`/search-movies`}><h6 className="z-depth-3 button background-blue">Cancel</h6></Link>
-                                <Link to={`/create-showing/${this.props.match.params.id}`}><h6 className="z-depth-3 create-showing">Create Showing</h6></Link>
-                            </div> */}
+                        </div>
+                    </div>
+                    <div className="videos-container">
+                        {this.renderVideos()}
+                    </div>
+                </div>
+
+                <div className="small-video-details-container">
+                    <div style={{paddingTop: '13px'}}>
+                        <h3 style={{margin: 'auto', textAlign: 'center', backgroundColor: '#3454b4', color: 'white', borderRadius: '5px', padding: '5px'}} className="z-depth-3">{movieDetails[2].title}</h3>
+                    </div>
+                    <Card style={{borderRadius: '5px', padding: '10px', margin: '15px 0px'}}>
+                        <div style={{margin: 'auto', textAlign: 'center'}}>
+                            <img src={ `http://image.tmdb.org/t/p/w300//${movieDetails[2].poster_path}` }
+                                alt="poster"/>
+                        </div>
+                    </Card>
+                    <div style={detailContainerStyles}>
+                        <div className="description-container">
+                            <p><span style={{textDecoration: 'underline'}}>Rating:</span> {movieDetails[1] ? movieDetails[1] : 'Unknown'}</p>
+                            <p><span style={{textDecoration: 'underline'}}>Run Time:</span> {movieDetails[2].runtime} minutes</p>
+                            <span style={{textDecoration: 'underline'}}>Production Companies:</span>
+                            <ul style={{marginTop: '5px'}}>
+                                {this.renderProdComps()}
+                            </ul>
+                            <span style={{textDecoration: 'underline'}}>Genres:</span>
+                            <ul style={{marginTop: '5px'}}>
+                                {this.renderGenres()}
+                            </ul>
+                            <span style={{textDecoration: 'underline'}}>Overview:</span>
+                            <p>{movieDetails[2].overview}</p>
+                            
+                            {this.renderButtons()}
                         </div>
                     </div>
                     <div className="videos-container">
