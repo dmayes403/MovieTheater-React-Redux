@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import * as actions from '../../actions';
 import './movieDetails.css';
 
-
+// Adding media queries
 class MovieDetails extends Component {
     componentDidMount() {
         this.props.getMovieDetails(this.props.match.params.id);
