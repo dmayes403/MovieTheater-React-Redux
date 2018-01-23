@@ -44,10 +44,28 @@
     }
 }
 
-.description-container {
-    width: 65%;
-    margin-left: 25px;
-    position: relative;
+@media (max-width: 774px) {
+    .description-container {
+        width: 100%;
+        position: relative;
+    }
+}
+
+@media (min-width: 775px) {
+    .description-container {
+        width: 65%;
+        margin-left: 25px;
+        position: relative;
+    }
+}
+
+@media (max-width: 774px) {
+    .overview-subtitle {
+        background-color: #E37222;
+        color: white;
+        padding: 3px;
+        width: 100%;
+    }
 }
 
 .create-showing {

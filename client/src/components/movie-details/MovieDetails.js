@@ -74,17 +74,8 @@ class MovieDetails extends Component {
                     </Card>
                     <div style={detailContainerStyles}>
                         <div className="description-container">
-                            <p><span style={{textDecoration: 'underline'}}>Rating:</span> {movieDetails[1] ? movieDetails[1] : 'Unknown'}</p>
-                            <p><span style={{textDecoration: 'underline'}}>Run Time:</span> {movieDetails[2].runtime} minutes</p>
-                            <span style={{textDecoration: 'underline'}}>Production Companies:</span>
-                            <ul style={{marginTop: '5px'}}>
-                                {this.renderProdComps()}
-                            </ul>
-                            <span style={{textDecoration: 'underline'}}>Genres:</span>
-                            <ul style={{marginTop: '5px'}}>
-                                {this.renderGenres()}
-                            </ul>
-                            <span style={{textDecoration: 'underline'}}>Overview:</span>
+                            <p style={{textAlign: 'center', fontWeight: 'bold', fontSize: '1.4em'}}>{movieDetails[1] ? movieDetails[1] : 'Unknown'} | {movieDetails[2].runtime} min | {movieDetails[2].production_companies[0].name}</p>
+                            <span className="overview-subtitle">Overview:</span>
                             <p>{movieDetails[2].overview}</p>
                             
                             {this.renderButtons()}
