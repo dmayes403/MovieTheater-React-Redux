@@ -132,7 +132,7 @@ class MovieDetails extends Component {
     }
 
     renderButtons() {
-        if (this.props.auth.admin) {
+        if (this.props.auth.admin || this.props.auth.creator) {
             return (
                 <div className="flex-row" style={{justifyContent: 'center'}}>
                     <Link to={`/search-movies`}><h6 className="z-depth-3 button background-blue" style={{padding: '10px'}}>Cancel</h6></Link>

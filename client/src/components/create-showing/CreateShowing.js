@@ -27,7 +27,7 @@ class CreateShowing extends Component {
 
     componentDidMount() {
         this.props.fetchUser().then(() => {
-            this.checkAuth();
+            // this.checkAuth();
         });
     }
 
@@ -95,7 +95,7 @@ class CreateShowing extends Component {
 
         return (
             <div className="main-container">
-                <div className="video-details-container">
+                <div className="large-video-details-container">
                     <div style={detailContainerStyles}>
                         <img src={ `http://image.tmdb.org/t/p/w342//${movieDetails[2].poster_path}` }
                             style={{width: '30%', minWidth: '300px', height: '50%'}}
