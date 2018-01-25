@@ -5,7 +5,6 @@ import { Card } from 'material-ui/Card';
 import * as actions from '../../actions';
 import './movieDetails.css';
 
-// adding media queries
 class MovieDetails extends Component {
     componentDidMount() {
         this.props.getMovieDetails(this.props.match.params.id);

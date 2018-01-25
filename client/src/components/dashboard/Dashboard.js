@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 
 import './dashboard.css';
 
-
 class Dashboard extends Component {
     state = { 
         focusedDateIndex: 0,
