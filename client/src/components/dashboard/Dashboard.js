@@ -99,10 +99,10 @@ class Dashboard extends Component {
                                 <img style={{margin: 'auto'}} src={`http://image.tmdb.org/t/p/w300//${showingDetails[2].poster_path}` }
                                 alt="poster"/>
                                 <div className="movie-detail-container" style={{margin: 'auto'}}>
-                                    <div style={{display: 'flex', flexDirection: 'row'}}>
-                                        <span className="dashboard-movie-title">{showingDetails[2].original_title}</span>
-                                        <span style={{marginTop: '15px'}}>Rating: {showingDetails[1]}</span>
-                                        <span style={{marginTop: '15px', marginLeft: '10px'}}>Run Time: {showingDetails[2].runtime}m</span>
+                                    <span className="dashboard-movie-title">{showingDetails[2].original_title}</span>
+                                    <div style={{display: 'flex', flexDirection: 'row', margin: 'auto'}}>
+                                        <span style={{paddingBottom: '5px'}}>Rating: {showingDetails[1]}</span>
+                                        <span style={{marginLeft: '10px'}}>Run Time: {showingDetails[2].runtime}m</span>
                                     </div>
                                     <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
                                         {showing.startTime.map(time => (

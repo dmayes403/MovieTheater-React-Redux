@@ -111,7 +111,8 @@
 
 .dashboard-movie-title {
     font-size: 2.2em;
-    margin-right: 25px;
+    /* margin-right: 25px; */
+    text-align: center;
 }
 
 .dashboard-linkStyle {
