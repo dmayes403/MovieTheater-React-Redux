@@ -129,9 +129,11 @@
 .time-container {
     background-color: #EEAA7B;
     color: white;
-    margin-right: 10px;
-    padding: 5px 10px;
+    margin-right: 7px;
+    padding: 5px 5px;
     border-radius: 25px;
     height: 25px;
     line-height: 16px;
+    min-width: 80px;
+    text-align: center;
 }
