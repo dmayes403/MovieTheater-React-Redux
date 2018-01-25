@@ -104,7 +104,7 @@ class Dashboard extends Component {
                                         <span style={{paddingBottom: '5px'}}>Rating: {showingDetails[1]}</span>
                                         <span style={{marginLeft: '10px'}}>Run Time: {showingDetails[2].runtime}m</span>
                                     </div>
-                                    <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center'}}>
+                                    <div style={{display: 'flex', flexDirection: 'row', alignItems: 'center', flexWrap: 'wrap', margin: 'auto', maxWidth: '262px'}}>
                                         {showing.startTime.map(time => (
                                             <div key={time} className="time-container">{time}</div>
                                         ))}
