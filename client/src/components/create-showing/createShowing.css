@@ -73,3 +73,27 @@
 td {
     border-radius: 0px;
 }
+
+@media (min-width: 775px) {
+    .large-create-showing-container {
+        width: 82%;
+        max-width: 1200px;
+        min-width: 700px;
+        margin: auto;
+        background-color: #E2DFDC;
+        flex-direction: column;
+        min-height: calc(100vh - 100px);
+        padding: 25px;
+        color: #07889B;
+    }
+}
+
+@media (max-width: 774px) {
+    .small-create-showing-container {
+        margin: auto;
+        flex-direction: column;
+        max-width: 100%;
+        min-width: 100%;
+        padding: 0px 25px 25px 25px;
+    }
+}

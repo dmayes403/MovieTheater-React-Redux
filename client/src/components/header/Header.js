@@ -68,8 +68,6 @@ class Header extends Component {
     }
 
     handleMenuChange = (event, value) => {
-        console.log(event);
-        console.log(value);
         switch (value) {
             case '1':
                 this.props.history.push('/search-movies');

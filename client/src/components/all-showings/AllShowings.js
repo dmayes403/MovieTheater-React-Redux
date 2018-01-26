@@ -55,8 +55,12 @@ class AllShowings extends Component {
                         <div className="single-showing card" key={showingDetails[2].id}>
                             <Link to={`/create-showing/${showing.movieId}`} className="linkStyle">
                                 <div>
-                                    <div>
+                                    <div className="large-showing-image">
                                         <img src={ `http://image.tmdb.org/t/p/w185//${showingDetails[2].poster_path}` }
+                                        alt="poster"/>
+                                    </div>
+                                    <div className="small-showing-image">
+                                        <img src={ `http://image.tmdb.org/t/p/w154//${showingDetails[2].poster_path}` }
                                         alt="poster"/>
                                     </div>
                                     <div>

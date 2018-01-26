@@ -27,14 +27,6 @@ class CreateShowing extends Component {
 
     componentDidMount() {
         this.props.fetchUser().then(() => {
-            // this.checkAuth();
-        });
-    }
-
-    checkAuth() {
-        if (!this.props.auth.admin) {
-            this.props.history.push('/');
-        } else {
             this.props.getMovieDetails(this.props.match.params.id);
             this.props.getTheaterList();
             this.props.getShowingsById(this.props.match.params.id).then(res => {
@@ -42,7 +34,7 @@ class CreateShowing extends Component {
                     this.coerceShowing();
                 }
             });
-        }
+        });
     }
 
     render() {
@@ -95,7 +87,7 @@ class CreateShowing extends Component {
 
         return (
             <div className="main-container">
-                <div className="large-video-details-container">
+                <div className="large-create-showing-container">
                     <div style={detailContainerStyles}>
                         <img src={ `http://image.tmdb.org/t/p/w342//${movieDetails[2].poster_path}` }
                             style={{width: '30%', minWidth: '300px', height: '50%'}}
