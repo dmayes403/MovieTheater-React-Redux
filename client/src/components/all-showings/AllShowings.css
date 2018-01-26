@@ -8,11 +8,6 @@
     min-width: 700px;
 }
 
-/* .all-showings-container:after {
-    content: "";
-    flex: auto;
-} */
-
 .single-showing {
     margin: 10px;
     text-align: center;
