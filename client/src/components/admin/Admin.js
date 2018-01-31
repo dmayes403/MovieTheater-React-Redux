@@ -26,18 +26,36 @@ class Admin extends Component {
 
     render() {
         return (
-            <div className="main-container">
-                <div className="inner-main-container" style={{paddingTop: '50px'}}>
-                    <div className="flex-row">
-                        <UserPrivileges snackBarOpen={this.openToaster}/>
-                        <TheaterListUpdate />
-                        <Snackbar
-                            open={this.state.snackBarOpen}
-                            message="Saved user privileges"
-                            autoHideDuration={3000}
-                            onRequestClose={this.closeToaster}
-                            contentStyle={{textAlign: 'center'}}
-                            />
+            <div>
+                {/* <div className="main-container large-admin">
+                    <div className="inner-main-container" style={{paddingTop: '50px'}}>
+                        <div className="flex-row">
+                            <UserPrivileges snackBarOpen={this.openToaster}/>
+                            <TheaterListUpdate />
+                            <Snackbar
+                                open={this.state.snackBarOpen}
+                                message="Saved user privileges"
+                                autoHideDuration={3000}
+                                onRequestClose={this.closeToaster}
+                                contentStyle={{textAlign: 'center'}}
+                                />
+                        </div>
+                    </div>
+                </div> */}
+
+                <div className="main-container small-admin">
+                    <div className="inner-main-container" style={{paddingTop: '50px'}}>
+                        <div className="flex-column">
+                            <TheaterListUpdate />
+                            <UserPrivileges snackBarOpen={this.openToaster}/>
+                            <Snackbar
+                                open={this.state.snackBarOpen}
+                                message="Saved user privileges"
+                                autoHideDuration={3000}
+                                onRequestClose={this.closeToaster}
+                                contentStyle={{textAlign: 'center'}}
+                                />
+                        </div>
                     </div>
                 </div>
             </div>

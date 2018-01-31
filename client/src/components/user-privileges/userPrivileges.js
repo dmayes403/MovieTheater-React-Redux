@@ -24,35 +24,67 @@ class UserPrivileges extends Component {
 
     render() {
         return (
-            <Card className="privilege-container flex-column flex-grow">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Email</th>
-                            <th colSpan="2" style={{textAlign: 'center'}}>Creator</th>
-                            <th colSpan="2" style={{marginLeft: '50px', textAlign: 'center'}}>Admin</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {this.state.updatedUsers.map((user, index) => 
-                            <tr key={user.googleId}>
-                                <td>{user.name}</td>
-                                <td>{user.email[0]}</td>
-                                <td onClick={() => {this.creatorToTrue(index)}} style={{textAlign: 'center', cursor: 'pointer'}}><div className={user.creator ? "true-highlighted" : ""}>{'True'}</div></td>
-                                <td onClick={() => {this.creatorToFalse(index)}} style={{textAlign: 'center', cursor: 'pointer'}}><div className={user.creator ? "" : "false-highlighted"}>{'False'}</div></td>
-                                <td onClick={() => {this.adminToTrue(index)}} style={{textAlign: 'center', borderSpacing: '50px', cursor: 'pointer'}}><div className={user.admin ? "true-highlighted" : ""}>{'True'}</div></td>
-                                <td onClick={() => {this.adminToFalse(index)}} style={{textAlign: 'center', cursor: 'pointer'}}><div className={user.admin ? "" : "false-highlighted"}>{'False'}</div></td>
+            <div>
+                <Card className="large-privilege-container flex-column flex-grow">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th colSpan="2" style={{textAlign: 'center'}}>Creator</th>
+                                <th colSpan="2" style={{marginLeft: '50px', textAlign: 'center'}}>Admin</th>
                             </tr>
-                        )}
-                    </tbody>
-                </table>
-                <span className="flex-grow"></span>
-                <div className="flex-row flex-end">
-                    <div className="z-depth-3 button background-blue" onClick={() => this.cancelUserPrivileges()}>Cancel</div>
-                    <div className="z-depth-3 button background-green" style={{marginLeft: '10px'}} onClick={() => {this.props.updateUsers(this.state.updatedUsers); this.props.snackBarOpen()}}>Save</div>
-                </div>
-            </Card>
+                        </thead>
+                        <tbody>
+                            {this.state.updatedUsers.map((user, index) => 
+                                <tr key={user.googleId}>
+                                    <td>{user.name}</td>
+                                    <td>{user.email[0]}</td>
+                                    <td onClick={() => {this.creatorToTrue(index)}} style={{textAlign: 'center', cursor: 'pointer'}}><div className={user.creator ? "true-highlighted" : ""}>{'True'}</div></td>
+                                    <td onClick={() => {this.creatorToFalse(index)}} style={{textAlign: 'center', cursor: 'pointer'}}><div className={user.creator ? "" : "false-highlighted"}>{'False'}</div></td>
+                                    <td onClick={() => {this.adminToTrue(index)}} style={{textAlign: 'center', borderSpacing: '50px', cursor: 'pointer'}}><div className={user.admin ? "true-highlighted" : ""}>{'True'}</div></td>
+                                    <td onClick={() => {this.adminToFalse(index)}} style={{textAlign: 'center', cursor: 'pointer'}}><div className={user.admin ? "" : "false-highlighted"}>{'False'}</div></td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                    <span className="flex-grow"></span>
+                    <div className="flex-row flex-end">
+                        <div className="z-depth-3 button background-blue" onClick={() => this.cancelUserPrivileges()}>Cancel</div>
+                        <div className="z-depth-3 button background-green" style={{marginLeft: '10px'}} onClick={() => {this.props.updateUsers(this.state.updatedUsers); this.props.snackBarOpen()}}>Save</div>
+                    </div>
+                </Card>
+
+                <Card className="small-privilege-container flex-column flex-grow">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                {/* <th>Email</th> */}
+                                <th colSpan="2" style={{textAlign: 'center'}}>Creator</th>
+                                <th colSpan="2" style={{marginLeft: '50px', textAlign: 'center'}}>Admin</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {this.state.updatedUsers.map((user, index) => 
+                                <tr key={user.googleId}>
+                                    <td>{user.name}</td>
+                                    {/* <td>{user.email[0]}</td> */}
+                                    <td onClick={() => {this.creatorToTrue(index)}} style={{textAlign: 'center', cursor: 'pointer'}}><div className={user.creator ? "true-highlighted" : ""}>{'True'}</div></td>
+                                    <td onClick={() => {this.creatorToFalse(index)}} style={{textAlign: 'center', cursor: 'pointer'}}><div className={user.creator ? "" : "false-highlighted"}>{'False'}</div></td>
+                                    <td onClick={() => {this.adminToTrue(index)}} style={{textAlign: 'center', borderSpacing: '50px', cursor: 'pointer'}}><div className={user.admin ? "true-highlighted" : ""}>{'True'}</div></td>
+                                    <td onClick={() => {this.adminToFalse(index)}} style={{textAlign: 'center', cursor: 'pointer'}}><div className={user.admin ? "" : "false-highlighted"}>{'False'}</div></td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                    <span className="flex-grow"></span>
+                    <div className="flex-row flex-end">
+                        <div className="z-depth-3 button background-blue" onClick={() => this.cancelUserPrivileges()}>Cancel</div>
+                        <div className="z-depth-3 button background-green" style={{marginLeft: '10px'}} onClick={() => {this.props.updateUsers(this.state.updatedUsers); this.props.snackBarOpen()}}>Save</div>
+                    </div>
+                </Card>
+            </div>
         )
     }
 

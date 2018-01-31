@@ -1,0 +1,22 @@
+@media(min-width: 775px) {
+    .large-admin {
+
+    }
+}
+
+@media(max-width: 774px) {
+    .large-admin {
+        display: none;
+    }
+}
+
+@media(min-width: 775px) {
+    .small-admin {
+        display: none;
+    }
+}
+
+@media(max-width: 774px) {
+    .small-admin {
+    }
+}

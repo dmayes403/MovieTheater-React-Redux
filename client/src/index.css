@@ -16,12 +16,25 @@ body {
   margin-top: 75px;
 }
 
-.inner-main-container {
-  margin: auto;
-  flex-direction: column;
-  max-width: 1200px;
-  min-width: 700px;
-  min-height: calc(100vh - 75px);
+@media(min-width: 775px) {
+  .inner-main-container {
+    margin: auto;
+    flex-direction: column;
+    max-width: 1200px;
+    min-width: 700px;
+    min-height: calc(100vh - 75px);
+  }
+}
+
+@media(max-width: 774px) {
+  .inner-main-container {
+    margin: auto;
+    flex-direction: column;
+    max-width: 100%;
+    min-width: 100%;
+    min-height: calc(100vh - 75px);
+    padding: 0px 25px 25px 25px;
+  }
 }
 
 .background-blue {

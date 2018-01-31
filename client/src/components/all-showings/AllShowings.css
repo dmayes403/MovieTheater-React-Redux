@@ -52,12 +52,6 @@
     }
 }
 
-@media (max-width: 774px) {
-    .small-showing-image {
-
-    }
-}
-
 @media (min-width: 775px) {
     .small-showing-image {
         display: none;
@@ -67,12 +61,6 @@
 @media (max-width: 774px) {
     .large-showing-image {
         display: none;
-    }
-}
-
-@media (min-width: 775px) {
-    .large-showing-image {
-
     }
 }
 
